@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2022 OpenSynergy Indonesia
+     Copyright 2022 PT. Simetri Sinergi Indonesia
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+<odoo>
+<record id="inventory_module_category" model="ir.module.category">
+    <field name="name">Inventory</field>
+</record>
+
+<record id="inventory_workflow_module_category" model="ir.module.category">
+    <field name="name">Inventory - Workflow</field>
+    <field name="parent_id" ref="inventory_module_category" />
+</record>
+
+<record id="inventory_data_ownership_module_category" model="ir.module.category">
+    <field name="name">Inventory - Data Ownership</field>
+    <field name="parent_id" ref="inventory_module_category" />
+</record>
+
+
+<record id="inventory_configurator_module_category" model="ir.module.category">
+    <field name="name">Inventory - Configurator</field>
+    <field name="parent_id" ref="inventory_module_category" />
+</record>
+
+<record id="inventory_wizard_module_category" model="ir.module.category">
+    <field name="name">Inventory - Wizard</field>
+    <field name="parent_id" ref="inventory_module_category" />
+</record>
+
+<record id="inventory_report_module_category" model="ir.module.category">
+    <field name="name">Inventory - Report</field>
+    <field name="parent_id" ref="inventory_module_category" />
+</record>
+</odoo>
