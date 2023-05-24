@@ -30,7 +30,7 @@ class MassCreateLocation(models.TransientModel):
         column1="wizard_id",
         column2="warehouse_id",
         default=lambda self: self._default_warehouse_ids(),
-        required=True,
+        required=False,
     )
     location_type_ids = fields.Many2many(
         string="Location Types",
@@ -51,4 +51,11 @@ class MassCreateLocation(models.TransientModel):
         Location = self.env["stock.location"]
         for warehouse in self.warehouse_ids:
             for loc_type in self.location_type_ids:
-                Location.create(loc_type._prepare_location_data(warehouse))
+                criteria = [
+                    ("type_id", "=", loc_type.id),
+                ]
+                if loc_type.is_warehouse_location:
+                    criteria += [("warehouse_id", "=", warehouse.id)]
+                loc_count = Location.search_count(criteria)
+                if loc_count == 0:
+                    Location.create(loc_type._prepare_location_data(warehouse))

@@ -8,6 +8,99 @@
     <field name="name">Goods Receipt</field>
     <field name="code">GR</field>
     <field name="direction">incoming</field>
+    <field name="default_source_location_type_id" ref="location_type_supplier" />
+    <field name="default_destination_location_type_id" ref="location_type_main_stock" />
+    <field
+                name="allowed_source_location_type_ids"
+                eval="[(6, 0, [ref('location_type_supplier')])]"
+            />
+    <field
+                name="allowed_destination_location_type_ids"
+                eval="[(6, 0, [ref('location_type_main_stock'),ref('location_type_stock')])]"
+            />
+</record>
+
+<record id="picking_category_do" model="picking_type_category">
+    <field name="name">Delivery Order</field>
+    <field name="code">DO</field>
+    <field name="direction">outgoing</field>
+    <field name="default_source_location_type_id" ref="location_type_main_stock" />
+    <field name="default_destination_location_type_id" ref="location_type_customer" />
+    <field
+                name="allowed_source_location_type_ids"
+                eval="[(6, 0, [ref('location_type_main_stock'),ref('location_type_stock')])]"
+            />
+    <field
+                name="allowed_destination_location_type_ids"
+                eval="[(6, 0, [ref('location_type_customer')])]"
+            />
+</record>
+
+<record id="picking_category_con" model="picking_type_category">
+    <field name="name">Consume</field>
+    <field name="code">CON</field>
+    <field name="direction">outgoing</field>
+    <field name="default_source_location_type_id" ref="location_type_main_stock" />
+    <field
+                name="default_destination_location_type_id"
+                ref="location_type_consumption"
+            />
+    <field
+                name="allowed_source_location_type_ids"
+                eval="[(6, 0, [ref('location_type_main_stock'),ref('location_type_stock')])]"
+            />
+    <field
+                name="allowed_destination_location_type_ids"
+                eval="[(6, 0, [ref('location_type_consumption')])]"
+            />
+</record>
+
+<record id="picking_category_wst" model="picking_type_category">
+    <field name="name">Waste</field>
+    <field name="code">WST</field>
+    <field name="direction">outgoing</field>
+    <field name="default_source_location_type_id" ref="location_type_main_stock" />
+    <field name="default_destination_location_type_id" ref="location_type_waste" />
+    <field
+                name="allowed_source_location_type_ids"
+                eval="[(6, 0, [ref('location_type_main_stock'),ref('location_type_stock')])]"
+            />
+    <field
+                name="allowed_destination_location_type_ids"
+                eval="[(6, 0, [ref('location_type_waste')])]"
+            />
+</record>
+
+<record id="picking_category_stl" model="picking_type_category">
+    <field name="name">Stolen</field>
+    <field name="code">STL</field>
+    <field name="direction">outgoing</field>
+    <field name="default_source_location_type_id" ref="location_type_main_stock" />
+    <field name="default_destination_location_type_id" ref="location_type_stolen" />
+    <field
+                name="allowed_source_location_type_ids"
+                eval="[(6, 0, [ref('location_type_main_stock'),ref('location_type_stock')])]"
+            />
+    <field
+                name="allowed_destination_location_type_ids"
+                eval="[(6, 0, [ref('location_type_stolen')])]"
+            />
+</record>
+
+<record id="picking_category_lst" model="picking_type_category">
+    <field name="name">Lost</field>
+    <field name="code">LST</field>
+    <field name="direction">outgoing</field>
+    <field name="default_source_location_type_id" ref="location_type_main_stock" />
+    <field name="default_destination_location_type_id" ref="location_type_lost" />
+    <field
+                name="allowed_source_location_type_ids"
+                eval="[(6, 0, [ref('location_type_main_stock'),ref('location_type_stock')])]"
+            />
+    <field
+                name="allowed_destination_location_type_ids"
+                eval="[(6, 0, [ref('location_type_lost')])]"
+            />
 </record>
 
 </data>

@@ -3,7 +3,7 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 {
     "name": "Inventory",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.1.0",
     "website": "https://simetri-sinergi.id",
     "author": "PT. Simetri Sinergi Indonesia, OpenSynergy Indonesia",
     "license": "LGPL-3",
@@ -18,8 +18,8 @@
         "security/ir_module_category_data.xml",
         "security/res_group_data.xml",
         "security/ir.model.access.csv",
-        "data/stock_picking_type_category_data.xml",
         "data/location_type_data.xml",
+        "data/stock_picking_type_category_data.xml",
         "menu.xml",
         "wizards/mass_create_location_views.xml",
         "wizards/mass_create_picking_type_views.xml",

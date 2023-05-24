@@ -39,5 +39,33 @@
     <field name="is_warehouse_location" eval="0" />
 </record>
 
+<record id="location_type_consumption" model="location_type">
+    <field name="name">Consumption</field>
+    <field name="code">CON</field>
+    <field name="usage">inventory</field>
+    <field name="is_warehouse_location" eval="0" />
+</record>
+
+<record id="location_type_waste" model="location_type">
+    <field name="name">Waste</field>
+    <field name="code">WST</field>
+    <field name="usage">inventory</field>
+    <field name="is_warehouse_location" eval="0" />
+</record>
+
+<record id="location_type_stolen" model="location_type">
+    <field name="name">Stolen</field>
+    <field name="code">STL</field>
+    <field name="usage">inventory</field>
+    <field name="is_warehouse_location" eval="0" />
+</record>
+
+<record id="location_type_lost" model="location_type">
+    <field name="name">Lost</field>
+    <field name="code">LST</field>
+    <field name="usage">inventory</field>
+    <field name="is_warehouse_location" eval="0" />
+</record>
+
 </data>
 </odoo>

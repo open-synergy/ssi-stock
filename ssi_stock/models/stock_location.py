@@ -29,7 +29,7 @@ class StockLocation(models.Model):
         Warehouse = self.env["stock.warehouse"]
         for record in self:
             result = False
-            criteria = [("view_location_id", "parent_of", record.id)]
+            criteria = [("view_location_id", "parent_of", record._origin.id)]
             warehouses = Warehouse.search(criteria)
             if len(warehouses) > 0:
                 result = warehouses[0]
