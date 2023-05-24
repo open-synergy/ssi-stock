@@ -3,7 +3,7 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 {
     "name": "Inventory",
-    "version": "14.0.1.1.0",
+    "version": "14.0.1.2.0",
     "website": "https://simetri-sinergi.id",
     "author": "PT. Simetri Sinergi Indonesia, OpenSynergy Indonesia",
     "license": "LGPL-3",
@@ -28,6 +28,17 @@
         "views/stock_picking_views.xml",
         "views/location_type_views.xml",
         "views/stock_location_views.xml",
+        "views/goods_receipt_views.xml",
+        "views/delivery_order_views.xml",
+        "views/internal_transfer_views.xml",
+        "views/pick_views.xml",
+        "views/pack_views.xml",
+        "views/consume_views.xml",
+        "views/waste_views.xml",
+        "views/stolen_views.xml",
+        "views/lost_views.xml",
+        "views/adjustment_in_views.xml",
+        "views/adjustment_out_views.xml",
     ],
     "demo": [],
 }
