@@ -179,7 +179,7 @@
     <field name="direction">incoming</field>
 </record>
 
-<record id="picking_category_ad0" model="picking_type_category">
+<record id="picking_category_ado" model="picking_type_category">
     <field name="name">Adjustment Out</field>
     <field name="code">ADO</field>
     <field name="direction">outgoing</field>
