@@ -54,6 +54,16 @@
                         widget="many2many_tags"
                         invisible="1"
                     />
+                    <field
+                        name="allowed_product_category_ids"
+                        widget="many2many_tags"
+                        invisible="1"
+                    />
+                    <field
+                        name="allowed_product_ids"
+                        widget="many2many_tags"
+                        invisible="1"
+                    />
                 <field name="show_price_unit" invisible="1" />
                 <field name="show_procure_method" invisible="1" />
 
@@ -87,6 +97,14 @@
                         name="procure_method"
                         attrs="{'column_invisible':[('parent.show_procure_method','=',False)]}"
                     />
+            </xpath>
+            <xpath
+                    expr="//field[@name='move_ids_without_package']/tree/field[@name='product_id']"
+                    position="attributes"
+                >
+                <attribute
+                        name="domain"
+                    >['|',('id','in',parent.allowed_product_ids),('categ_id','in',parent.allowed_product_category_ids)]</attribute>
             </xpath>
         </data>
     </field>

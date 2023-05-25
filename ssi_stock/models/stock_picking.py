@@ -37,3 +37,15 @@ class StockPicking(models.Model):
         related="picking_type_id.allowed_destination_location_ids",
         store=False,
     )
+    allowed_product_category_ids = fields.Many2many(
+        string="Allowed Product Categories",
+        comodel_name="product.category",
+        related="picking_type_id.allowed_product_category_ids",
+        store=False,
+    )
+    allowed_product_ids = fields.Many2many(
+        string="Allowed Products",
+        comodel_name="product.product",
+        related="picking_type_id.allowed_product_ids",
+        store=False,
+    )

@@ -59,6 +59,12 @@
                         widget="many2many_tags"
                     />
             </xpath>
+            <xpath expr="//sheet/group[2]" position="after">
+                <group name="product" string="Product">
+                    <field name="allowed_product_category_ids" />
+                    <field name="allowed_product_ids" />
+                </group>
+            </xpath>
         </data>
     </field>
 </record>

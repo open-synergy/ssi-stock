@@ -43,3 +43,17 @@ class StockPickingType(models.Model):
         column1="picking_type_id",
         column2="location_id",
     )
+    allowed_product_category_ids = fields.Many2many(
+        string="Allowed Product Categories",
+        comodel_name="product.category",
+        relation="rel_picking_type_2_product_category",
+        column1="category_id",
+        column2="product_category_id",
+    )
+    allowed_product_ids = fields.Many2many(
+        string="Allowed Products",
+        comodel_name="product.product",
+        relation="rel_picking_type_2_product",
+        column1="category_id",
+        column2="product_id",
+    )
