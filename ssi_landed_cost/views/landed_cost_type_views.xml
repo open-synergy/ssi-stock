@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2022 OpenSynergy Indonesia
+     Copyright 2022 PT. Simetri Sinergi Indonesia
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+<record id="landed_cost_type_view_search" model="ir.ui.view">
+    <field name="name">landed_cost_type - search</field>
+    <field name="model">landed_cost_type</field>
+    <field
+            name="inherit_id"
+            ref="ssi_master_data_mixin.mixin_master_data_view_search"
+        />
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+        <data />
+    </field>
+</record>
+
+<record id="landed_cost_type_view_tree" model="ir.ui.view">
+    <field name="name">landed_cost_type -tree</field>
+    <field name="model">landed_cost_type</field>
+    <field name="inherit_id" ref="ssi_master_data_mixin.mixin_master_data_view_tree" />
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+        <data>
+        </data>
+    </field>
+</record>
+
+<record id="landed_cost_type_view_form" model="ir.ui.view">
+    <field name="name">landed_cost_type - form</field>
+    <field name="model">landed_cost_type</field>
+    <field name="inherit_id" ref="ssi_master_data_mixin.mixin_master_data_view_form" />
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+        <data>
+            <xpath expr="//notebook/page[@name='note']" position="before">
+                <page name="cost" string="Costs">
+                    <field name="cost_ids">
+                        <tree editable="top">
+                            <field name="sequence" />
+                            <field name="currency_id" />
+                            <field name="product_id" />
+                            <field name="usage_id" />
+                            <field name="account_id" />
+                            <field name="name" />
+                            <field name="price_unit" />
+                            <field name="uom_quantity" />
+                            <field name="uom_id" />
+                            <field name="quantity" optional="hide" />
+                            <field name="price_subtotal" />
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </data>
+    </field>
+</record>
+
+<record id="landed_cost_type_action" model="ir.actions.act_window">
+    <field name="name">Landed Cost Types</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">landed_cost_type</field>
+    <field name="view_mode">tree,form</field>
+</record>
+
+<menuitem
+        id="landed_cost_type_menu"
+        name="Landed Cost Types"
+        parent="stock.menu_warehouse_config"
+        action="landed_cost_type_action"
+        groups="landed_cost_type_group"
+        sequence="10"
+    />
+
+</odoo>

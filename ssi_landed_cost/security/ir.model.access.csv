@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_landed_cost_type_configurator,landed_cost_type - configurator,model_landed_cost_type,landed_cost_type_group,1,1,1,1
+access_landed_cost_type_all,landed_cost_type - all user,model_landed_cost_type,,1,0,0,0
+access_landed_cost_type_cost_configurator,landed_cost_type_cost - configurator,model_landed_cost_type_cost,landed_cost_type_group,1,1,1,1
+access_landed_cost_type_cost_all,landed_cost_type_cost - all user,model_landed_cost_type_cost,,1,0,0,0
