@@ -18,8 +18,8 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
-[ssi_landed_cost](ssi_landed_cost/) | 14.0.1.0.0 |  | Landed Cost Extension
-[ssi_mrp_landed_cost](ssi_mrp_landed_cost/) | 14.0.1.0.0 |  | Landed Cost - MRP Extension
+[ssi_landed_cost](ssi_landed_cost/) | 14.0.2.0.0 |  | Landed Cost Extension
+[ssi_mrp_landed_cost](ssi_mrp_landed_cost/) | 14.0.2.0.0 |  | Landed Cost - MRP Extension
 [ssi_stock](ssi_stock/) | 14.0.1.5.0 |  | Inventory
 
 [//]: # (end addons)
