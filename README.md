@@ -18,7 +18,7 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
-[ssi_stock](ssi_stock/) | 14.0.1.4.0 |  | Inventory
+[ssi_stock](ssi_stock/) | 14.0.1.5.0 |  | Inventory
 
 [//]: # (end addons)
 
