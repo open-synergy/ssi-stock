@@ -8,6 +8,8 @@ setuptools.setup(
     description="Meta package for open-synergy-ssi-stock Odoo addons",
     version=version,
     install_requires=[
+        'odoo14-addon-ssi_landed_cost',
+        'odoo14-addon-ssi_mrp_landed_cost',
         'odoo14-addon-ssi_stock',
     ],
     classifiers=[
