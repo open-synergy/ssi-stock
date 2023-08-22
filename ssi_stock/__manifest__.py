@@ -13,6 +13,7 @@
         "ssi_master_data_mixin",
         "ssi_product",
         "stock",
+        "stock_move_backdating",
     ],
     "data": [
         "security/ir_module_category_data.xml",
@@ -27,6 +28,7 @@
         "views/stock_picking_type_views.xml",
         "views/stock_picking_views.xml",
         "views/location_type_views.xml",
+        "views/product_category_views.xml",
         "views/stock_location_views.xml",
         "views/goods_receipt_views.xml",
         "views/delivery_order_views.xml",

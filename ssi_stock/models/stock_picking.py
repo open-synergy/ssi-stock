@@ -49,3 +49,17 @@ class StockPicking(models.Model):
         related="picking_type_id.allowed_product_ids",
         store=False,
     )
+
+    def _assign_auto_lot_number(self):
+        for record in self:
+            if record.picking_type_id.use_create_lots:
+                for line in record.move_line_ids:
+                    line._assign_auto_lot_number()
+
+    def _action_done(self):
+        self._assign_auto_lot_number()
+        return super()._action_done()
+
+    def button_validate(self):
+        self._assign_auto_lot_number()
+        return super().button_validate()
