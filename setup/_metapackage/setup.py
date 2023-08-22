@@ -11,6 +11,8 @@ setuptools.setup(
         'odoo14-addon-ssi_landed_cost',
         'odoo14-addon-ssi_mrp_landed_cost',
         'odoo14-addon-ssi_stock',
+        'odoo14-addon-ssi_stock_account',
+        'odoo14-addon-ssi_stock_fixed_asset',
     ],
     classifiers=[
         'Programming Language :: Python',
