@@ -17,6 +17,7 @@
         "ssi_company_currency_mixin",
     ],
     "data": [
+        "views/stock_picking_type_views.xml",
         "views/stock_picking_views.xml",
         "views/stock_valuation_layer_views.xml",
     ],

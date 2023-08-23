@@ -5,9 +5,7 @@
 from . import (
     picking_type_category,
     stock_picking,
-    # stock_picking_type,
-    # location_type,
-    # stock_location,
+    stock_picking_type,
     stock_move,
     stock_valuation_layer,
 )
