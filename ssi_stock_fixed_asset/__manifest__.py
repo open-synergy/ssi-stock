@@ -13,6 +13,10 @@
         "ssi_stock_account",
         "ssi_fixed_asset",
     ],
-    "data": ["views/product_product_views.xml"],
+    "data": [
+        "views/product_product_views.xml",
+        "views/fixed_asset_asset_views.xml",
+        "views/stock_production_lot_views.xml",
+    ],
     "demo": [],
 }

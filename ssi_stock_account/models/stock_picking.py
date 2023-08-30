@@ -14,3 +14,64 @@ class StockPicking(models.Model):
         string="Journal",
         comodel_name="account.journal",
     )
+    account_move_ids = fields.Many2many(
+        string="Journal Entries",
+        comodel_name="account.move",
+        compute="_compute_account_move_ids",
+        store=False,
+    )
+    stock_valuation_layer_ids = fields.Many2many(
+        string="Stock Valuation Layes",
+        comodel_name="stock.valuation.layer",
+        compute="_compute_stock_valuation_layer_ids",
+        store=False,
+    )
+    create_accounting_entry_ok = fields.Boolean(
+        string="Can Create Accounting Entries",
+        compute="_compute_create_accounting_entry_ok",
+        store=False,
+    )
+
+    def _compute_create_accounting_entry_ok(self):
+        for record in self:
+            result = True
+
+            if record.state != "done":
+                result = False
+
+            if record.account_move_ids:
+                result = False
+
+            record.create_accounting_entry_ok = result
+
+    def _compute_account_move_ids(self):
+        for record in self:
+            result = self.env["account.move"]
+            for move in self.move_lines:
+                result += move.account_move_ids
+            record.account_move_ids = result
+
+    def _compute_stock_valuation_layer_ids(self):
+        for record in self:
+            result = self.env["stock.valuation.layer"]
+            for move in self.move_lines:
+                result += move.stock_valuation_layer_ids
+            record.stock_valuation_layer_ids = result
+
+    def action_create_accounting_entry(self):
+        for record in self.sudo():
+            record._create_accounting_entry()
+
+    def action_delete_accounting_entry(self):
+        for record in self.sudo():
+            record._delete_accounting_entry()
+
+    def _create_accounting_entry(self):
+        self.ensure_one()
+        for svl in self.stock_valuation_layer_ids:
+            svl._create_accounting_entry()
+
+    def _delete_accounting_entry(self):
+        self.ensure_one()
+        for svl in self.stock_valuation_layer_ids:
+            svl._delete_accounting_entry()

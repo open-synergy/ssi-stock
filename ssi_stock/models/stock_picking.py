@@ -53,9 +53,21 @@ class StockPicking(models.Model):
     def _assign_auto_lot_number(self):
         for record in self:
             if record.picking_type_id.use_create_lots:
-                for line in record.move_line_ids:
+                for line in record.mapped("move_line_ids").filtered(
+                    lambda x: (
+                        not x.lot_id
+                        and not x.lot_name
+                        and x.product_id.tracking != "none"
+                        and x.product_id.categ_id.sequence_id
+                        and x.qty_done != 0.0
+                    )
+                ):
                     line._assign_auto_lot_number()
 
     def _action_done(self):
         self._assign_auto_lot_number()
         return super()._action_done()
+
+    def button_validate(self):
+        self._assign_auto_lot_number()
+        return super().button_validate()

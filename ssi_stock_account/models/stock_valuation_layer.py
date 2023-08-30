@@ -77,6 +77,16 @@ class StockValuationLayer(models.Model):
         compute="_compute_date",
         store=True,
     )
+    debit_move_line_id = fields.Many2one(
+        string="Debit Move Line",
+        comodel_name="account.move.line",
+        readonly=True,
+    )
+    credit_move_line_id = fields.Many2one(
+        string="Credit Move Line",
+        comodel_name="account.move.line",
+        readonly=True,
+    )
 
     @api.depends("create_date")
     def _compute_date(self):
@@ -96,7 +106,18 @@ class StockValuationLayer(models.Model):
             return True
 
         self._create_standard_move()  # Mixin
-        self._create_standard_ml()  # Mixin
+        debit_ml, credit_ml = self._create_standard_ml()  # Mixin
+        self.write(
+            {
+                "debit_move_line_id": debit_ml.id,
+                "credit_move_line_id": credit_ml.id,
+            }
+        )
+        self.account_move_id.write(
+            {
+                "stock_move_id": self.stock_move_id.id,
+            }
+        )
         self._post_standard_move()  # Mixin
 
     def _delete_accounting_entry(self):

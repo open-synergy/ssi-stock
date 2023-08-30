@@ -4,4 +4,7 @@
 
 from . import (
     product_product,
+    fixed_asset_asset,
+    account_move_line,
+    stock_production_lot,
 )
