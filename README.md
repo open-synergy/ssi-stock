@@ -20,9 +20,9 @@ addon | version | maintainers | summary
 --- | --- | --- | ---
 [ssi_landed_cost](ssi_landed_cost/) | 14.0.2.0.0 |  | Landed Cost Extension
 [ssi_mrp_landed_cost](ssi_mrp_landed_cost/) | 14.0.2.0.0 |  | Landed Cost - MRP Extension
-[ssi_stock](ssi_stock/) | 14.0.2.1.0 |  | Inventory
-[ssi_stock_account](ssi_stock_account/) | 14.0.2.1.0 |  | Inventory + Accounting Integration
-[ssi_stock_fixed_asset](ssi_stock_fixed_asset/) | 14.0.2.0.0 |  | Inventory + Fixed Asset Integration
+[ssi_stock](ssi_stock/) | 14.0.2.2.0 |  | Inventory
+[ssi_stock_account](ssi_stock_account/) | 14.0.2.2.0 |  | Inventory + Accounting Integration
+[ssi_stock_fixed_asset](ssi_stock_fixed_asset/) | 14.0.2.1.0 |  | Inventory + Fixed Asset Integration
 
 [//]: # (end addons)
 
