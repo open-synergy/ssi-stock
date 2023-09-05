@@ -36,10 +36,12 @@ jobs:
       matrix:
         include:
           - container: ghcr.io/oca/oca-ci/py3.6-odoo14.0:latest
+            exclude: "l10n_generic_coa"
             makepot: "true"
             name: test with Odoo
           - container: ghcr.io/oca/oca-ci/py3.6-ocb14.0:latest
             name: test with OCB
+            exclude: "l10n_generic_coa"
     services:
       postgres:
         image: postgres:9.6
