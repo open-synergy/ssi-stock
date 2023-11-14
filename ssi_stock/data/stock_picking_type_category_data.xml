@@ -169,5 +169,34 @@
     <field name="direction">outgoing</field>
 </record>
 
+<record id="picking_category_iwo" model="picking_type_category">
+    <field name="name">Inter-Warehouse Out</field>
+    <field name="code">IWO</field>
+    <field name="direction">outgoing</field>
+    <field name="default_source_location_type_id" ref="location_type_main_stock" />
+    <field
+                name="allowed_source_location_type_ids"
+                eval="[(6, 0, [ref('location_type_main_stock'),ref('location_type_stock')])]"
+            />
+    <field
+                name="allowed_destination_location_type_ids"
+                eval="[(6, 0, [ref('location_type_push')])]"
+            />
+</record>
+
+<record id="picking_category_iwi" model="picking_type_category">
+    <field name="name">Inter-Warehouse In</field>
+    <field name="code">IWI</field>
+    <field name="direction">outgoing</field>
+    <field name="default_source_location_type_id" ref="location_type_main_stock" />
+    <field
+                name="allowed_source_location_type_ids"
+                eval="[(6, 0, [ref('location_type_main_stock'),ref('location_type_stock')])]"
+            />
+    <field
+                name="allowed_destination_location_type_ids"
+                eval="[(6, 0, [ref('location_type_pull')])]"
+            />
+</record>
 </data>
 </odoo>

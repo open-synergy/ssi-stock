@@ -41,6 +41,8 @@
         "views/lost_views.xml",
         "views/adjustment_in_views.xml",
         "views/adjustment_out_views.xml",
+        "views/interwarehouse_in_views.xml",
+        "views/interwarehouse_out_views.xml",
     ],
     "demo": [],
 }
