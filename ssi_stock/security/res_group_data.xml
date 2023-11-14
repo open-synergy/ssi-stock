@@ -50,6 +50,28 @@
         />
 </record>
 
+<!-- Good Receipt: Data Ownership -->
+<record id="goods_receipt_company_group" model="res.groups">
+    <field name="name">Company</field>
+    <field name="category_id" ref="goods_receipt_data_ownership_module_category" />
+</record>
+
+<record id="goods_receipt_company_child_group" model="res.groups">
+    <field name="name">Company and All Child Companies</field>
+    <field name="category_id" ref="goods_receipt_data_ownership_module_category" />
+    <field name="implied_ids" eval="[(4, ref('goods_receipt_company_group'))]" />
+</record>
+
+<record id="goods_receipt_all_group" model="res.groups">
+    <field name="name">All</field>
+    <field name="category_id" ref="goods_receipt_data_ownership_module_category" />
+    <field name="implied_ids" eval="[(4, ref('goods_receipt_company_child_group'))]" />
+    <field
+            name="users"
+            eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
+        />
+</record>
+
 <!-- Delivery Order-->
 <record id="delivery_order_viewer_group" model="res.groups">
     <field name="name">Viewer</field>
@@ -66,6 +88,28 @@
     <field name="name">Validator</field>
     <field name="category_id" ref="delivery_order_module_category" />
     <field name="implied_ids" eval="[(4, ref('delivery_order_user_group'))]" />
+    <field
+            name="users"
+            eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
+        />
+</record>
+
+<!-- Delivery Order: Data Ownership -->
+<record id="delivery_order_company_group" model="res.groups">
+    <field name="name">Company</field>
+    <field name="category_id" ref="delivery_order_data_ownership_module_category" />
+</record>
+
+<record id="delivery_order_company_child_group" model="res.groups">
+    <field name="name">Company and All Child Companies</field>
+    <field name="category_id" ref="delivery_order_data_ownership_module_category" />
+    <field name="implied_ids" eval="[(4, ref('delivery_order_company_group'))]" />
+</record>
+
+<record id="delivery_order_all_group" model="res.groups">
+    <field name="name">All</field>
+    <field name="category_id" ref="delivery_order_data_ownership_module_category" />
+    <field name="implied_ids" eval="[(4, ref('delivery_order_company_child_group'))]" />
     <field
             name="users"
             eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
@@ -94,6 +138,30 @@
         />
 </record>
 
+<!-- Internal Transfer: Data Ownership -->
+<record id="internal_transfer_company_group" model="res.groups">
+    <field name="name">Company</field>
+    <field name="category_id" ref="internal_transfer_data_ownership_module_category" />
+</record>
+
+<record id="internal_transfer_company_child_group" model="res.groups">
+    <field name="name">Company and All Child Companies</field>
+    <field name="category_id" ref="internal_transfer_data_ownership_module_category" />
+    <field name="implied_ids" eval="[(4, ref('internal_transfer_company_group'))]" />
+</record>
+
+<record id="internal_transfer_all_group" model="res.groups">
+    <field name="name">All</field>
+    <field name="category_id" ref="internal_transfer_data_ownership_module_category" />
+    <field
+            name="implied_ids"
+            eval="[(4, ref('internal_transfer_company_child_group'))]"
+        />
+    <field
+            name="users"
+            eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
+        />
+</record>
 <!-- Pick-->
 <record id="pick_viewer_group" model="res.groups">
     <field name="name">Viewer</field>
@@ -116,6 +184,27 @@
         />
 </record>
 
+<!-- Pick: Data Ownership -->
+<record id="pick_company_group" model="res.groups">
+    <field name="name">Company</field>
+    <field name="category_id" ref="pick_data_ownership_module_category" />
+</record>
+
+<record id="pick_company_child_group" model="res.groups">
+    <field name="name">Company and All Child Companies</field>
+    <field name="category_id" ref="pick_data_ownership_module_category" />
+    <field name="implied_ids" eval="[(4, ref('pick_company_group'))]" />
+</record>
+
+<record id="pick_all_group" model="res.groups">
+    <field name="name">All</field>
+    <field name="category_id" ref="pick_data_ownership_module_category" />
+    <field name="implied_ids" eval="[(4, ref('pick_company_child_group'))]" />
+    <field
+            name="users"
+            eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
+        />
+</record>
 <!-- Pack-->
 <record id="pack_viewer_group" model="res.groups">
     <field name="name">Viewer</field>
@@ -138,6 +227,27 @@
         />
 </record>
 
+<!-- Pack: Data Ownership -->
+<record id="pack_company_group" model="res.groups">
+    <field name="name">Company</field>
+    <field name="category_id" ref="pack_data_ownership_module_category" />
+</record>
+
+<record id="pack_company_child_group" model="res.groups">
+    <field name="name">Company and All Child Companies</field>
+    <field name="category_id" ref="pack_data_ownership_module_category" />
+    <field name="implied_ids" eval="[(4, ref('pack_company_group'))]" />
+</record>
+
+<record id="pack_all_group" model="res.groups">
+    <field name="name">All</field>
+    <field name="category_id" ref="pack_data_ownership_module_category" />
+    <field name="implied_ids" eval="[(4, ref('pack_company_child_group'))]" />
+    <field
+            name="users"
+            eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
+        />
+</record>
 <!-- Consume-->
 <record id="consume_viewer_group" model="res.groups">
     <field name="name">Viewer</field>
@@ -154,6 +264,28 @@
     <field name="name">Validator</field>
     <field name="category_id" ref="consume_module_category" />
     <field name="implied_ids" eval="[(4, ref('consume_user_group'))]" />
+    <field
+            name="users"
+            eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
+        />
+</record>
+
+<!-- Consume: Data Ownership -->
+<record id="consume_company_group" model="res.groups">
+    <field name="name">Company</field>
+    <field name="category_id" ref="consume_data_ownership_module_category" />
+</record>
+
+<record id="consume_company_child_group" model="res.groups">
+    <field name="name">Company and All Child Companies</field>
+    <field name="category_id" ref="consume_data_ownership_module_category" />
+    <field name="implied_ids" eval="[(4, ref('consume_company_group'))]" />
+</record>
+
+<record id="consume_all_group" model="res.groups">
+    <field name="name">All</field>
+    <field name="category_id" ref="consume_data_ownership_module_category" />
+    <field name="implied_ids" eval="[(4, ref('consume_company_child_group'))]" />
     <field
             name="users"
             eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
@@ -182,6 +314,27 @@
         />
 </record>
 
+<!-- Waste: Data Ownership -->
+<record id="waste_company_group" model="res.groups">
+    <field name="name">Company</field>
+    <field name="category_id" ref="waste_data_ownership_module_category" />
+</record>
+
+<record id="waste_company_child_group" model="res.groups">
+    <field name="name">Company and All Child Companies</field>
+    <field name="category_id" ref="waste_data_ownership_module_category" />
+    <field name="implied_ids" eval="[(4, ref('waste_company_group'))]" />
+</record>
+
+<record id="waste_all_group" model="res.groups">
+    <field name="name">All</field>
+    <field name="category_id" ref="waste_data_ownership_module_category" />
+    <field name="implied_ids" eval="[(4, ref('waste_company_child_group'))]" />
+    <field
+            name="users"
+            eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
+        />
+</record>
 <!-- Stolen-->
 <record id="stolen_viewer_group" model="res.groups">
     <field name="name">Viewer</field>
@@ -204,6 +357,27 @@
         />
 </record>
 
+<!-- Stolen: Data Ownership -->
+<record id="stolen_company_group" model="res.groups">
+    <field name="name">Company</field>
+    <field name="category_id" ref="stolen_data_ownership_module_category" />
+</record>
+
+<record id="stolen_company_child_group" model="res.groups">
+    <field name="name">Company and All Child Companies</field>
+    <field name="category_id" ref="stolen_data_ownership_module_category" />
+    <field name="implied_ids" eval="[(4, ref('stolen_company_group'))]" />
+</record>
+
+<record id="stolen_all_group" model="res.groups">
+    <field name="name">All</field>
+    <field name="category_id" ref="stolen_data_ownership_module_category" />
+    <field name="implied_ids" eval="[(4, ref('stolen_company_child_group'))]" />
+    <field
+            name="users"
+            eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
+        />
+</record>
 <!-- Lost-->
 <record id="lost_viewer_group" model="res.groups">
     <field name="name">Viewer</field>
@@ -220,6 +394,28 @@
     <field name="name">Validator</field>
     <field name="category_id" ref="lost_module_category" />
     <field name="implied_ids" eval="[(4, ref('lost_user_group'))]" />
+    <field
+            name="users"
+            eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
+        />
+</record>
+
+<!-- Lost: Data Ownership -->
+<record id="lost_company_group" model="res.groups">
+    <field name="name">Company</field>
+    <field name="category_id" ref="lost_data_ownership_module_category" />
+</record>
+
+<record id="lost_company_child_group" model="res.groups">
+    <field name="name">Company and All Child Companies</field>
+    <field name="category_id" ref="lost_data_ownership_module_category" />
+    <field name="implied_ids" eval="[(4, ref('lost_company_group'))]" />
+</record>
+
+<record id="lost_all_group" model="res.groups">
+    <field name="name">All</field>
+    <field name="category_id" ref="lost_data_ownership_module_category" />
+    <field name="implied_ids" eval="[(4, ref('lost_company_child_group'))]" />
     <field
             name="users"
             eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
@@ -248,6 +444,27 @@
         />
 </record>
 
+<!-- Adjustment In: Data Ownership -->
+<record id="adjustment_in_company_group" model="res.groups">
+    <field name="name">Company</field>
+    <field name="category_id" ref="adjustment_in_data_ownership_module_category" />
+</record>
+
+<record id="adjustment_in_company_child_group" model="res.groups">
+    <field name="name">Company and All Child Companies</field>
+    <field name="category_id" ref="adjustment_in_data_ownership_module_category" />
+    <field name="implied_ids" eval="[(4, ref('adjustment_in_company_group'))]" />
+</record>
+
+<record id="adjustment_in_all_group" model="res.groups">
+    <field name="name">All</field>
+    <field name="category_id" ref="adjustment_in_data_ownership_module_category" />
+    <field name="implied_ids" eval="[(4, ref('adjustment_in_company_child_group'))]" />
+    <field
+            name="users"
+            eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
+        />
+</record>
 <!-- Adjustment Out-->
 <record id="adjustment_out_viewer_group" model="res.groups">
     <field name="name">Viewer</field>
@@ -264,6 +481,28 @@
     <field name="name">Validator</field>
     <field name="category_id" ref="adjustment_out_module_category" />
     <field name="implied_ids" eval="[(4, ref('adjustment_out_user_group'))]" />
+    <field
+            name="users"
+            eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
+        />
+</record>
+
+<!-- Adjustment Out: Data Ownership -->
+<record id="adjustment_out_company_group" model="res.groups">
+    <field name="name">Company</field>
+    <field name="category_id" ref="adjustment_out_data_ownership_module_category" />
+</record>
+
+<record id="adjustment_out_company_child_group" model="res.groups">
+    <field name="name">Company and All Child Companies</field>
+    <field name="category_id" ref="adjustment_out_data_ownership_module_category" />
+    <field name="implied_ids" eval="[(4, ref('adjustment_out_company_group'))]" />
+</record>
+
+<record id="adjustment_out_all_group" model="res.groups">
+    <field name="name">All</field>
+    <field name="category_id" ref="adjustment_out_data_ownership_module_category" />
+    <field name="implied_ids" eval="[(4, ref('adjustment_out_company_child_group'))]" />
     <field
             name="users"
             eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
