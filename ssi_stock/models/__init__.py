@@ -11,4 +11,5 @@ from . import (
     stock_location,
     stock_move,
     stock_move_line,
+    stock_rule,
 )
