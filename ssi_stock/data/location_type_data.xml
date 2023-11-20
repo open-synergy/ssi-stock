@@ -68,16 +68,30 @@
 </record>
 
 <record id="location_type_push" model="location_type">
-    <field name="name">Inter-Warehouse Push</field>
-    <field name="code">IWS</field>
+    <field name="name">Transit Push</field>
+    <field name="code">TS</field>
     <field name="usage">transit</field>
     <field name="is_warehouse_location" eval="1" />
 </record>
 
 <record id="location_type_pull" model="location_type">
-    <field name="name">Inter-Warehouse Pull</field>
-    <field name="code">IWL</field>
+    <field name="name">Transit Pull</field>
+    <field name="code">TL</field>
     <field name="usage">transit</field>
+    <field name="is_warehouse_location" eval="1" />
+</record>
+
+<record id="location_type_pick" model="location_type">
+    <field name="name">Pick</field>
+    <field name="code">PI</field>
+    <field name="usage">internal</field>
+    <field name="is_warehouse_location" eval="1" />
+</record>
+
+<record id="location_type_pack" model="location_type">
+    <field name="name">Pack</field>
+    <field name="code">PA</field>
+    <field name="usage">internal</field>
     <field name="is_warehouse_location" eval="1" />
 </record>
 
