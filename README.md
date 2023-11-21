@@ -25,6 +25,7 @@ addon | version | maintainers | summary
 [ssi_stock_account](ssi_stock_account/) | 14.0.2.3.0 |  | Inventory + Accounting Integration
 [ssi_stock_donation_operation](ssi_stock_donation_operation/) | 14.0.1.0.0 |  | Donation Inventory Operation
 [ssi_stock_fixed_asset](ssi_stock_fixed_asset/) | 14.0.2.1.0 |  | Inventory + Fixed Asset Integration
+[ssi_stock_rent_operation](ssi_stock_rent_operation/) | 14.0.1.0.0 |  | Donation Inventory Operation
 
 [//]: # (end addons)
 
