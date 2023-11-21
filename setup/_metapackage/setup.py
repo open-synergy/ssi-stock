@@ -13,6 +13,7 @@ setuptools.setup(
         'odoo14-addon-ssi_production_lot_qrcode',
         'odoo14-addon-ssi_stock',
         'odoo14-addon-ssi_stock_account',
+        'odoo14-addon-ssi_stock_donation_operation',
         'odoo14-addon-ssi_stock_fixed_asset',
     ],
     classifiers=[
