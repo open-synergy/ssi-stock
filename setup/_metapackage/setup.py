@@ -15,6 +15,7 @@ setuptools.setup(
         'odoo14-addon-ssi_stock_account',
         'odoo14-addon-ssi_stock_donation_operation',
         'odoo14-addon-ssi_stock_fixed_asset',
+        'odoo14-addon-ssi_stock_rent_operation',
     ],
     classifiers=[
         'Programming Language :: Python',
