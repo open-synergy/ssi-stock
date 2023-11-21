@@ -95,5 +95,11 @@
     <field name="is_warehouse_location" eval="1" />
 </record>
 
+<record id="location_type_inventory_loss" model="location_type">
+    <field name="name">Inventory Loss</field>
+    <field name="code">IL</field>
+    <field name="usage">inventory</field>
+</record>
+
 </data>
 </odoo>
