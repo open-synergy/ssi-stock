@@ -34,6 +34,15 @@
     <field name="mode">primary</field>
     <field name="arch" type="xml">
         <data>
+            <xpath expr="//header" position="inside">
+                <button
+                        name="action_reload_configuration"
+                        string="Reload Configuration"
+                        type="object"
+                        icon="fa-refresh"
+                        class="oe_highlight"
+                    />
+            </xpath>
             <xpath expr="//notebook/page[@name='note']" position="before">
                 <page name="configuration" string="Configuration">
                     <group name="configuration_1" colspan="4" col="2">

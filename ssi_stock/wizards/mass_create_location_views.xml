@@ -7,8 +7,8 @@
     <field name="arch" type="xml">
         <form>
             <group name="group_1" colspan="4" col="2">
-                <field name="warehouse_ids" widget="many2many_tags" />
-                <field name="location_type_ids" widget="many2many_tags" />
+                <field name="warehouse_ids" widget="many2many_checkboxes" />
+                <field name="location_type_ids" widget="many2many_checkboxes" />
             </group>
             <footer>
                 <button
@@ -26,7 +26,7 @@
 </record>
 
 <record id="mass_create_location_from_warehouse_action" model="ir.actions.act_window">
-    <field name="name">Mass Create LOcation</field>
+    <field name="name">Mass Create Location</field>
     <field name="res_model">mass_create_location</field>
     <field name="view_mode">form</field>
     <field name="view_id" ref="mass_create_location_view_form" />

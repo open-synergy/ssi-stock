@@ -57,3 +57,12 @@ class StockPickingType(models.Model):
         column1="category_id",
         column2="product_id",
     )
+
+    def action_reload_configuration(self):
+        for record in self.sudo():
+            record._reload_configuration()
+
+    def _reload_configuration(self):
+        self.ensure_one()
+        data = self.category_id._prepare_standard_picking_type_data(self.warehouse_id)
+        self.write(data)
