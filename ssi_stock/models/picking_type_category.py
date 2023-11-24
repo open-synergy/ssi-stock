@@ -104,6 +104,17 @@ class PickingTypeCategory(models.Model):
         for record in self.sudo():
             record._delete_menu()
 
+    def action_reload_configuration(self):
+        for record in self.sudo():
+            record._reload_configuration()
+
+    def _reload_configuration(self):
+        self.ensure_one()
+        PickingType = self.env["stock.picking.type"]
+        criteria = [("category_id", "=", self.id)]
+        for picking_type in PickingType.search(criteria):
+            picking_type._reload_configuration()
+
     def _delete_menu(self):
         self.menu_id.unlink()
         self.window_action_id.unlink()
@@ -148,6 +159,11 @@ class PickingTypeCategory(models.Model):
         }
 
     def _prepare_picking_type_data(self, warehouse):
+        self.ensure_one()
+        data_standard = self._prepare_standard_picking_type_data(warehouse)
+        return data_standard
+
+    def _prepare_standard_picking_type_data(self, warehouse):
         self.ensure_one()
         source_locations = self._get_allowed_source_location(warehouse)
         destination_locations = self._get_allowed_destination_location(warehouse)

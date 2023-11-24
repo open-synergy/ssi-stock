@@ -42,6 +42,17 @@
     <field name="inherit_id" ref="stock.view_picking_type_form" />
     <field name="arch" type="xml">
         <data>
+            <xpath expr="//widget[@name='web_ribbon']" position="after">
+                <header>
+                    <button
+                            name="action_reload_configuration"
+                            string="Reload Configuration"
+                            type="object"
+                            icon="fa-refresh"
+                            class="oe_highlight"
+                        />
+                </header>
+            </xpath>
             <xpath expr="//field[@name='warehouse_id']" position="after">
                 <field name="category_id" />
             </xpath>
