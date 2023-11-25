@@ -42,6 +42,9 @@
     <field name="inherit_id" ref="stock.view_picking_form" />
     <field name="arch" type="xml">
         <data>
+            <xpath expr="//button[@name='action_cancel']" position="attributes">
+                <attribute name="attrs">{'invisible': [('state', 'not in', ('assigned', 'confirmed', 'partially_available', 'draft', 'waiting', 'done'))]}</attribute>
+            </xpath>
             <xpath expr="//field[@name='picking_type_id']" position="after">
                 <field name="picking_type_category_id" invisible="1" />
                 <field
