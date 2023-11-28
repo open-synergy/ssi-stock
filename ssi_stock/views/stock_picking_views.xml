@@ -43,7 +43,10 @@
     <field name="arch" type="xml">
         <data>
             <xpath expr="//button[@name='action_cancel']" position="attributes">
-                <attribute name="attrs">{'invisible': [('state', 'not in', ('assigned', 'confirmed', 'partially_available', 'draft', 'waiting', 'done'))]}</attribute>
+                <attribute name="attrs">{'invisible': [('state', 'not in', ('draft', 'waiting', 'confirmed', 'assigned', 'done'))]}</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_cancel']" position="after">
+                <button name="action_draft" type="object" string="Set to Draft" states="cancel"/>
             </xpath>
             <xpath expr="//field[@name='picking_type_id']" position="after">
                 <field name="picking_type_category_id" invisible="1" />
