@@ -22,6 +22,8 @@
         "data/location_type_data.xml",
         "data/stock_picking_type_category_data.xml",
         "menu.xml",
+        "templates/picking_type_m2_configurator_templates.xml",
+        "templates/picking_type_category_m2_configurator_templates.xml",
         "wizards/mass_create_location_views.xml",
         "wizards/mass_create_picking_type_views.xml",
         "views/picking_type_category_views.xml",
