@@ -21,9 +21,9 @@
 <menuitem
         id="consume_menu"
         name="Consumptions"
-        parent="menu_internal_movement"
+        parent="menu_usage_movement"
         groups="consume_viewer_group"
         action="consume_action"
-        sequence="130"
+        sequence="103"
     />
 </odoo>

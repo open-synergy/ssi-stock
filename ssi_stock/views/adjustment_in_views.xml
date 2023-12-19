@@ -24,6 +24,6 @@
         parent="menu_incoming_movement"
         groups="adjustment_in_viewer_group"
         action="adjustment_in_action"
-        sequence="999"
+        sequence="101"
     />
 </odoo>

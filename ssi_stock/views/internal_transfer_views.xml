@@ -24,6 +24,6 @@
         parent="menu_internal_movement"
         groups="internal_transfer_viewer_group"
         action="internal_transfer_action"
-        sequence="100"
+        sequence="109"
     />
 </odoo>

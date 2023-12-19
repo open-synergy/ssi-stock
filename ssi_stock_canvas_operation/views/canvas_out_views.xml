@@ -24,6 +24,6 @@
         parent="ssi_stock.menu_internal_movement"
         groups="canvas_out_viewer_group"
         action="canvas_out_action"
-        sequence="210"
+        sequence="103"
     />
 </odoo>

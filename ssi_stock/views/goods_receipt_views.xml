@@ -24,6 +24,6 @@
         parent="menu_incoming_movement"
         groups="goods_receipt_viewer_group"
         action="goods_receipt_action"
-        sequence="10"
+        sequence="107"
     />
 </odoo>

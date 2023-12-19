@@ -21,9 +21,9 @@
 <menuitem
         id="lost_menu"
         name="Lost"
-        parent="menu_internal_movement"
+        parent="menu_usage_movement"
         groups="lost_viewer_group"
         action="lost_action"
-        sequence="160"
+        sequence="112"
     />
 </odoo>

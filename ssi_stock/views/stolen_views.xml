@@ -21,9 +21,9 @@
 <menuitem
         id="stolen_menu"
         name="Stolen"
-        parent="menu_internal_movement"
+        parent="menu_usage_movement"
         groups="stolen_viewer_group"
         action="stolen_action"
-        sequence="150"
+        sequence="119"
     />
 </odoo>

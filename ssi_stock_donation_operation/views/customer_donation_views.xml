@@ -24,6 +24,6 @@
         parent="ssi_stock.menu_outgoing_movement"
         groups="customer_donation_viewer_group"
         action="customer_donation_action"
-        sequence="310"
+        sequence="103"
     />
 </odoo>

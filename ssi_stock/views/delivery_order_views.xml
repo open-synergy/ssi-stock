@@ -24,6 +24,6 @@
         parent="menu_outgoing_movement"
         groups="delivery_order_viewer_group"
         action="delivery_order_action"
-        sequence="10"
+        sequence="104"
     />
 </odoo>
