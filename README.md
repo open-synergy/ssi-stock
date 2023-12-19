@@ -21,13 +21,13 @@ addon | version | maintainers | summary
 [ssi_landed_cost](ssi_landed_cost/) | 14.0.2.0.0 |  | Landed Cost Extension
 [ssi_mrp_landed_cost](ssi_mrp_landed_cost/) | 14.0.2.0.0 |  | Landed Cost - MRP Extension
 [ssi_production_lot_qrcode](ssi_production_lot_qrcode/) | 14.0.1.0.0 |  | Inventory Lot QR Code
-[ssi_stock](ssi_stock/) | 14.0.2.8.0 |  | Inventory
+[ssi_stock](ssi_stock/) | 14.0.2.9.0 |  | Inventory
 [ssi_stock_account](ssi_stock_account/) | 14.0.2.3.0 |  | Inventory + Accounting Integration
-[ssi_stock_canvas_operation](ssi_stock_canvas_operation/) | 14.0.1.0.0 |  | Donation Inventory Operation
-[ssi_stock_donation_operation](ssi_stock_donation_operation/) | 14.0.1.0.0 |  | Donation Inventory Operation
+[ssi_stock_canvas_operation](ssi_stock_canvas_operation/) | 14.0.1.1.0 |  | Donation Inventory Operation
+[ssi_stock_donation_operation](ssi_stock_donation_operation/) | 14.0.1.1.0 |  | Donation Inventory Operation
 [ssi_stock_fixed_asset](ssi_stock_fixed_asset/) | 14.0.2.1.0 |  | Inventory + Fixed Asset Integration
 [ssi_stock_location_m2o_configurator_mixin](ssi_stock_location_m2o_configurator_mixin/) | 14.0.1.0.0 |  | stock.location Many2one Configurator Mixin
-[ssi_stock_rent_operation](ssi_stock_rent_operation/) | 14.0.1.0.0 |  | Donation Inventory Operation
+[ssi_stock_rent_operation](ssi_stock_rent_operation/) | 14.0.1.1.0 |  | Donation Inventory Operation
 [ssi_stock_route_m2o_configurator_mixin](ssi_stock_route_m2o_configurator_mixin/) | 14.0.1.0.0 |  | stock.location.route Many2one Configurator Mixin
 [ssi_stock_warehouse_m2o_configurator_mixin](ssi_stock_warehouse_m2o_configurator_mixin/) | 14.0.1.0.0 |  | stock.warehouse Many2one Configurator Mixin
 
