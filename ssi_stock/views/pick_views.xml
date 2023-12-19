@@ -24,6 +24,6 @@
         parent="menu_internal_movement"
         groups="pick_viewer_group"
         action="pick_action"
-        sequence="110"
+        sequence="116"
     />
 </odoo>

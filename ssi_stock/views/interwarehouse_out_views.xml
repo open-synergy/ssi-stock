@@ -24,6 +24,6 @@
         parent="menu_outgoing_movement"
         groups="interwarehouse_out_viewer_group"
         action="interwarehouse_out_action"
-        sequence="20"
+        sequence="109"
     />
 </odoo>

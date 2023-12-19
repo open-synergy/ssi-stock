@@ -24,6 +24,6 @@
         parent="menu_outgoing_movement"
         groups="adjustment_out_viewer_group"
         action="adjustment_out_action"
-        sequence="999"
+        sequence="101"
     />
 </odoo>
