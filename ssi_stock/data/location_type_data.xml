@@ -16,6 +16,7 @@
     <field name="code">MAIN</field>
     <field name="usage">internal</field>
     <field name="is_warehouse_location" eval="1" />
+    <field name="parent_location_type_id" ref="location_type_root" />
 </record>
 
 <record id="location_type_stock" model="location_type">
@@ -23,6 +24,7 @@
     <field name="code">STOCK</field>
     <field name="usage">internal</field>
     <field name="is_warehouse_location" eval="1" />
+    <field name="parent_location_type_id" ref="location_type_root" />
 </record>
 
 <record id="location_type_customer" model="location_type">
@@ -71,6 +73,7 @@
     <field name="name">Transit Push</field>
     <field name="code">TS</field>
     <field name="usage">transit</field>
+    <field name="parent_location_type_id" ref="location_type_root" />
     <field name="is_warehouse_location" eval="1" />
 </record>
 
@@ -79,6 +82,7 @@
     <field name="code">TL</field>
     <field name="usage">transit</field>
     <field name="is_warehouse_location" eval="1" />
+    <field name="parent_location_type_id" ref="location_type_root" />
 </record>
 
 <record id="location_type_pick" model="location_type">
@@ -86,6 +90,7 @@
     <field name="code">PI</field>
     <field name="usage">internal</field>
     <field name="is_warehouse_location" eval="1" />
+    <field name="parent_location_type_id" ref="location_type_root" />
 </record>
 
 <record id="location_type_pack" model="location_type">
@@ -93,6 +98,7 @@
     <field name="code">PA</field>
     <field name="usage">internal</field>
     <field name="is_warehouse_location" eval="1" />
+    <field name="parent_location_type_id" ref="location_type_root" />
 </record>
 
 <record id="location_type_inventory_loss" model="location_type">
