@@ -189,6 +189,10 @@ class PickingTypeCategory(models.Model):
             "default_location_dest_id": default_destination_location
             and default_destination_location.id
             or False,
+            "allowed_product_category_ids": [
+                (6, 0, self.allowed_product_category_ids.ids)
+            ],
+            "allowed_product_ids": [(6, 0, self.allowed_product_ids.ids)],
         }
         return result
 
