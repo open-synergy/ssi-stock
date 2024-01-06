@@ -71,3 +71,6 @@ class StockPicking(models.Model):
     def button_validate(self):
         self._assign_auto_lot_number()
         return super().button_validate()
+
+    def action_draft(self):
+        self.move_lines.action_draft()

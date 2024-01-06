@@ -65,3 +65,14 @@ class StockMove(models.Model):
     def onchange_procure_method(self):
         if self.picking_type_id:
             self.procure_method = self.picking_type_id.procure_method
+
+    def _action_cancel(self):
+        for rec in self.filtered(lambda m: m.state == 'done'):
+            rec.move_line_ids._action_cancel_done()
+            rec.write({'state': 'cancel'})
+        res = super(StockMove, self)._action_cancel()
+        return res
+
+    def action_draft(self):
+        for rec in self.filtered(lambda m: m.state == 'cancel'):
+            rec.write({'state': 'draft'})
