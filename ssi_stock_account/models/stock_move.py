@@ -121,3 +121,9 @@ class StockMove(models.Model):
             if not record.credit_account_id:
                 record.onchange_credit_usage_id()
                 record.onchange_credit_account_id()
+
+    def _action_cancel(self):
+        _super = super(StockMove, self)
+        _super._action_cancel()
+        for record in self.sudo():
+            record.stock_valuation_layer_ids.unlink()
