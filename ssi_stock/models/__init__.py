@@ -4,6 +4,7 @@
 
 from . import (
     product_category,
+    product_product,
     picking_type_category,
     stock_picking,
     stock_picking_type,

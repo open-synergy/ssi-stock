@@ -43,10 +43,17 @@
     <field name="arch" type="xml">
         <data>
             <xpath expr="//button[@name='action_cancel']" position="attributes">
-                <attribute name="attrs">{'invisible': [('state', 'not in', ('draft', 'waiting', 'confirmed', 'assigned', 'done'))]}</attribute>
+                <attribute
+                        name="attrs"
+                    >{'invisible': [('state', 'not in', ('draft', 'waiting', 'confirmed', 'assigned', 'done'))]}</attribute>
             </xpath>
             <xpath expr="//button[@name='action_cancel']" position="after">
-                <button name="action_draft" type="object" string="Set to Draft" states="cancel"/>
+                <button
+                        name="action_draft"
+                        type="object"
+                        string="Set to Draft"
+                        states="cancel"
+                    />
             </xpath>
             <xpath expr="//field[@name='picking_type_id']" position="after">
                 <field name="picking_type_category_id" invisible="1" />
@@ -112,6 +119,13 @@
                         name="domain"
                     >['|',('id','in',parent.allowed_product_ids),('categ_id','child_of',parent.allowed_product_category_ids)]</attribute>
             </xpath>
+            <xpath
+                    expr="//field[@name='move_ids_without_package']/tree/field[@name='product_id']"
+                    position="after"
+                >
+                <field name="forced_lot_id" />
+            </xpath>
+
         </data>
     </field>
 </record>
