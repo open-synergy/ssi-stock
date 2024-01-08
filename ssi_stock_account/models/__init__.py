@@ -8,4 +8,5 @@ from . import (
     stock_picking_type,
     stock_move,
     stock_valuation_layer,
+    stock_location,
 )
