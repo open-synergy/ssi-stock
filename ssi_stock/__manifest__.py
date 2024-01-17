@@ -14,6 +14,7 @@
         "ssi_product",
         "stock",
         "stock_move_backdating",
+        "stock_inventory_preparation_filter",
     ],
     "data": [
         "security/ir_module_category_data.xml",

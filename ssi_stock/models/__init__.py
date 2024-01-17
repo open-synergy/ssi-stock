@@ -13,6 +13,7 @@ from . import (
     stock_move,
     stock_move_line,
     stock_rule,
+    stock_inventory,
     mixin_picking_type_m2o_configurator,
     mixin_picking_type_category_m2o_configurator,
 )
