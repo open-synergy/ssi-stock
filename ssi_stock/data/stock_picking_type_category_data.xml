@@ -8,15 +8,18 @@
     <field name="name">Goods Receipt</field>
     <field name="code">GR</field>
     <field name="direction">incoming</field>
+    <field name="show_price_unit" eval="1" />
+    <field name="use_create_lots" eval="1" />
+    <field name="use_existings_lots" eval="1" />
     <field name="default_source_location_type_id" ref="location_type_supplier" />
     <field name="default_destination_location_type_id" ref="location_type_main_stock" />
     <field
                 name="allowed_source_location_type_ids"
-                eval="[(6, 0, [ref('location_type_supplier')])]"
+                eval="[(4, [ref('location_type_supplier')])]"
             />
     <field
                 name="allowed_destination_location_type_ids"
-                eval="[(6, 0, [ref('location_type_main_stock'),ref('location_type_stock')])]"
+                eval="[(4, [ref('location_type_main_stock'),ref('location_type_stock')])]"
             />
 </record>
 
@@ -24,15 +27,18 @@
     <field name="name">Delivery Order</field>
     <field name="code">DO</field>
     <field name="direction">outgoing</field>
+    <field name="show_price_unit" eval="0" />
+    <field name="use_create_lots" eval="0" />
+    <field name="use_existings_lots" eval="1" />
     <field name="default_source_location_type_id" ref="location_type_main_stock" />
     <field name="default_destination_location_type_id" ref="location_type_customer" />
     <field
                 name="allowed_source_location_type_ids"
-                eval="[(6, 0, [ref('location_type_main_stock'),ref('location_type_stock')])]"
+                eval="[(4, [ref('location_type_main_stock'),ref('location_type_stock')])]"
             />
     <field
                 name="allowed_destination_location_type_ids"
-                eval="[(6, 0, [ref('location_type_customer')])]"
+                eval="[(4, [ref('location_type_customer')])]"
             />
 </record>
 
@@ -40,15 +46,18 @@
     <field name="name">Internal Transfer</field>
     <field name="code">INT</field>
     <field name="direction">internal</field>
+    <field name="show_price_unit" eval="0" />
+    <field name="use_create_lots" eval="0" />
+    <field name="use_existings_lots" eval="1" />
     <field name="default_source_location_type_id" ref="location_type_main_stock" />
     <field name="default_destination_location_type_id" ref="location_type_main_stock" />
     <field
                 name="allowed_source_location_type_ids"
-                eval="[(6, 0, [ref('location_type_main_stock'),ref('location_type_stock')])]"
+                eval="[(4, [ref('location_type_main_stock'),ref('location_type_stock')])]"
             />
     <field
                 name="allowed_destination_location_type_ids"
-                eval="[(6, 0, [ref('location_type_main_stock'),ref('location_type_stock')])]"
+                eval="[(4, [ref('location_type_main_stock'),ref('location_type_stock')])]"
             />
 </record>
 
@@ -56,15 +65,18 @@
     <field name="name">Pick</field>
     <field name="code">PICK</field>
     <field name="direction">internal</field>
+    <field name="show_price_unit" eval="0" />
+    <field name="use_create_lots" eval="0" />
+    <field name="use_existings_lots" eval="1" />
     <field name="default_source_location_type_id" ref="location_type_main_stock" />
     <field name="default_destination_location_type_id" ref="location_type_main_stock" />
     <field
                 name="allowed_source_location_type_ids"
-                eval="[(6, 0, [ref('location_type_main_stock'),ref('location_type_stock')])]"
+                eval="[(4, [ref('location_type_main_stock'),ref('location_type_stock')])]"
             />
     <field
                 name="allowed_destination_location_type_ids"
-                eval="[(6, 0, [ref('location_type_main_stock'),ref('location_type_stock')])]"
+                eval="[(4, [ref('location_type_main_stock'),ref('location_type_stock')])]"
             />
 </record>
 
@@ -72,15 +84,18 @@
     <field name="name">Pack</field>
     <field name="code">PACK</field>
     <field name="direction">internal</field>
+    <field name="show_price_unit" eval="0" />
+    <field name="use_create_lots" eval="0" />
+    <field name="use_existings_lots" eval="1" />
     <field name="default_source_location_type_id" ref="location_type_main_stock" />
     <field name="default_destination_location_type_id" ref="location_type_main_stock" />
     <field
                 name="allowed_source_location_type_ids"
-                eval="[(6, 0, [ref('location_type_main_stock'),ref('location_type_stock')])]"
+                eval="[(4, [ref('location_type_main_stock'),ref('location_type_stock')])]"
             />
     <field
                 name="allowed_destination_location_type_ids"
-                eval="[(6, 0, [ref('location_type_main_stock'),ref('location_type_stock')])]"
+                eval="[(4, [ref('location_type_main_stock'),ref('location_type_stock')])]"
             />
 </record>
 
@@ -88,6 +103,9 @@
     <field name="name">Consume</field>
     <field name="code">CON</field>
     <field name="direction">outgoing</field>
+    <field name="show_price_unit" eval="0" />
+    <field name="use_create_lots" eval="0" />
+    <field name="use_existings_lots" eval="1" />
     <field name="default_source_location_type_id" ref="location_type_main_stock" />
     <field
                 name="default_destination_location_type_id"
@@ -95,11 +113,11 @@
             />
     <field
                 name="allowed_source_location_type_ids"
-                eval="[(6, 0, [ref('location_type_main_stock'),ref('location_type_stock')])]"
+                eval="[(4, [ref('location_type_main_stock'),ref('location_type_stock')])]"
             />
     <field
                 name="allowed_destination_location_type_ids"
-                eval="[(6, 0, [ref('location_type_consumption')])]"
+                eval="[(4, [ref('location_type_consumption')])]"
             />
 </record>
 
@@ -107,15 +125,18 @@
     <field name="name">Waste</field>
     <field name="code">WST</field>
     <field name="direction">outgoing</field>
+    <field name="show_price_unit" eval="0" />
+    <field name="use_create_lots" eval="0" />
+    <field name="use_existings_lots" eval="1" />
     <field name="default_source_location_type_id" ref="location_type_main_stock" />
     <field name="default_destination_location_type_id" ref="location_type_waste" />
     <field
                 name="allowed_source_location_type_ids"
-                eval="[(6, 0, [ref('location_type_main_stock'),ref('location_type_stock')])]"
+                eval="[(4, [ref('location_type_main_stock'),ref('location_type_stock')])]"
             />
     <field
                 name="allowed_destination_location_type_ids"
-                eval="[(6, 0, [ref('location_type_waste')])]"
+                eval="[(4, [ref('location_type_waste')])]"
             />
 </record>
 
@@ -123,15 +144,18 @@
     <field name="name">Stolen</field>
     <field name="code">STL</field>
     <field name="direction">outgoing</field>
+    <field name="show_price_unit" eval="0" />
+    <field name="use_create_lots" eval="0" />
+    <field name="use_existings_lots" eval="1" />
     <field name="default_source_location_type_id" ref="location_type_main_stock" />
     <field name="default_destination_location_type_id" ref="location_type_stolen" />
     <field
                 name="allowed_source_location_type_ids"
-                eval="[(6, 0, [ref('location_type_main_stock'),ref('location_type_stock')])]"
+                eval="[(4, [ref('location_type_main_stock'),ref('location_type_stock')])]"
             />
     <field
                 name="allowed_destination_location_type_ids"
-                eval="[(6, 0, [ref('location_type_stolen')])]"
+                eval="[(4, [ref('location_type_stolen')])]"
             />
 </record>
 
@@ -139,15 +163,18 @@
     <field name="name">Lost</field>
     <field name="code">LST</field>
     <field name="direction">outgoing</field>
+    <field name="show_price_unit" eval="0" />
+    <field name="use_create_lots" eval="0" />
+    <field name="use_existings_lots" eval="1" />
     <field name="default_source_location_type_id" ref="location_type_main_stock" />
     <field name="default_destination_location_type_id" ref="location_type_lost" />
     <field
                 name="allowed_source_location_type_ids"
-                eval="[(6, 0, [ref('location_type_main_stock'),ref('location_type_stock')])]"
+                eval="[(4, [ref('location_type_main_stock'),ref('location_type_stock')])]"
             />
     <field
                 name="allowed_destination_location_type_ids"
-                eval="[(6, 0, [ref('location_type_lost')])]"
+                eval="[(4, [ref('location_type_lost')])]"
             />
 </record>
 
@@ -161,18 +188,50 @@
     <field name="name">Adjustment In</field>
     <field name="code">ADI</field>
     <field name="direction">incoming</field>
+    <field name="show_price_unit" eval="1" />
+    <field name="use_create_lots" eval="1" />
+    <field name="use_existings_lots" eval="0" />
+    <field name="default_source_location_type_id" ref="location_type_inventory_loss" />
+    <field name="default_destination_location_type_id" ref="location_type_main_stock" />
+    <field
+                name="allowed_source_location_type_ids"
+                eval="[(4, [ref('location_type_inventory_loss'))])]"
+            />
+    <field
+                name="allowed_destination_location_type_ids"
+                eval="[(4, [ref('location_type_main_stock'),ref('location_type_stock')])]"
+            />
 </record>
 
 <record id="picking_category_ado" model="picking_type_category">
     <field name="name">Adjustment Out</field>
     <field name="code">ADO</field>
     <field name="direction">outgoing</field>
+    <field name="show_price_unit" eval="0" />
+    <field name="use_create_lots" eval="0" />
+    <field name="use_existings_lots" eval="1" />
+    <field name="default_source_location_type_id" ref="location_type_main_stock" />
+    <field
+                name="default_destination_location_type_id"
+                ref="location_type_inventory_loss"
+            />
+    <field
+                name="allowed_source_location_type_ids"
+                eval="[(4, [ref('location_type_main_stock'),ref('location_type_stock')])]"
+            />
+    <field
+                name="allowed_destination_location_type_ids"
+                eval="[(4, [ref('location_type_inventory_loss'))])]"
+            />
 </record>
 
 <record id="picking_category_iwo" model="picking_type_category">
     <field name="name">Inter-Warehouse Out</field>
     <field name="code">IWO</field>
     <field name="direction">outgoing</field>
+    <field name="show_price_unit" eval="0" />
+    <field name="use_create_lots" eval="0" />
+    <field name="use_existings_lots" eval="1" />
     <field name="default_source_location_type_id" ref="location_type_main_stock" />
     <field
                 name="allowed_source_location_type_ids"
@@ -188,6 +247,9 @@
     <field name="name">Inter-Warehouse In</field>
     <field name="code">IWI</field>
     <field name="direction">outgoing</field>
+    <field name="show_price_unit" eval="0" />
+    <field name="use_create_lots" eval="0" />
+    <field name="use_existings_lots" eval="1" />
     <field name="default_source_location_type_id" ref="location_type_main_stock" />
     <field
                 name="allowed_source_location_type_ids"
