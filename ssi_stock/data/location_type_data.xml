@@ -105,6 +105,7 @@
     <field name="name">Inventory Loss</field>
     <field name="code">IL</field>
     <field name="usage">inventory</field>
+    <field name="is_warehouse_location" eval="0" />
 </record>
 
 </data>

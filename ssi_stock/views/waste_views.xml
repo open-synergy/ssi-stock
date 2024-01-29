@@ -21,7 +21,7 @@
 <menuitem
         id="waste_menu"
         name="Waste"
-        parent="menu_internal_movement"
+        parent="menu_usage_movement"
         groups="waste_viewer_group"
         action="waste_action"
         sequence="123"
