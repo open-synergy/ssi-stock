@@ -10,6 +10,10 @@ class StockPickingType(models.Model):
     _name = "stock.picking.type"
     _inherit = ["stock.picking.type"]
 
+    journal_id = fields.Many2one(
+        string="Journal",
+        comodel_name="account.journal",
+    )
     debit_account_method = fields.Selection(
         string="Debit Account Method",
         selection=[

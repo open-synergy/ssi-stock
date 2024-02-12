@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class StockPicking(models.Model):
@@ -31,6 +31,14 @@ class StockPicking(models.Model):
         compute="_compute_create_accounting_entry_ok",
         store=False,
     )
+
+    @api.onchange(
+        "picking_type_id",
+    )
+    def onchange_journal_id(self):
+        self.journal_id = False
+        if self.picking_type_id:
+            self.journal_id = self.picking_type_id.journal_id
 
     def _compute_create_accounting_entry_ok(self):
         for record in self:

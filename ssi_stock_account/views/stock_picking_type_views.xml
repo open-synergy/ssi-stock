@@ -10,6 +10,9 @@
     <field name="arch" type="xml">
         <data>
             <xpath expr="//group[@name='product']" position="after">
+                <group name="journal" colspan="4" col="2">
+                    <field name="journal_id" />
+                </group>
                 <group name="account" colspan="4" col="2">
                     <group name="account_1" colspan="1" col="2" string="Debit Account">
                         <field name="debit_account_method" string="Method" />
