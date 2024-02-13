@@ -21,8 +21,8 @@ addon | version | maintainers | summary
 [ssi_landed_cost](ssi_landed_cost/) | 14.0.2.0.0 |  | Landed Cost Extension
 [ssi_mrp_landed_cost](ssi_mrp_landed_cost/) | 14.0.2.0.0 |  | Landed Cost - MRP Extension
 [ssi_production_lot_qrcode](ssi_production_lot_qrcode/) | 14.0.1.0.0 |  | Inventory Lot QR Code
-[ssi_stock](ssi_stock/) | 14.0.2.13.0 |  | Inventory
-[ssi_stock_account](ssi_stock_account/) | 14.0.2.5.0 |  | Inventory + Accounting Integration
+[ssi_stock](ssi_stock/) | 14.0.2.14.0 |  | Inventory
+[ssi_stock_account](ssi_stock_account/) | 14.0.2.6.0 |  | Inventory + Accounting Integration
 [ssi_stock_canvas_operation](ssi_stock_canvas_operation/) | 14.0.1.1.0 |  | Donation Inventory Operation
 [ssi_stock_donation_operation](ssi_stock_donation_operation/) | 14.0.1.1.0 |  | Donation Inventory Operation
 [ssi_stock_fixed_asset](ssi_stock_fixed_asset/) | 14.0.2.1.0 |  | Inventory + Fixed Asset Integration
