@@ -46,6 +46,7 @@
                 <field name="debit_account_id" optional="hide" />
                 <field name="credit_usage_id" optional="hide" />
                 <field name="credit_account_id" optional="hide" />
+                <field name="analytic_account_id" optional="hide" />
                 <field name="journal_id" invisible="1" />
             </xpath>
         </data>
