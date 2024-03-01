@@ -25,7 +25,7 @@ class StockValuationLayer(models.Model):
     # Debit ML Attribute
     _debit_account_id_field_name = "debit_account_id"
     _debit_partner_id_field_name = "partner_id"
-    _debit_analytic_account_id_field_name = False
+    _debit_analytic_account_id_field_name = "analytic_account_id"
     _debit_label_field_name = "description"
     _debit_product_id_field_name = "product_id"
     _debit_uom_id_field_name = "uom_id"
@@ -42,7 +42,7 @@ class StockValuationLayer(models.Model):
     # Credit ML Attribute
     _credit_account_id_field_name = "credit_account_id"
     _credit_partner_id_field_name = "partner_id"
-    _credit_analytic_account_id_field_name = False
+    _credit_analytic_account_id_field_name = "analytic_account_id"
     _credit_label_field_name = "description"
     _credit_product_id_field_name = "product_id"
     _credit_uom_id_field_name = "uom_id"
@@ -67,6 +67,9 @@ class StockValuationLayer(models.Model):
     credit_account_id = fields.Many2one(
         string="Credit Account",
         related="stock_move_id.credit_account_id",
+    )
+    analytic_account_id = fields.Many2one(
+        related="stock_move_id.analytic_account_id",
     )
     partner_id = fields.Many2one(
         string="Partner",

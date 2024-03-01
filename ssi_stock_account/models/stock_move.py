@@ -33,6 +33,10 @@ class StockMove(models.Model):
         string="Credit Account",
         comodel_name="account.account",
     )
+    analytic_account_id = fields.Many2one(
+        string="Analytic Account",
+        comodel_name="account.analytic.account",
+    )
 
     @api.onchange(
         "debit_usage_id",

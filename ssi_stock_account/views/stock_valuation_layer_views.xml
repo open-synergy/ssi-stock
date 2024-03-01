@@ -32,6 +32,7 @@
                 <field name="date" />
                 <field name="debit_account_id" />
                 <field name="credit_account_id" />
+                <field name="analytic_account_id" />
                 <field name="journal_id" />
                 <field name="debit_move_line_id" />
                 <field name="credit_move_line_id" />
