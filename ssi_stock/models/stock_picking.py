@@ -3,12 +3,19 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 
-from odoo import fields, models
+from odoo import fields, models, api
 
 
 class StockPicking(models.Model):
     _name = "stock.picking"
-    _inherit = ["stock.picking"]
+    _inherit = [
+        "stock.picking",
+        "mixin.policy",
+    ]
+
+    def _compute_policy(self):
+        _super = super(StockPicking, self)
+        _super._compute_policy()
 
     picking_type_category_id = fields.Many2one(
         string="Picking Type Category",
@@ -49,6 +56,92 @@ class StockPicking(models.Model):
         related="picking_type_id.allowed_product_ids",
         store=False,
     )
+    confirm_ok = fields.Boolean(
+        string="Can Mark as Todo",
+        compute="_compute_policy",
+        compute_sudo=True,
+    )
+    assign_ok = fields.Boolean(
+        string="Can Check Availability",
+        compute="_compute_policy",
+        compute_sudo=True,
+    )
+    validate_ok = fields.Boolean(
+        string="Can Validate",
+        compute="_compute_policy",
+        compute_sudo=True,
+    )
+    signature_ok = fields.Boolean(
+        string="Can Sign",
+        compute="_compute_policy",
+        compute_sudo=True,
+    )
+    print_picking_ok = fields.Boolean(
+        string="Can Print Picking",
+        compute="_compute_policy",
+        compute_sudo=True,
+    )
+    print_delivery_ok = fields.Boolean(
+        string="Can Print Delivery Order",
+        compute="_compute_policy",
+        compute_sudo=True,
+    )
+    return_ok = fields.Boolean(
+        string="Can Return",
+        compute="_compute_policy",
+        compute_sudo=True,
+    )
+    unreserve_ok = fields.Boolean(
+        string="Can Unreserve",
+        compute="_compute_policy",
+        compute_sudo=True,
+    )
+    scrap_ok = fields.Boolean(
+        string="Can Scrap",
+        compute="_compute_policy",
+        compute_sudo=True,
+    )
+    lock_ok = fields.Boolean(
+        string="Can Lock",
+        compute="_compute_policy",
+        compute_sudo=True,
+    )
+    unlock_ok = fields.Boolean(
+        string="Can Unlock",
+        compute="_compute_policy",
+        compute_sudo=True,
+    )
+    cancel_ok = fields.Boolean(
+        string="Can Cancel",
+        compute="_compute_policy",
+        compute_sudo=True,
+    )
+    draft_ok = fields.Boolean(
+        string="Can Set to Draft",
+        compute="_compute_policy",
+        compute_sudo=True,
+    )
+
+    @api.model
+    def _get_policy_field(self):
+        res = super(StockPicking, self)._get_policy_field()
+        policy_field = [
+            "confirm_ok",
+            "assign_ok",
+            "validate_ok",
+            "signature_ok",
+            "print_picking_ok",
+            "print_delivery_ok",
+            "return_ok",
+            "unreserve_ok",
+            "scrap_ok",
+            "lock_ok",
+            "unlock_ok",
+            "cancel_ok",
+            "draft_ok",
+        ]
+        res += policy_field
+        return res
 
     def _assign_auto_lot_number(self):
         for record in self:
