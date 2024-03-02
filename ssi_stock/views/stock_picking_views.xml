@@ -49,17 +49,78 @@
     <field name="mode">extension</field>
     <field name="arch" type="xml">
         <data>
+            <xpath expr="//button[@name='action_confirm']" position="attributes">
+                <attribute
+                        name="attrs"
+                    >{'invisible': [('confirm_ok', '!=', True)]}</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_assign']" position="attributes">
+                <attribute
+                        name="attrs"
+                    >{'invisible': [('assign_ok', '!=', True)]}</attribute>
+            </xpath>
+            <xpath expr="//button[@name='button_validate'][1]" position="attributes">
+                <attribute
+                        name="attrs"
+                    >{'invisible': [('validate_ok', '!=', True)]}</attribute>
+            </xpath>
+            <xpath expr="//button[@name='button_validate'][2]" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//widget[@name='signature'][1]" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//widget[@name='signature'][2]" position="attributes">
+                <attribute
+                        name="attrs"
+                    >{'invisible': [('signature_ok', '!=', True)]}</attribute>
+            </xpath>
+            <xpath expr="//button[@name='do_print_picking']" position="attributes">
+                <attribute
+                        name="attrs"
+                    >{'invisible': [('print_picking_ok', '!=', True)]}</attribute>
+            </xpath>
+            <xpath expr="//button[@name='%(stock.action_report_delivery)d']" position="attributes">
+                <attribute
+                        name="attrs"
+                    >{'invisible': [('print_delivery_ok', '!=', True)]}</attribute>
+            </xpath>
+            <xpath expr="//button[@name='%(stock.act_stock_return_picking)d']" position="attributes">
+                <attribute
+                        name="attrs"
+                    >{'invisible': [('return_ok', '!=', True)]}</attribute>
+            </xpath>
+            <xpath expr="//button[@name='do_unreserve']" position="attributes">
+                <attribute
+                        name="attrs"
+                    >{'invisible': [('unreserve_ok', '!=', True)]}</attribute>
+            </xpath>
+            <xpath expr="//button[@name='button_scrap']" position="attributes">
+                <attribute
+                        name="attrs"
+                    >{'invisible': [('scrap_ok', '!=', True)]}</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_toggle_is_locked'][1]" position="attributes">
+                <attribute
+                        name="attrs"
+                    >{'invisible': [('lock_ok', '!=', True)]}</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_toggle_is_locked'][2]" position="attributes">
+                <attribute
+                        name="attrs"
+                    >{'invisible': [('unlock_ok', '!=', True)]}</attribute>
+            </xpath>
             <xpath expr="//button[@name='action_cancel']" position="attributes">
                 <attribute
                         name="attrs"
-                    >{'invisible': [('state', 'not in', ('draft', 'waiting', 'confirmed', 'assigned', 'done'))]}</attribute>
+                    >{'invisible': [('cancel_ok', '!=', True)]}</attribute>
             </xpath>
             <xpath expr="//button[@name='action_cancel']" position="after">
                 <button
                         name="action_draft"
                         type="object"
                         string="Set to Draft"
-                        states="cancel"
+                        attrs="{'invisible': [('draft_ok', '!=', True)]}"
                     />
             </xpath>
             <xpath expr="//field[@name='picking_type_id']" position="after">
@@ -131,6 +192,35 @@
                     position="after"
                 >
                 <field name="forced_lot_id" />
+            </xpath>
+            <xpath expr="//page[@name='operations']" position="after">
+                <page name="policy" string="Policies" groups="base.group_system">
+                    <group name="policy_1" colspan="4" col="2">
+                        <field name="policy_template_id" />
+                        <button
+                                name="action_reload_policy_template"
+                                type="object"
+                                string="Reload Template Policy"
+                                class="oe_highlight"
+                                icon="fa-refresh"
+                            />
+                    </group>
+                    <group name="policy_2" colspan="4" col="2">
+                        <field name="confirm_ok" />
+                        <field name="assign_ok" />
+                        <field name="validate_ok" />
+                        <field name="signature_ok" />
+                        <field name="print_picking_ok" />
+                        <field name="print_delivery_ok" />
+                        <field name="return_ok" />
+                        <field name="unreserve_ok" />
+                        <field name="scrap_ok" />
+                        <field name="lock_ok" />
+                        <field name="unlock_ok" />
+                        <field name="cancel_ok" />
+                        <field name="draft_ok" />
+                    </group>
+                </page>
             </xpath>
 
         </data>

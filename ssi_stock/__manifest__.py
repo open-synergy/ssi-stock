@@ -11,6 +11,7 @@
     "application": True,
     "depends": [
         "ssi_master_data_mixin",
+        "ssi_policy_mixin",
         "ssi_product",
         "stock",
         "stock_move_backdating",
@@ -22,6 +23,7 @@
         "security/ir.model.access.csv",
         "data/location_type_data.xml",
         "data/stock_picking_type_category_data.xml",
+        "data/policy_template_data.xml",
         "menu.xml",
         "templates/picking_type_m2_configurator_templates.xml",
         "templates/picking_type_category_m2_configurator_templates.xml",

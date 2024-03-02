@@ -1,0 +1,3017 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 OpenSynergy Indonesia
+     Copyright 2024 PT. Simetri Sinergi Indonesia
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl-3.0-standalone.html). -->
+<odoo>
+<data noupdate="1">
+<record id="policy_template_stock_picking" model="policy.template">
+    <field name="name">Stock Picking: Standard</field>
+    <field name="model_id" ref="stock.model_stock_picking" />
+    <field
+                name="state_field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','state')]"
+            />
+    <field name="sequence" eval="200" />
+    <field name="python_code">result=True</field>
+</record>
+<record id="policy_template_stock_picking_confirm" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','confirm_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('stock.group_stock_user')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.show_mark_as_todo</field>
+</record>
+<record id="policy_template_stock_picking_assign" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','assign_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('stock.group_stock_user')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.show_check_availability</field>
+</record>
+<record id="policy_template_stock_picking_validate" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','validate_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('stock.group_stock_manager')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.show_validate</field>
+</record>
+<record id="policy_template_stock_picking_signature" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','signature_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('stock.group_stock_user')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.id and document.picking_type_code == 'outgoing'</field>
+</record>
+<record id="policy_template_stock_picking_print_picking" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','print_picking_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.picking'),('value','in',['assigned', 'partially_available'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('stock.group_stock_user')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+<record id="policy_template_stock_picking_print_delivery" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','print_delivery_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.picking'),('value','in',['done'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('stock.group_stock_user')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+<record id="policy_template_stock_picking_return" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','return_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.picking'),('value','in',['done'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('stock.group_stock_manager')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+<record id="policy_template_stock_picking_unreserve" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','unreserve_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('stock.group_stock_user')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.picking_type_code != 'incoming' and not document.immediate_transfer and ((document.state in ('assigned', 'partially_available') and document.move_type == 'one') or (document.state in ('assigned', 'partially_available', 'confirmed') and document.move_type != 'one'))</field>
+</record>
+<record id="policy_template_stock_picking_scrap" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','scrap_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('stock.group_stock_user')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.picking_type_code not in ('incoming', 'outgoing') or (document.picking_type_code == 'incoming' and document.state == 'done') or (document.picking_type_code == 'outgoing' and document.state != 'done')</field>
+</record>
+<record id="policy_template_stock_picking_lock" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','lock_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('stock.group_stock_user')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = not document.is_locked</field>
+</record>
+<record id="policy_template_stock_picking_unlock" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','unlock_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.picking'),('value','not in',['draft', 'cancel'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('stock.group_stock_user')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.is_locked</field>
+</record>
+<record id="policy_template_stock_picking_cancel" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','cancel_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.picking'),('value','in',['assigned', 'confirmed', 'partially_available', 'draft', 'waiting', 'done'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('stock.group_stock_manager')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+<record id="policy_template_stock_picking_draft" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','draft_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.picking'),('value','in',['cancel'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('stock.group_stock_manager')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+
+<record id="policy_template_stock_picking_goods_receipt" model="policy.template">
+    <field name="name">Goods Receipt: Standard</field>
+    <field name="model_id" ref="stock.model_stock_picking" />
+    <field
+                name="state_field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','state')]"
+            />
+    <field name="sequence" eval="100" />
+    <field name="python_code">result=True</field>
+</record>
+<record id="policy_template_stock_picking_goods_receipt_confirm" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_goods_receipt" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','confirm_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.goods_receipt_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.show_mark_as_todo</field>
+</record>
+<record id="policy_template_stock_picking_goods_receipt_assign" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_goods_receipt" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','assign_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.goods_receipt_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.show_check_availability</field>
+</record>
+<record id="policy_template_stock_picking_goods_receipt_validate" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_goods_receipt" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','validate_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.goods_receipt_validator_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.show_validate</field>
+</record>
+<record id="policy_template_stock_picking_goods_receipt_signature" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_goods_receipt" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','signature_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.goods_receipt_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.id and document.picking_type_code == 'outgoing'</field>
+</record>
+<record id="policy_template_stock_picking_goods_receipt_print_picking" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_goods_receipt" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','print_picking_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.picking'),('value','in',['assigned', 'partially_available'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.goods_receipt_user_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+<record id="policy_template_stock_picking_goods_receipt_print_delivery" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_goods_receipt" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','print_delivery_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.picking'),('value','in',['done'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.goods_receipt_user_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+<record id="policy_template_stock_picking_goods_receipt_return" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_goods_receipt" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','return_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.picking'),('value','in',['done'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.goods_receipt_validator_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+<record id="policy_template_stock_picking_goods_receipt_unreserve" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_goods_receipt" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','unreserve_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.goods_receipt_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.picking_type_code != 'incoming' and not document.immediate_transfer and ((document.state in ('assigned', 'partially_available') and document.move_type == 'one') or (document.state in ('assigned', 'partially_available', 'confirmed') and document.move_type != 'one'))</field>
+</record>
+<record id="policy_template_stock_picking_goods_receipt_scrap" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_goods_receipt" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','scrap_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.goods_receipt_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.picking_type_code not in ('incoming', 'outgoing') or (document.picking_type_code == 'incoming' and document.state == 'done') or (document.picking_type_code == 'outgoing' and document.state != 'done')</field>
+</record>
+<record id="policy_template_stock_picking_goods_receipt_lock" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_goods_receipt" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','lock_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.goods_receipt_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = not document.is_locked</field>
+</record>
+<record id="policy_template_stock_picking_goods_receipt_unlock" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_goods_receipt" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','unlock_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.picking'),('value','not in',['draft', 'cancel'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.goods_receipt_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.is_locked</field>
+</record>
+<record id="policy_template_stock_picking_goods_receipt_cancel" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_goods_receipt" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','cancel_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.picking'),('value','in',['assigned', 'confirmed', 'partially_available', 'draft', 'waiting', 'done'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.goods_receipt_validator_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+<record id="policy_template_stock_picking_goods_receipt_draft" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_goods_receipt" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','draft_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.picking'),('value','in',['cancel'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.goods_receipt_validator_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+
+<record id="policy_template_stock_picking_delivery_order" model="policy.template">
+    <field name="name">Delivery Order: Standard</field>
+    <field name="model_id" ref="stock.model_stock_picking" />
+    <field
+                name="state_field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','state')]"
+            />
+    <field name="sequence" eval="100" />
+    <field name="python_code">result=True</field>
+</record>
+<record id="policy_template_stock_picking_delivery_order_confirm" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_delivery_order" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','confirm_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.delivery_order_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.show_mark_as_todo</field>
+</record>
+<record id="policy_template_stock_picking_delivery_order_assign" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_delivery_order" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','assign_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.delivery_order_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.show_check_availability</field>
+</record>
+<record id="policy_template_stock_picking_delivery_order_validate" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_delivery_order" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','validate_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.delivery_order_validator_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.show_validate</field>
+</record>
+<record id="policy_template_stock_picking_delivery_order_signature" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_delivery_order" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','signature_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.delivery_order_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.id and document.picking_type_code == 'outgoing'</field>
+</record>
+<record id="policy_template_stock_picking_delivery_order_print_picking" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_delivery_order" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','print_picking_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.picking'),('value','in',['assigned', 'partially_available'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.delivery_order_user_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+<record id="policy_template_stock_picking_delivery_order_print_delivery" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_delivery_order" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','print_delivery_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.picking'),('value','in',['done'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.delivery_order_user_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+<record id="policy_template_stock_picking_delivery_order_return" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_delivery_order" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','return_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.picking'),('value','in',['done'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.delivery_order_validator_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+<record id="policy_template_stock_picking_delivery_order_unreserve" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_delivery_order" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','unreserve_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.delivery_order_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.picking_type_code != 'incoming' and not document.immediate_transfer and ((document.state in ('assigned', 'partially_available') and document.move_type == 'one') or (document.state in ('assigned', 'partially_available', 'confirmed') and document.move_type != 'one'))</field>
+</record>
+<record id="policy_template_stock_picking_delivery_order_scrap" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_delivery_order" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','scrap_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.delivery_order_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.picking_type_code not in ('incoming', 'outgoing') or (document.picking_type_code == 'incoming' and document.state == 'done') or (document.picking_type_code == 'outgoing' and document.state != 'done')</field>
+</record>
+<record id="policy_template_stock_picking_delivery_order_lock" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_delivery_order" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','lock_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.delivery_order_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = not document.is_locked</field>
+</record>
+<record id="policy_template_stock_picking_delivery_order_unlock" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_delivery_order" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','unlock_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.picking'),('value','not in',['draft', 'cancel'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.delivery_order_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.is_locked</field>
+</record>
+<record id="policy_template_stock_picking_delivery_order_cancel" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_delivery_order" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','cancel_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.picking'),('value','in',['assigned', 'confirmed', 'partially_available', 'draft', 'waiting', 'done'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.delivery_order_validator_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+<record id="policy_template_stock_picking_delivery_order_draft" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_delivery_order" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','draft_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.picking'),('value','in',['cancel'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.delivery_order_validator_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+
+<record id="policy_template_stock_picking_internal_transfer" model="policy.template">
+    <field name="name">Internal Transfer: Standard</field>
+    <field name="model_id" ref="stock.model_stock_picking" />
+    <field
+                name="state_field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','state')]"
+            />
+    <field name="sequence" eval="100" />
+    <field name="python_code">result=True</field>
+</record>
+<record id="policy_template_stock_picking_internal_transfer_confirm" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_internal_transfer" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','confirm_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.internal_transfer_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.show_mark_as_todo</field>
+</record>
+<record id="policy_template_stock_picking_internal_transfer_assign" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_internal_transfer" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','assign_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.internal_transfer_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.show_check_availability</field>
+</record>
+<record id="policy_template_stock_picking_internal_transfer_validate" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_internal_transfer" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','validate_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.internal_transfer_validator_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.show_validate</field>
+</record>
+<record id="policy_template_stock_picking_internal_transfer_signature" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_internal_transfer" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','signature_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.internal_transfer_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.id and document.picking_type_code == 'outgoing'</field>
+</record>
+<record id="policy_template_stock_picking_internal_transfer_print_picking" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_internal_transfer" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','print_picking_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.picking'),('value','in',['assigned', 'partially_available'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.internal_transfer_user_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+<record id="policy_template_stock_picking_internal_transfer_print_delivery" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_internal_transfer" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','print_delivery_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.picking'),('value','in',['done'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.internal_transfer_user_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+<record id="policy_template_stock_picking_internal_transfer_return" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_internal_transfer" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','return_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.picking'),('value','in',['done'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.internal_transfer_validator_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+<record id="policy_template_stock_picking_internal_transfer_unreserve" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_internal_transfer" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','unreserve_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.internal_transfer_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.picking_type_code != 'incoming' and not document.immediate_transfer and ((document.state in ('assigned', 'partially_available') and document.move_type == 'one') or (document.state in ('assigned', 'partially_available', 'confirmed') and document.move_type != 'one'))</field>
+</record>
+<record id="policy_template_stock_picking_internal_transfer_scrap" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_internal_transfer" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','scrap_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.internal_transfer_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.picking_type_code not in ('incoming', 'outgoing') or (document.picking_type_code == 'incoming' and document.state == 'done') or (document.picking_type_code == 'outgoing' and document.state != 'done')</field>
+</record>
+<record id="policy_template_stock_picking_internal_transfer_lock" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_internal_transfer" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','lock_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.internal_transfer_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = not document.is_locked</field>
+</record>
+<record id="policy_template_stock_picking_internal_transfer_unlock" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_internal_transfer" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','unlock_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.picking'),('value','not in',['draft', 'cancel'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.internal_transfer_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.is_locked</field>
+</record>
+<record id="policy_template_stock_picking_internal_transfer_cancel" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_internal_transfer" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','cancel_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.picking'),('value','in',['assigned', 'confirmed', 'partially_available', 'draft', 'waiting', 'done'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.internal_transfer_validator_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+<record id="policy_template_stock_picking_internal_transfer_draft" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_internal_transfer" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','draft_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.picking'),('value','in',['cancel'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.internal_transfer_validator_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+
+<record id="policy_template_stock_picking_pick" model="policy.template">
+    <field name="name">Pick: Standard</field>
+    <field name="model_id" ref="stock.model_stock_picking" />
+    <field
+                name="state_field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','state')]"
+            />
+    <field name="sequence" eval="100" />
+    <field name="python_code">result=True</field>
+</record>
+<record id="policy_template_stock_picking_pick_confirm" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_pick" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','confirm_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.pick_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.show_mark_as_todo</field>
+</record>
+<record id="policy_template_stock_picking_pick_assign" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_pick" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','assign_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.pick_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.show_check_availability</field>
+</record>
+<record id="policy_template_stock_picking_pick_validate" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_pick" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','validate_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.pick_validator_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.show_validate</field>
+</record>
+<record id="policy_template_stock_picking_pick_signature" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_pick" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','signature_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.pick_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.id and document.picking_type_code == 'outgoing'</field>
+</record>
+<record id="policy_template_stock_picking_pick_print_picking" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_pick" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','print_picking_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.picking'),('value','in',['assigned', 'partially_available'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.pick_user_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+<record id="policy_template_stock_picking_pick_print_delivery" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_pick" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','print_delivery_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.picking'),('value','in',['done'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.pick_user_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+<record id="policy_template_stock_picking_pick_return" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_pick" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','return_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.picking'),('value','in',['done'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.pick_validator_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+<record id="policy_template_stock_picking_pick_unreserve" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_pick" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','unreserve_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.pick_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.picking_type_code != 'incoming' and not document.immediate_transfer and ((document.state in ('assigned', 'partially_available') and document.move_type == 'one') or (document.state in ('assigned', 'partially_available', 'confirmed') and document.move_type != 'one'))</field>
+</record>
+<record id="policy_template_stock_picking_pick_scrap" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_pick" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','scrap_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.pick_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.picking_type_code not in ('incoming', 'outgoing') or (document.picking_type_code == 'incoming' and document.state == 'done') or (document.picking_type_code == 'outgoing' and document.state != 'done')</field>
+</record>
+<record id="policy_template_stock_picking_pick_lock" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_pick" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','lock_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.pick_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = not document.is_locked</field>
+</record>
+<record id="policy_template_stock_picking_pick_unlock" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_pick" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','unlock_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.picking'),('value','not in',['draft', 'cancel'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.pick_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.is_locked</field>
+</record>
+<record id="policy_template_stock_picking_pick_cancel" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_pick" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','cancel_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.picking'),('value','in',['assigned', 'confirmed', 'partially_available', 'draft', 'waiting', 'done'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.pick_validator_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+<record id="policy_template_stock_picking_pick_draft" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_pick" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','draft_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.picking'),('value','in',['cancel'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.pick_validator_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+
+<record id="policy_template_stock_picking_pack" model="policy.template">
+    <field name="name">Pack: Standard</field>
+    <field name="model_id" ref="stock.model_stock_picking" />
+    <field
+                name="state_field_id"
+                search="[('model_id.model','=','stock.packing'),('name','=','state')]"
+            />
+    <field name="sequence" eval="100" />
+    <field name="python_code">result=True</field>
+</record>
+<record id="policy_template_stock_picking_pack_confirm" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_pack" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.packing'),('name','=','confirm_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.pack_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.show_mark_as_todo</field>
+</record>
+<record id="policy_template_stock_picking_pack_assign" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_pack" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.packing'),('name','=','assign_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.pack_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.show_check_availability</field>
+</record>
+<record id="policy_template_stock_picking_pack_validate" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_pack" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.packing'),('name','=','validate_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.pack_validator_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.show_validate</field>
+</record>
+<record id="policy_template_stock_picking_pack_signature" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_pack" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.packing'),('name','=','signature_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.pack_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.id and document.packing_type_code == 'outgoing'</field>
+</record>
+<record id="policy_template_stock_picking_pack_print_packing" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_pack" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.packing'),('name','=','print_packing_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.packing'),('value','in',['assigned', 'partially_available'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.pack_user_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+<record id="policy_template_stock_picking_pack_print_delivery" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_pack" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.packing'),('name','=','print_delivery_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.packing'),('value','in',['done'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.pack_user_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+<record id="policy_template_stock_picking_pack_return" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_pack" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.packing'),('name','=','return_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.packing'),('value','in',['done'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.pack_validator_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+<record id="policy_template_stock_picking_pack_unreserve" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_pack" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.packing'),('name','=','unreserve_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.pack_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.packing_type_code != 'incoming' and not document.immediate_transfer and ((document.state in ('assigned', 'partially_available') and document.move_type == 'one') or (document.state in ('assigned', 'partially_available', 'confirmed') and document.move_type != 'one'))</field>
+</record>
+<record id="policy_template_stock_picking_pack_scrap" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_pack" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.packing'),('name','=','scrap_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.pack_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.packing_type_code not in ('incoming', 'outgoing') or (document.packing_type_code == 'incoming' and document.state == 'done') or (document.packing_type_code == 'outgoing' and document.state != 'done')</field>
+</record>
+<record id="policy_template_stock_picking_pack_lock" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_pack" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.packing'),('name','=','lock_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.pack_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = not document.is_locked</field>
+</record>
+<record id="policy_template_stock_picking_pack_unlock" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_pack" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.packing'),('name','=','unlock_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.packing'),('value','not in',['draft', 'cancel'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.pack_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.is_locked</field>
+</record>
+<record id="policy_template_stock_picking_pack_cancel" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_pack" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.packing'),('name','=','cancel_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.packing'),('value','in',['assigned', 'confirmed', 'partially_available', 'draft', 'waiting', 'done'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.pack_validator_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+<record id="policy_template_stock_picking_pack_draft" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_pack" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.packing'),('name','=','draft_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.packing'),('value','in',['cancel'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.pack_validator_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+
+<record id="policy_template_stock_picking_consume" model="policy.template">
+    <field name="name">Consume: Standard</field>
+    <field name="model_id" ref="stock.model_stock_picking" />
+    <field
+                name="state_field_id"
+                search="[('model_id.model','=','stock.consumeing'),('name','=','state')]"
+            />
+    <field name="sequence" eval="100" />
+    <field name="python_code">result=True</field>
+</record>
+<record id="policy_template_stock_picking_consume_confirm" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_consume" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.consumeing'),('name','=','confirm_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.consume_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.show_mark_as_todo</field>
+</record>
+<record id="policy_template_stock_picking_consume_assign" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_consume" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.consumeing'),('name','=','assign_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.consume_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.show_check_availability</field>
+</record>
+<record id="policy_template_stock_picking_consume_validate" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_consume" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.consumeing'),('name','=','validate_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.consume_validator_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.show_validate</field>
+</record>
+<record id="policy_template_stock_picking_consume_signature" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_consume" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.consumeing'),('name','=','signature_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.consume_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.id and document.consumeing_type_code == 'outgoing'</field>
+</record>
+<record id="policy_template_stock_picking_consume_print_consumeing" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_consume" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.consumeing'),('name','=','print_consumeing_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.consumeing'),('value','in',['assigned', 'partially_available'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.consume_user_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+<record id="policy_template_stock_picking_consume_print_delivery" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_consume" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.consumeing'),('name','=','print_delivery_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.consumeing'),('value','in',['done'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.consume_user_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+<record id="policy_template_stock_picking_consume_return" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_consume" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.consumeing'),('name','=','return_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.consumeing'),('value','in',['done'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.consume_validator_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+<record id="policy_template_stock_picking_consume_unreserve" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_consume" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.consumeing'),('name','=','unreserve_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.consume_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.consumeing_type_code != 'incoming' and not document.immediate_transfer and ((document.state in ('assigned', 'partially_available') and document.move_type == 'one') or (document.state in ('assigned', 'partially_available', 'confirmed') and document.move_type != 'one'))</field>
+</record>
+<record id="policy_template_stock_picking_consume_scrap" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_consume" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.consumeing'),('name','=','scrap_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.consume_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.consumeing_type_code not in ('incoming', 'outgoing') or (document.consumeing_type_code == 'incoming' and document.state == 'done') or (document.consumeing_type_code == 'outgoing' and document.state != 'done')</field>
+</record>
+<record id="policy_template_stock_picking_consume_lock" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_consume" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.consumeing'),('name','=','lock_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.consume_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = not document.is_locked</field>
+</record>
+<record id="policy_template_stock_picking_consume_unlock" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_consume" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.consumeing'),('name','=','unlock_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.consumeing'),('value','not in',['draft', 'cancel'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.consume_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.is_locked</field>
+</record>
+<record id="policy_template_stock_picking_consume_cancel" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_consume" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.consumeing'),('name','=','cancel_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.consumeing'),('value','in',['assigned', 'confirmed', 'partially_available', 'draft', 'waiting', 'done'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.consume_validator_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+<record id="policy_template_stock_picking_consume_draft" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_consume" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.consumeing'),('name','=','draft_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.consumeing'),('value','in',['cancel'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.consume_validator_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+
+<record id="policy_template_stock_picking_waste" model="policy.template">
+    <field name="name">Waste: Standard</field>
+    <field name="model_id" ref="stock.model_stock_picking" />
+    <field
+                name="state_field_id"
+                search="[('model_id.model','=','stock.wasteing'),('name','=','state')]"
+            />
+    <field name="sequence" eval="100" />
+    <field name="python_code">result=True</field>
+</record>
+<record id="policy_template_stock_picking_waste_confirm" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_waste" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.wasteing'),('name','=','confirm_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.waste_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.show_mark_as_todo</field>
+</record>
+<record id="policy_template_stock_picking_waste_assign" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_waste" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.wasteing'),('name','=','assign_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.waste_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.show_check_availability</field>
+</record>
+<record id="policy_template_stock_picking_waste_validate" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_waste" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.wasteing'),('name','=','validate_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.waste_validator_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.show_validate</field>
+</record>
+<record id="policy_template_stock_picking_waste_signature" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_waste" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.wasteing'),('name','=','signature_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.waste_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.id and document.wasteing_type_code == 'outgoing'</field>
+</record>
+<record id="policy_template_stock_picking_waste_print_wasteing" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_waste" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.wasteing'),('name','=','print_wasteing_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.wasteing'),('value','in',['assigned', 'partially_available'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.waste_user_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+<record id="policy_template_stock_picking_waste_print_delivery" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_waste" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.wasteing'),('name','=','print_delivery_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.wasteing'),('value','in',['done'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.waste_user_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+<record id="policy_template_stock_picking_waste_return" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_waste" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.wasteing'),('name','=','return_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.wasteing'),('value','in',['done'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.waste_validator_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+<record id="policy_template_stock_picking_waste_unreserve" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_waste" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.wasteing'),('name','=','unreserve_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.waste_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.wasteing_type_code != 'incoming' and not document.immediate_transfer and ((document.state in ('assigned', 'partially_available') and document.move_type == 'one') or (document.state in ('assigned', 'partially_available', 'confirmed') and document.move_type != 'one'))</field>
+</record>
+<record id="policy_template_stock_picking_waste_scrap" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_waste" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.wasteing'),('name','=','scrap_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.waste_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.wasteing_type_code not in ('incoming', 'outgoing') or (document.wasteing_type_code == 'incoming' and document.state == 'done') or (document.wasteing_type_code == 'outgoing' and document.state != 'done')</field>
+</record>
+<record id="policy_template_stock_picking_waste_lock" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_waste" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.wasteing'),('name','=','lock_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.waste_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = not document.is_locked</field>
+</record>
+<record id="policy_template_stock_picking_waste_unlock" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_waste" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.wasteing'),('name','=','unlock_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.wasteing'),('value','not in',['draft', 'cancel'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.waste_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.is_locked</field>
+</record>
+<record id="policy_template_stock_picking_waste_cancel" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_waste" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.wasteing'),('name','=','cancel_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.wasteing'),('value','in',['assigned', 'confirmed', 'partially_available', 'draft', 'waiting', 'done'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.waste_validator_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+<record id="policy_template_stock_picking_waste_draft" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_waste" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.wasteing'),('name','=','draft_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.wasteing'),('value','in',['cancel'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.waste_validator_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+
+<record id="policy_template_stock_picking_stolen" model="policy.template">
+    <field name="name">Stolen: Standard</field>
+    <field name="model_id" ref="stock.model_stock_picking" />
+    <field
+                name="state_field_id"
+                search="[('model_id.model','=','stock.stolening'),('name','=','state')]"
+            />
+    <field name="sequence" eval="100" />
+    <field name="python_code">result=True</field>
+</record>
+<record id="policy_template_stock_picking_stolen_confirm" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_stolen" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.stolening'),('name','=','confirm_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.stolen_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.show_mark_as_todo</field>
+</record>
+<record id="policy_template_stock_picking_stolen_assign" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_stolen" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.stolening'),('name','=','assign_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.stolen_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.show_check_availability</field>
+</record>
+<record id="policy_template_stock_picking_stolen_validate" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_stolen" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.stolening'),('name','=','validate_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.stolen_validator_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.show_validate</field>
+</record>
+<record id="policy_template_stock_picking_stolen_signature" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_stolen" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.stolening'),('name','=','signature_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.stolen_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.id and document.stolening_type_code == 'outgoing'</field>
+</record>
+<record id="policy_template_stock_picking_stolen_print_stolening" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_stolen" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.stolening'),('name','=','print_stolening_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.stolening'),('value','in',['assigned', 'partially_available'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.stolen_user_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+<record id="policy_template_stock_picking_stolen_print_delivery" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_stolen" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.stolening'),('name','=','print_delivery_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.stolening'),('value','in',['done'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.stolen_user_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+<record id="policy_template_stock_picking_stolen_return" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_stolen" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.stolening'),('name','=','return_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.stolening'),('value','in',['done'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.stolen_validator_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+<record id="policy_template_stock_picking_stolen_unreserve" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_stolen" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.stolening'),('name','=','unreserve_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.stolen_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.stolening_type_code != 'incoming' and not document.immediate_transfer and ((document.state in ('assigned', 'partially_available') and document.move_type == 'one') or (document.state in ('assigned', 'partially_available', 'confirmed') and document.move_type != 'one'))</field>
+</record>
+<record id="policy_template_stock_picking_stolen_scrap" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_stolen" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.stolening'),('name','=','scrap_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.stolen_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.stolening_type_code not in ('incoming', 'outgoing') or (document.stolening_type_code == 'incoming' and document.state == 'done') or (document.stolening_type_code == 'outgoing' and document.state != 'done')</field>
+</record>
+<record id="policy_template_stock_picking_stolen_lock" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_stolen" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.stolening'),('name','=','lock_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.stolen_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = not document.is_locked</field>
+</record>
+<record id="policy_template_stock_picking_stolen_unlock" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_stolen" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.stolening'),('name','=','unlock_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.stolening'),('value','not in',['draft', 'cancel'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.stolen_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.is_locked</field>
+</record>
+<record id="policy_template_stock_picking_stolen_cancel" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_stolen" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.stolening'),('name','=','cancel_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.stolening'),('value','in',['assigned', 'confirmed', 'partially_available', 'draft', 'waiting', 'done'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.stolen_validator_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+<record id="policy_template_stock_picking_stolen_draft" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_stolen" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.stolening'),('name','=','draft_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.stolening'),('value','in',['cancel'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.stolen_validator_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+
+<record id="policy_template_stock_picking_lost" model="policy.template">
+    <field name="name">Lost: Standard</field>
+    <field name="model_id" ref="stock.model_stock_picking" />
+    <field
+                name="state_field_id"
+                search="[('model_id.model','=','stock.losting'),('name','=','state')]"
+            />
+    <field name="sequence" eval="100" />
+    <field name="python_code">result=True</field>
+</record>
+<record id="policy_template_stock_picking_lost_confirm" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_lost" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.losting'),('name','=','confirm_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.lost_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.show_mark_as_todo</field>
+</record>
+<record id="policy_template_stock_picking_lost_assign" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_lost" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.losting'),('name','=','assign_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.lost_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.show_check_availability</field>
+</record>
+<record id="policy_template_stock_picking_lost_validate" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_lost" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.losting'),('name','=','validate_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.lost_validator_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.show_validate</field>
+</record>
+<record id="policy_template_stock_picking_lost_signature" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_lost" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.losting'),('name','=','signature_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.lost_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.id and document.losting_type_code == 'outgoing'</field>
+</record>
+<record id="policy_template_stock_picking_lost_print_losting" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_lost" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.losting'),('name','=','print_losting_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.losting'),('value','in',['assigned', 'partially_available'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.lost_user_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+<record id="policy_template_stock_picking_lost_print_delivery" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_lost" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.losting'),('name','=','print_delivery_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.losting'),('value','in',['done'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.lost_user_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+<record id="policy_template_stock_picking_lost_return" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_lost" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.losting'),('name','=','return_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.losting'),('value','in',['done'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.lost_validator_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+<record id="policy_template_stock_picking_lost_unreserve" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_lost" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.losting'),('name','=','unreserve_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.lost_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.losting_type_code != 'incoming' and not document.immediate_transfer and ((document.state in ('assigned', 'partially_available') and document.move_type == 'one') or (document.state in ('assigned', 'partially_available', 'confirmed') and document.move_type != 'one'))</field>
+</record>
+<record id="policy_template_stock_picking_lost_scrap" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_lost" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.losting'),('name','=','scrap_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.lost_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.losting_type_code not in ('incoming', 'outgoing') or (document.losting_type_code == 'incoming' and document.state == 'done') or (document.losting_type_code == 'outgoing' and document.state != 'done')</field>
+</record>
+<record id="policy_template_stock_picking_lost_lock" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_lost" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.losting'),('name','=','lock_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.lost_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = not document.is_locked</field>
+</record>
+<record id="policy_template_stock_picking_lost_unlock" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_lost" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.losting'),('name','=','unlock_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.losting'),('value','not in',['draft', 'cancel'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.lost_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.is_locked</field>
+</record>
+<record id="policy_template_stock_picking_lost_cancel" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_lost" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.losting'),('name','=','cancel_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.losting'),('value','in',['assigned', 'confirmed', 'partially_available', 'draft', 'waiting', 'done'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.lost_validator_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+<record id="policy_template_stock_picking_lost_draft" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_lost" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.losting'),('name','=','draft_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.losting'),('value','in',['cancel'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.lost_validator_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+
+<record id="policy_template_stock_picking_adjustment_in" model="policy.template">
+    <field name="name">Adjustment In: Standard</field>
+    <field name="model_id" ref="stock.model_stock_picking" />
+    <field
+                name="state_field_id"
+                search="[('model_id.model','=','stock.adjustment_ining'),('name','=','state')]"
+            />
+    <field name="sequence" eval="100" />
+    <field name="python_code">result=True</field>
+</record>
+<record id="policy_template_stock_picking_adjustment_in_confirm" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_adjustment_in" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.adjustment_ining'),('name','=','confirm_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.adjustment_in_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.show_mark_as_todo</field>
+</record>
+<record id="policy_template_stock_picking_adjustment_in_assign" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_adjustment_in" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.adjustment_ining'),('name','=','assign_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.adjustment_in_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.show_check_availability</field>
+</record>
+<record id="policy_template_stock_picking_adjustment_in_validate" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_adjustment_in" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.adjustment_ining'),('name','=','validate_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.adjustment_in_validator_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.show_validate</field>
+</record>
+<record id="policy_template_stock_picking_adjustment_in_signature" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_adjustment_in" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.adjustment_ining'),('name','=','signature_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.adjustment_in_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.id and document.adjustment_ining_type_code == 'outgoing'</field>
+</record>
+<record id="policy_template_stock_picking_adjustment_in_print_adjustment_ining" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_adjustment_in" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.adjustment_ining'),('name','=','print_adjustment_ining_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.adjustment_ining'),('value','in',['assigned', 'partially_available'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.adjustment_in_user_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+<record id="policy_template_stock_picking_adjustment_in_print_delivery" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_adjustment_in" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.adjustment_ining'),('name','=','print_delivery_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.adjustment_ining'),('value','in',['done'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.adjustment_in_user_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+<record id="policy_template_stock_picking_adjustment_in_return" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_adjustment_in" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.adjustment_ining'),('name','=','return_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.adjustment_ining'),('value','in',['done'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.adjustment_in_validator_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+<record id="policy_template_stock_picking_adjustment_in_unreserve" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_adjustment_in" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.adjustment_ining'),('name','=','unreserve_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.adjustment_in_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.adjustment_ining_type_code != 'incoming' and not document.immediate_transfer and ((document.state in ('assigned', 'partially_available') and document.move_type == 'one') or (document.state in ('assigned', 'partially_available', 'confirmed') and document.move_type != 'one'))</field>
+</record>
+<record id="policy_template_stock_picking_adjustment_in_scrap" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_adjustment_in" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.adjustment_ining'),('name','=','scrap_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.adjustment_in_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.adjustment_ining_type_code not in ('incoming', 'outgoing') or (document.adjustment_ining_type_code == 'incoming' and document.state == 'done') or (document.adjustment_ining_type_code == 'outgoing' and document.state != 'done')</field>
+</record>
+<record id="policy_template_stock_picking_adjustment_in_lock" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_adjustment_in" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.adjustment_ining'),('name','=','lock_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.adjustment_in_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = not document.is_locked</field>
+</record>
+<record id="policy_template_stock_picking_adjustment_in_unlock" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_adjustment_in" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.adjustment_ining'),('name','=','unlock_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.adjustment_ining'),('value','not in',['draft', 'cancel'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.adjustment_in_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.is_locked</field>
+</record>
+<record id="policy_template_stock_picking_adjustment_in_cancel" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_adjustment_in" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.adjustment_ining'),('name','=','cancel_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.adjustment_ining'),('value','in',['assigned', 'confirmed', 'partially_available', 'draft', 'waiting', 'done'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.adjustment_in_validator_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+<record id="policy_template_stock_picking_adjustment_in_draft" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_adjustment_in" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.adjustment_ining'),('name','=','draft_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.adjustment_ining'),('value','in',['cancel'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.adjustment_in_validator_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+
+<record id="policy_template_stock_picking_adjustment_out" model="policy.template">
+    <field name="name">Adjustment Out: Standard</field>
+    <field name="model_id" ref="stock.model_stock_picking" />
+    <field
+                name="state_field_id"
+                search="[('model_id.model','=','stock.adjustment_outing'),('name','=','state')]"
+            />
+    <field name="sequence" eval="100" />
+    <field name="python_code">result=True</field>
+</record>
+<record id="policy_template_stock_picking_adjustment_out_confirm" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_adjustment_out" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.adjustment_outing'),('name','=','confirm_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.adjustment_out_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.show_mark_as_todo</field>
+</record>
+<record id="policy_template_stock_picking_adjustment_out_assign" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_adjustment_out" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.adjustment_outing'),('name','=','assign_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.adjustment_out_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.show_check_availability</field>
+</record>
+<record id="policy_template_stock_picking_adjustment_out_validate" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_adjustment_out" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.adjustment_outing'),('name','=','validate_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.adjustment_out_validator_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.show_validate</field>
+</record>
+<record id="policy_template_stock_picking_adjustment_out_signature" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_adjustment_out" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.adjustment_outing'),('name','=','signature_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.adjustment_out_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.id and document.adjustment_outing_type_code == 'outgoing'</field>
+</record>
+<record id="policy_template_stock_picking_adjustment_out_print_adjustment_outing" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_adjustment_out" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.adjustment_outing'),('name','=','print_adjustment_outing_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.adjustment_outing'),('value','in',['assigned', 'partially_available'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.adjustment_out_user_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+<record id="policy_template_stock_picking_adjustment_out_print_delivery" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_adjustment_out" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.adjustment_outing'),('name','=','print_delivery_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.adjustment_outing'),('value','in',['done'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.adjustment_out_user_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+<record id="policy_template_stock_picking_adjustment_out_return" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_adjustment_out" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.adjustment_outing'),('name','=','return_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.adjustment_outing'),('value','in',['done'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.adjustment_out_validator_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+<record id="policy_template_stock_picking_adjustment_out_unreserve" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_adjustment_out" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.adjustment_outing'),('name','=','unreserve_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.adjustment_out_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.adjustment_outing_type_code != 'incoming' and not document.immediate_transfer and ((document.state in ('assigned', 'partially_available') and document.move_type == 'one') or (document.state in ('assigned', 'partially_available', 'confirmed') and document.move_type != 'one'))</field>
+</record>
+<record id="policy_template_stock_picking_adjustment_out_scrap" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_adjustment_out" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.adjustment_outing'),('name','=','scrap_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.adjustment_out_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.adjustment_outing_type_code not in ('incoming', 'outgoing') or (document.adjustment_outing_type_code == 'incoming' and document.state == 'done') or (document.adjustment_outing_type_code == 'outgoing' and document.state != 'done')</field>
+</record>
+<record id="policy_template_stock_picking_adjustment_out_lock" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_adjustment_out" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.adjustment_outing'),('name','=','lock_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.adjustment_out_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = not document.is_locked</field>
+</record>
+<record id="policy_template_stock_picking_adjustment_out_unlock" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_adjustment_out" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.adjustment_outing'),('name','=','unlock_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.adjustment_outing'),('value','not in',['draft', 'cancel'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.adjustment_out_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.is_locked</field>
+</record>
+<record id="policy_template_stock_picking_adjustment_out_cancel" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_adjustment_out" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.adjustment_outing'),('name','=','cancel_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.adjustment_outing'),('value','in',['assigned', 'confirmed', 'partially_available', 'draft', 'waiting', 'done'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.adjustment_out_validator_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+<record id="policy_template_stock_picking_adjustment_out_draft" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_adjustment_out" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.adjustment_outing'),('name','=','draft_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.adjustment_outing'),('value','in',['cancel'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.adjustment_out_validator_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+
+<record id="policy_template_stock_picking_interwarehouse_out" model="policy.template">
+    <field name="name">Inter-Warehouse Out: Standard</field>
+    <field name="model_id" ref="stock.model_stock_picking" />
+    <field
+                name="state_field_id"
+                search="[('model_id.model','=','stock.interwarehouse_outing'),('name','=','state')]"
+            />
+    <field name="sequence" eval="100" />
+    <field name="python_code">result=True</field>
+</record>
+<record id="policy_template_stock_picking_interwarehouse_out_confirm" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_interwarehouse_out" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.interwarehouse_outing'),('name','=','confirm_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.interwarehouse_out_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.show_mark_as_todo</field>
+</record>
+<record id="policy_template_stock_picking_interwarehouse_out_assign" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_interwarehouse_out" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.interwarehouse_outing'),('name','=','assign_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.interwarehouse_out_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.show_check_availability</field>
+</record>
+<record id="policy_template_stock_picking_interwarehouse_out_validate" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_interwarehouse_out" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.interwarehouse_outing'),('name','=','validate_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.interwarehouse_out_validator_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.show_validate</field>
+</record>
+<record id="policy_template_stock_picking_interwarehouse_out_signature" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_interwarehouse_out" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.interwarehouse_outing'),('name','=','signature_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.interwarehouse_out_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.id and document.interwarehouse_outing_type_code == 'outgoing'</field>
+</record>
+<record id="policy_template_stock_picking_interwarehouse_out_print_interwarehouse_outing" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_interwarehouse_out" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.interwarehouse_outing'),('name','=','print_interwarehouse_outing_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.interwarehouse_outing'),('value','in',['assigned', 'partially_available'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.interwarehouse_out_user_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+<record id="policy_template_stock_picking_interwarehouse_out_print_delivery" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_interwarehouse_out" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.interwarehouse_outing'),('name','=','print_delivery_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.interwarehouse_outing'),('value','in',['done'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.interwarehouse_out_user_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+<record id="policy_template_stock_picking_interwarehouse_out_return" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_interwarehouse_out" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.interwarehouse_outing'),('name','=','return_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.interwarehouse_outing'),('value','in',['done'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.interwarehouse_out_validator_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+<record id="policy_template_stock_picking_interwarehouse_out_unreserve" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_interwarehouse_out" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.interwarehouse_outing'),('name','=','unreserve_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.interwarehouse_out_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.interwarehouse_outing_type_code != 'incoming' and not document.immediate_transfer and ((document.state in ('assigned', 'partially_available') and document.move_type == 'one') or (document.state in ('assigned', 'partially_available', 'confirmed') and document.move_type != 'one'))</field>
+</record>
+<record id="policy_template_stock_picking_interwarehouse_out_scrap" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_interwarehouse_out" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.interwarehouse_outing'),('name','=','scrap_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.interwarehouse_out_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.interwarehouse_outing_type_code not in ('incoming', 'outgoing') or (document.interwarehouse_outing_type_code == 'incoming' and document.state == 'done') or (document.interwarehouse_outing_type_code == 'outgoing' and document.state != 'done')</field>
+</record>
+<record id="policy_template_stock_picking_interwarehouse_out_lock" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_interwarehouse_out" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.interwarehouse_outing'),('name','=','lock_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.interwarehouse_out_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = not document.is_locked</field>
+</record>
+<record id="policy_template_stock_picking_interwarehouse_out_unlock" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_interwarehouse_out" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.interwarehouse_outing'),('name','=','unlock_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.interwarehouse_outing'),('value','not in',['draft', 'cancel'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.interwarehouse_out_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.is_locked</field>
+</record>
+<record id="policy_template_stock_picking_interwarehouse_out_cancel" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_interwarehouse_out" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.interwarehouse_outing'),('name','=','cancel_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.interwarehouse_outing'),('value','in',['assigned', 'confirmed', 'partially_available', 'draft', 'waiting', 'done'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.interwarehouse_out_validator_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+<record id="policy_template_stock_picking_interwarehouse_out_draft" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_interwarehouse_out" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.interwarehouse_outing'),('name','=','draft_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.interwarehouse_outing'),('value','in',['cancel'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.interwarehouse_out_validator_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+
+<record id="policy_template_stock_picking_interwarehouse_in" model="policy.template">
+    <field name="name">Inter-Warehouse In: Standard</field>
+    <field name="model_id" ref="stock.model_stock_picking" />
+    <field
+                name="state_field_id"
+                search="[('model_id.model','=','stock.interwarehouse_ining'),('name','=','state')]"
+            />
+    <field name="sequence" eval="100" />
+    <field name="python_code">result=True</field>
+</record>
+<record id="policy_template_stock_picking_interwarehouse_in_confirm" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_interwarehouse_in" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.interwarehouse_ining'),('name','=','confirm_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.interwarehouse_in_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.show_mark_as_todo</field>
+</record>
+<record id="policy_template_stock_picking_interwarehouse_in_assign" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_interwarehouse_in" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.interwarehouse_ining'),('name','=','assign_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.interwarehouse_in_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.show_check_availability</field>
+</record>
+<record id="policy_template_stock_picking_interwarehouse_in_validate" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_interwarehouse_in" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.interwarehouse_ining'),('name','=','validate_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.interwarehouse_in_validator_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.show_validate</field>
+</record>
+<record id="policy_template_stock_picking_interwarehouse_in_signature" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_interwarehouse_in" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.interwarehouse_ining'),('name','=','signature_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.interwarehouse_in_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.id and document.interwarehouse_ining_type_code == 'outgoing'</field>
+</record>
+<record id="policy_template_stock_picking_interwarehouse_in_print_interwarehouse_ining" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_interwarehouse_in" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.interwarehouse_ining'),('name','=','print_interwarehouse_ining_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.interwarehouse_ining'),('value','in',['assigned', 'partially_available'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.interwarehouse_in_user_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+<record id="policy_template_stock_picking_interwarehouse_in_print_delivery" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_interwarehouse_in" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.interwarehouse_ining'),('name','=','print_delivery_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.interwarehouse_ining'),('value','in',['done'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.interwarehouse_in_user_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+<record id="policy_template_stock_picking_interwarehouse_in_return" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_interwarehouse_in" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.interwarehouse_ining'),('name','=','return_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.interwarehouse_ining'),('value','in',['done'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.interwarehouse_in_validator_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+<record id="policy_template_stock_picking_interwarehouse_in_unreserve" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_interwarehouse_in" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.interwarehouse_ining'),('name','=','unreserve_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.interwarehouse_in_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.interwarehouse_ining_type_code != 'incoming' and not document.immediate_transfer and ((document.state in ('assigned', 'partially_available') and document.move_type == 'one') or (document.state in ('assigned', 'partially_available', 'confirmed') and document.move_type != 'one'))</field>
+</record>
+<record id="policy_template_stock_picking_interwarehouse_in_scrap" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_interwarehouse_in" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.interwarehouse_ining'),('name','=','scrap_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.interwarehouse_in_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.interwarehouse_ining_type_code not in ('incoming', 'outgoing') or (document.interwarehouse_ining_type_code == 'incoming' and document.state == 'done') or (document.interwarehouse_ining_type_code == 'outgoing' and document.state != 'done')</field>
+</record>
+<record id="policy_template_stock_picking_interwarehouse_in_lock" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_interwarehouse_in" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.interwarehouse_ining'),('name','=','lock_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.interwarehouse_in_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = not document.is_locked</field>
+</record>
+<record id="policy_template_stock_picking_interwarehouse_in_unlock" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_interwarehouse_in" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.interwarehouse_ining'),('name','=','unlock_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.interwarehouse_ining'),('value','not in',['draft', 'cancel'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.interwarehouse_in_user_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field
+                name="additional_python_code"
+            >result = document.is_locked</field>
+</record>
+<record id="policy_template_stock_picking_interwarehouse_in_cancel" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_interwarehouse_in" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.interwarehouse_ining'),('name','=','cancel_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.interwarehouse_ining'),('value','in',['assigned', 'confirmed', 'partially_available', 'draft', 'waiting', 'done'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.interwarehouse_in_validator_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+<record id="policy_template_stock_picking_interwarehouse_in_draft" model="policy.template_detail">
+    <field name="template_id" ref="policy_template_stock_picking_interwarehouse_in" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.interwarehouse_ining'),('name','=','draft_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.interwarehouse_ining'),('value','in',['cancel'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('ssi_stock.interwarehouse_in_validator_group')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
+</data>
+</odoo>
