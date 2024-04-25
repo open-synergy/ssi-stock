@@ -74,6 +74,10 @@ class StockPicking(models.Model):
         for record in self.sudo():
             record._delete_accounting_entry()
 
+    def action_reload_accounting_setting(self):
+        for record in self:
+            record._reload_accounting_setting()
+
     def _create_accounting_entry(self):
         self.ensure_one()
         for svl in self.stock_valuation_layer_ids:
@@ -83,3 +87,16 @@ class StockPicking(models.Model):
         self.ensure_one()
         for svl in self.stock_valuation_layer_ids:
             svl._delete_accounting_entry()
+
+    def _reload_accounting_setting(self):
+        self.ensure_one()
+        if self.account_move_ids:
+            return True
+
+        self.onchange_journal_id()
+
+        for move in self.move_ids_without_package:
+            move.onchange_debit_usage_id()
+            move.onchange_credit_usage_id()
+            move.onchange_debit_account_id()
+            move.onchange_credit_account_id()

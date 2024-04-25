@@ -59,21 +59,26 @@ class StockValuationLayer(models.Model):
     journal_id = fields.Many2one(
         string="Journal",
         related="stock_move_id.picking_id.journal_id",
+        readonly=False,
     )
     debit_account_id = fields.Many2one(
         string="Debit Account",
         related="stock_move_id.debit_account_id",
+        readonly=False,
     )
     credit_account_id = fields.Many2one(
         string="Credit Account",
         related="stock_move_id.credit_account_id",
+        readonly=False,
     )
     analytic_account_id = fields.Many2one(
         related="stock_move_id.analytic_account_id",
+        readonly=False,
     )
     partner_id = fields.Many2one(
         string="Partner",
         related="stock_move_id.picking_id.partner_id",
+        readonly=False,
     )
     date = fields.Date(
         string="Date",
@@ -83,12 +88,12 @@ class StockValuationLayer(models.Model):
     debit_move_line_id = fields.Many2one(
         string="Debit Move Line",
         comodel_name="account.move.line",
-        readonly=True,
+        readonly=False,
     )
     credit_move_line_id = fields.Many2one(
         string="Credit Move Line",
         comodel_name="account.move.line",
-        readonly=True,
+        readonly=False,
     )
 
     @api.depends("create_date")
