@@ -20,6 +20,15 @@
                     <field name="stock_valuation_layer_ids" />
                     <separator string="Journal Entries" />
                     <button
+                            name="action_reload_accounting_setting"
+                            type="object"
+                            string="Reload Accounting Setting"
+                            class="oe_highlight"
+                            icon="fa-refresh"
+                            attrs="{'invisible':[('create_accounting_entry_ok','=',False)]}"
+                            style="margin-right:4px"
+                        />
+                    <button
                             name="action_create_accounting_entry"
                             type="object"
                             string="Create Accounting Entries"
@@ -53,6 +62,24 @@
     </field>
 </record>
 
+<record id="stock_picking_view_tree" model="ir.ui.view">
+    <field name="name">stock.picking - tree</field>
+    <field name="model">stock.picking</field>
+    <field name="inherit_id" ref="stock.vpicktree" />
+    <field name="arch" type="xml">
+        <data>
+            <xpath expr="//tree/header" position="inside">
+                <button
+                        name="action_reload_accounting_setting"
+                        type="object"
+                        string="Reload Accounting Setting"
+                        class="oe_highlight"
+                        icon="fa-refresh"
+                    />
+            </xpath>
+        </data>
+    </field>
+</record>
 
 
 </odoo>
