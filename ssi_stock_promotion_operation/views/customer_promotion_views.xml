@@ -21,7 +21,7 @@
 <menuitem
         id="customer_promotion_menu"
         name="Customer Promotion "
-        parent="ssi_stock.menu_incoming_movement"
+        parent="ssi_stock.menu_outgoing_movement"
         groups="customer_promotion_viewer_group"
         action="customer_promotion_action"
         sequence="103"
