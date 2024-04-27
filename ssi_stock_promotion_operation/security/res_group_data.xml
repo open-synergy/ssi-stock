@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2023 OpenSynergy Indonesia
+     Copyright 2023 PT. Simetri Sinergi Indonesia
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+<!-- Customer Promotion : Workflow -->
+<record id="customer_promotion_viewer_group" model="res.groups">
+    <field name="name">Viewer</field>
+    <field name="category_id" ref="customer_promotion_workflow_module_category" />
+</record>
+
+<record id="customer_promotion_user_group" model="res.groups">
+    <field name="name">User</field>
+    <field name="category_id" ref="customer_promotion_workflow_module_category" />
+    <field name="implied_ids" eval="[(4, ref('customer_promotion_viewer_group'))]" />
+</record>
+
+<record id="customer_promotion_validator_group" model="res.groups">
+    <field name="name">Validator</field>
+    <field name="category_id" ref="customer_promotion_workflow_module_category" />
+    <field name="implied_ids" eval="[(4, ref('customer_promotion_user_group'))]" />
+    <field
+            name="users"
+            eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
+        />
+</record>
+
+<!-- Customer Promotion : Data Ownership -->
+<record id="customer_promotion_company_group" model="res.groups">
+    <field name="name">Company</field>
+    <field name="category_id" ref="customer_promotion_data_ownership_module_category" />
+</record>
+
+<record id="customer_promotion_company_child_group" model="res.groups">
+    <field name="name">Company and All Child Companies</field>
+    <field name="category_id" ref="customer_promotion_data_ownership_module_category" />
+    <field name="implied_ids" eval="[(4, ref('customer_promotion_company_group'))]" />
+</record>
+
+<record id="customer_promotion_all_group" model="res.groups">
+    <field name="name">All</field>
+    <field name="category_id" ref="customer_promotion_data_ownership_module_category" />
+    <field
+            name="implied_ids"
+            eval="[(4, ref('customer_promotion_company_child_group'))]"
+        />
+    <field
+            name="users"
+            eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
+        />
+</record>
+
+<!-- Supplier Promotion : Workflow -->
+
+<record id="supplier_promotion_viewer_group" model="res.groups">
+    <field name="name">Viewer</field>
+    <field name="category_id" ref="supplier_promotion_workflow_module_category" />
+</record>
+
+<record id="supplier_promotion_user_group" model="res.groups">
+    <field name="name">User</field>
+    <field name="category_id" ref="supplier_promotion_workflow_module_category" />
+    <field name="implied_ids" eval="[(4, ref('supplier_promotion_viewer_group'))]" />
+</record>
+
+<record id="supplier_promotion_validator_group" model="res.groups">
+    <field name="name">Validator</field>
+    <field name="category_id" ref="supplier_promotion_workflow_module_category" />
+    <field name="implied_ids" eval="[(4, ref('supplier_promotion_user_group'))]" />
+    <field
+            name="users"
+            eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
+        />
+</record>
+
+<!-- Supplier Promotion : Data Ownership -->
+<record id="supplier_promotion_company_group" model="res.groups">
+    <field name="name">Company</field>
+    <field name="category_id" ref="supplier_promotion_data_ownership_module_category" />
+</record>
+
+<record id="supplier_promotion_company_child_group" model="res.groups">
+    <field name="name">Company and All Child Companies</field>
+    <field name="category_id" ref="supplier_promotion_data_ownership_module_category" />
+    <field name="implied_ids" eval="[(4, ref('supplier_promotion_company_group'))]" />
+</record>
+
+<record id="supplier_promotion_all_group" model="res.groups">
+    <field name="name">All</field>
+    <field name="category_id" ref="supplier_promotion_data_ownership_module_category" />
+    <field
+            name="implied_ids"
+            eval="[(4, ref('supplier_promotion_company_child_group'))]"
+        />
+    <field
+            name="users"
+            eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
+        />
+</record>
+</odoo>
