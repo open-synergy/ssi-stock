@@ -27,6 +27,7 @@ addon | version | maintainers | summary
 [ssi_stock_donation_operation](ssi_stock_donation_operation/) | 14.0.1.1.0 |  | Donation Inventory Operation
 [ssi_stock_fixed_asset](ssi_stock_fixed_asset/) | 14.0.2.1.0 |  | Inventory + Fixed Asset Integration
 [ssi_stock_location_m2o_configurator_mixin](ssi_stock_location_m2o_configurator_mixin/) | 14.0.1.0.0 |  | stock.location Many2one Configurator Mixin
+[ssi_stock_promotion_operation](ssi_stock_promotion_operation/) | 14.0.1.0.0 |  | Promotion Inventory Operation
 [ssi_stock_reject_operation](ssi_stock_reject_operation/) | 14.0.1.0.0 |  | Reject Inventory Operation
 [ssi_stock_rent_operation](ssi_stock_rent_operation/) | 14.0.1.1.0 |  | Donation Inventory Operation
 [ssi_stock_route_m2o_configurator_mixin](ssi_stock_route_m2o_configurator_mixin/) | 14.0.1.0.0 |  | stock.location.route Many2one Configurator Mixin
