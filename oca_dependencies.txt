@@ -9,3 +9,4 @@ oca-reporting-engine https://github.com/OCA/reporting-engine.git 14.0
 akretion-odoo-usability https://github.com/akretion/odoo-usability.git 14.0
 oca-bank-statement-import https://github.com/OCA/bank-statement-import.git 14.0
 oca-web https://github.com/OCA/web.git 14.0
+oca-stock-logistics-workflow https://github.com/OCA/stock-logistics-workflow.git 14.0
