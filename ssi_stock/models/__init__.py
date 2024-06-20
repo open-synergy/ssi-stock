@@ -9,6 +9,7 @@ from . import (
     stock_picking,
     stock_picking_type,
     location_type,
+    stock_warehouse,
     stock_location,
     stock_move,
     stock_move_line,

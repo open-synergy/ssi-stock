@@ -34,6 +34,7 @@
         "views/stock_move_views.xml",
         "views/stock_quant_views.xml",
         "views/stock_picking_views.xml",
+        "views/stock_warehouse_views.xml",
         "views/location_type_views.xml",
         "views/product_category_views.xml",
         "views/stock_location_views.xml",
