@@ -16,6 +16,7 @@
         "stock_move_backdating",
         "stock_inventory_preparation_filter",
         "stock_move_line_auto_fill",
+        "ssi_print_mixin",
     ],
     "data": [
         "security/ir_module_category_data.xml",
