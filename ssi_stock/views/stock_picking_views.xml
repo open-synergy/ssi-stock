@@ -49,6 +49,40 @@
     <field name="mode">extension</field>
     <field name="arch" type="xml">
         <data>
+            <xpath
+                    expr="//button[@name='%(stock.action_report_delivery)d']"
+                    position="attributes"
+                >
+                <attribute name="invisible">1</attribute>
+                <attribute name="attrs">{}</attribute>
+                <attribute name="groups" />
+            </xpath>
+            <xpath expr="//button[@name='do_print_picking']" position="attributes">
+                <attribute name="invisible">1</attribute>
+                <attribute name="attrs">{}</attribute>
+                <attribute name="groups" />
+            </xpath>
+            <xpath expr="//button[@name='button_scrap']" position="attributes">
+                <attribute name="invisible">1</attribute>
+                <attribute name="attrs">{}</attribute>
+                <attribute name="groups" />
+            </xpath>
+            <xpath
+                    expr="//button[@name='action_toggle_is_locked'][1]"
+                    position="attributes"
+                >
+                <attribute name="invisible">1</attribute>
+                <attribute name="attrs">{}</attribute>
+                <attribute name="groups" />
+            </xpath>
+            <xpath
+                    expr="//button[@name='action_toggle_is_locked'][2]"
+                    position="attributes"
+                >
+                <attribute name="invisible">1</attribute>
+                <attribute name="attrs">{}</attribute>
+                <attribute name="groups" />
+            </xpath>
             <xpath expr="//button[@name='action_cancel']" position="attributes">
                 <attribute
                         name="attrs"
