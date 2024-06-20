@@ -49,6 +49,44 @@
     <field name="mode">extension</field>
     <field name="arch" type="xml">
         <data>
+            <xpath expr="//button[@name='action_confirm']" position="attributes">
+                <attribute
+                        name="attrs"
+                    >{'invisible':[('mark_as_todo_ok','=',False)]}</attribute>
+                <attribute name="groups" />
+            </xpath>
+            <xpath expr="//button[@name='action_assign']" position="attributes">
+                <attribute
+                        name="attrs"
+                    >{'invisible':[('check_availability_ok','=',False)]}</attribute>
+                <attribute name="groups" />
+            </xpath>
+            <xpath expr="//button[@name='action_assign']" position="attributes">
+                <attribute
+                        name="attrs"
+                    >{'invisible':[('check_availability_ok','=',False)]}</attribute>
+                <attribute name="groups" />
+            </xpath>
+            <xpath expr="//button[@name='do_unreserve'][1]" position="attributes">
+                <attribute
+                        name="attrs"
+                    >{'invisible':[('unreserved_ok','=',False)]}</attribute>
+                <attribute name="groups" />
+            </xpath>
+            <xpath expr="//button[@name='action_cancel']" position="attributes">
+                <attribute
+                        name="attrs"
+                    >{'invisible':[('cancel_ok','=',False)]}</attribute>
+                <attribute name="groups" />
+            </xpath>
+
+            <xpath expr="//button[@name='button_validate'][2]" position="attributes">
+                <attribute name="invisible">0</attribute>
+                <attribute
+                        name="attrs"
+                    >{'invisible':[('validate_ok','=',False)]}</attribute>
+                <attribute name="groups" />
+            </xpath>
             <xpath
                     expr="//button[@name='%(stock.action_report_delivery)d']"
                     position="attributes"
@@ -75,6 +113,11 @@
                 <attribute name="attrs">{}</attribute>
                 <attribute name="groups" />
             </xpath>
+            <xpath expr="//button[@name='button_validate'][1]" position="attributes">
+                <attribute name="invisible">1</attribute>
+                <attribute name="attrs">{}</attribute>
+                <attribute name="groups" />
+            </xpath>
             <xpath
                     expr="//button[@name='action_toggle_is_locked'][2]"
                     position="attributes"
@@ -83,17 +126,12 @@
                 <attribute name="attrs">{}</attribute>
                 <attribute name="groups" />
             </xpath>
-            <xpath expr="//button[@name='action_cancel']" position="attributes">
-                <attribute
-                        name="attrs"
-                    >{'invisible': [('state', 'not in', ('draft', 'waiting', 'confirmed', 'assigned', 'done'))]}</attribute>
-            </xpath>
             <xpath expr="//button[@name='action_cancel']" position="after">
                 <button
                         name="action_draft"
                         type="object"
                         string="Set to Draft"
-                        states="cancel"
+                        attrs="{'invisible':[('restart_ok','=',False)]}"
                     />
             </xpath>
             <xpath expr="//field[@name='picking_type_id']" position="after">
@@ -166,7 +204,35 @@
                 >
                 <field name="forced_lot_id" />
             </xpath>
+            <xpath expr="//notebook/page[last()]" position="after">
+                <page name="policy" string="Policies">
+                    <group
+                            name="policy_1"
+                            colspan="4"
+                            col="2"
+                            groups="base.group_system"
+                        >
+                        <field name="policy_template_id" />
+                        <button
+                                name="action_reload_policy_template"
+                                type="object"
+                                string="Reload Template Policy"
+                                class="oe_highlight"
+                                icon="fa-refresh"
+                            />
 
+                    </group>
+                    <group name="policy_2" colspan="4" col="2">
+                        <field name="mark_as_todo_ok" />
+                        <field name="check_availability_ok" />
+                        <field name="unreserved_ok" />
+                        <field name="validate_ok" />
+                        <field name="cancel_ok" />
+                        <field name="restart_ok" />
+                        <field name="return_ok" />
+                    </group>
+                </page>
+            </xpath>
         </data>
     </field>
 </record>

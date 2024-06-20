@@ -17,6 +17,7 @@
         "stock_inventory_preparation_filter",
         "stock_move_line_auto_fill",
         "ssi_print_mixin",
+        "ssi_policy_mixin",
     ],
     "data": [
         "security/ir_module_category_data.xml",
@@ -24,6 +25,7 @@
         "security/ir.model.access.csv",
         "data/location_type_data.xml",
         "data/stock_picking_type_category_data.xml",
+        "data/policy_template_data.xml",
         "menu.xml",
         "templates/picking_type_m2_configurator_templates.xml",
         "templates/picking_type_category_m2_configurator_templates.xml",

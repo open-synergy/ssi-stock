@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class StockPicking(models.Model):
@@ -11,6 +11,7 @@ class StockPicking(models.Model):
     _inherit = [
         "stock.picking",
         "mixin.print_document",
+        "mixin.policy",
     ]
     _automatically_insert_print_button = True
 
@@ -53,6 +54,60 @@ class StockPicking(models.Model):
         related="picking_type_id.allowed_product_ids",
         store=False,
     )
+    mark_as_todo_ok = fields.Boolean(
+        string="Can Mark As To Do",
+        compute="_compute_policy",
+        compute_sudo=True,
+    )
+    check_availability_ok = fields.Boolean(
+        string="Can Check Availability",
+        compute="_compute_policy",
+        compute_sudo=True,
+    )
+    unreserved_ok = fields.Boolean(
+        string="Can Unreserved",
+        compute="_compute_policy",
+        compute_sudo=True,
+    )
+    return_ok = fields.Boolean(
+        string="Can Return",
+        compute="_compute_policy",
+        compute_sudo=True,
+    )
+    validate_ok = fields.Boolean(
+        string="Can Validate",
+        compute="_compute_policy",
+        compute_sudo=True,
+    )
+    cancel_ok = fields.Boolean(
+        string="Can Cancel",
+        compute="_compute_policy",
+        compute_sudo=True,
+    )
+    restart_ok = fields.Boolean(
+        string="Can Restart",
+        compute="_compute_policy",
+        compute_sudo=True,
+    )
+
+    def _compute_policy(self):
+        _super = super(StockPicking, self)
+        _super._compute_policy()
+
+    @api.model
+    def _get_policy_field(self):
+        res = super(StockPicking, self)._get_policy_field()
+        policy_field = [
+            "mark_as_todo_ok",
+            "check_availability_ok",
+            "unreserved_ok",
+            "cancel_ok",
+            "restart_ok",
+            "validate_ok",
+            "return_ok",
+        ]
+        res += policy_field
+        return res
 
     def _assign_auto_lot_number(self):
         for record in self:
