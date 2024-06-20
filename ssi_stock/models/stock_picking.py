@@ -8,7 +8,11 @@ from odoo import fields, models
 
 class StockPicking(models.Model):
     _name = "stock.picking"
-    _inherit = ["stock.picking"]
+    _inherit = [
+        "stock.picking",
+        "mixin.print_document",
+    ]
+    _automatically_insert_print_button = True
 
     picking_type_category_id = fields.Many2one(
         string="Picking Type Category",
