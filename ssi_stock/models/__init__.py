@@ -16,6 +16,7 @@ from . import (
     stock_rule,
     stock_inventory,
     stock_quant,
+    stock_production_lot,
     mixin_picking_type_m2o_configurator,
     mixin_picking_type_category_m2o_configurator,
 )
