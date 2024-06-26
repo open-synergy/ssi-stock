@@ -17,6 +17,7 @@ setuptools.setup(
         'odoo14-addon-ssi_stock_donation_operation',
         'odoo14-addon-ssi_stock_fixed_asset',
         'odoo14-addon-ssi_stock_location_m2o_configurator_mixin',
+        'odoo14-addon-ssi_stock_picking_related_attachment',
         'odoo14-addon-ssi_stock_promotion_operation',
         'odoo14-addon-ssi_stock_reject_operation',
         'odoo14-addon-ssi_stock_rent_operation',
