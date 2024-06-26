@@ -15,10 +15,10 @@ class StockPicking(models.Model):
 
     _status_check_create_page = True
 
-    @api.onchange("picking_typ_id")
+    @api.onchange("picking_type_id")
     def onchange_status_check_template_id(self):
         self.status_check_template_id = False
-        if self.picking_typ_id:
+        if self.picking_type_id:
             self.status_check_template_id = self._get_template_status_check()
 
     @api.model_create_multi
