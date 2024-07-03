@@ -43,6 +43,20 @@ class StockPickingType(models.Model):
         column1="picking_type_id",
         column2="location_id",
     )
+    allowed_source_location_type_ids = fields.Many2many(
+        string="Allowed Source Location Types",
+        comodel_name="location_type",
+        relation="rel_picking_type_2_source_location_type",
+        column1="picking_type_id",
+        column2="location_type_id",
+    )
+    allowed_destination_location_type_ids = fields.Many2many(
+        string="Allowed Destination Location Types",
+        comodel_name="location_type",
+        relation="rel_picking_type_2_destination_location_type",
+        column1="picking_type_id",
+        column2="location_type_id",
+    )
     allowed_product_category_ids = fields.Many2many(
         string="Allowed Product Categories",
         comodel_name="product.category",
