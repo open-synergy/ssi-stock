@@ -11,7 +11,10 @@
     <field name="arch" type="xml">
         <data>
             <xpath expr="//field[@name='create_date']" position="before">
-                <field name="serial_number_in_date" invisible="context.get('tracking') != 'serial'" />
+                <field
+                        name="serial_number_in_date"
+                        invisible="context.get('tracking') != 'serial'"
+                    />
             </xpath>
         </data>
     </field>
@@ -25,7 +28,10 @@
         <data>
             <xpath expr="//field[@name='product_id']" position="after">
                 <field name="tracking" invisible="1" />
-                <field name="serial_number_in_date" attrs="{'invisible': [('tracking', '!=', 'serial')]}" />
+                <field
+                        name="serial_number_in_date"
+                        attrs="{'invisible': [('tracking', '!=', 'serial')]}"
+                    />
             </xpath>
         </data>
     </field>
@@ -42,12 +48,13 @@
 </record>
 
 <menuitem
-    id="serial_number_menu"
-    name="Serial Numbers"
-    parent="stock.menu_stock_inventory_control"
-    action="serial_number_action"
-    sequence="101"
-/>
+        id="serial_number_menu"
+        name="Serial Numbers"
+        parent="stock.menu_stock_inventory_control"
+        action="serial_number_action"
+        groups="serial_number_group"
+        sequence="101"
+    />
 
 <record id="lot_action" model="ir.actions.act_window">
     <field name="name">Lots</field>
@@ -60,11 +67,12 @@
 </record>
 
 <menuitem
-    id="lot_menu"
-    name="Lots"
-    parent="stock.menu_stock_inventory_control"
-    action="lot_action"
-    sequence="101"
-/>
+        id="lot_menu"
+        name="Lots"
+        parent="stock.menu_stock_inventory_control"
+        action="lot_action"
+        sequence="101"
+        groups="lot_group"
+    />
 
 </odoo>
