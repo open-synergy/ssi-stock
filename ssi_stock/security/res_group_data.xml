@@ -28,6 +28,24 @@
         />
 </record>
 
+<record id="serial_number_group" model="res.groups">
+    <field name="name">Serial Number</field>
+    <field name="category_id" ref="inventory_configurator_module_category" />
+    <field
+            name="users"
+            eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
+        />
+</record>
+
+<record id="lot_group" model="res.groups">
+    <field name="name">Lot</field>
+    <field name="category_id" ref="inventory_configurator_module_category" />
+    <field
+            name="users"
+            eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
+        />
+</record>
+
 <!-- Goods Receipt-->
 <record id="goods_receipt_viewer_group" model="res.groups">
     <field name="name">Viewer</field>
