@@ -33,13 +33,15 @@ class StockPicking(models.Model):
     allowed_source_location_ids = fields.Many2many(
         string="Allowed Source Locations",
         comodel_name="stock.location",
-        related="picking_type_id.allowed_source_location_ids",
+        compute="_compute_allowed_source_location_ids",
+        related=False,
         store=False,
     )
     allowed_destination_location_ids = fields.Many2many(
         string="Allowed Destination Locations",
         comodel_name="stock.location",
-        related="picking_type_id.allowed_destination_location_ids",
+        compute="_compute_allowed_destination_location_ids",
+        related=False,
         store=False,
     )
     allowed_product_category_ids = fields.Many2many(
@@ -93,6 +95,58 @@ class StockPicking(models.Model):
     def _compute_policy(self):
         _super = super(StockPicking, self)
         _super._compute_policy()
+
+    @api.depends(
+        "picking_type_id",
+    )
+    def _compute_allowed_source_location_ids(self):
+        Location = self.env["stock.location"]
+        for record in self:
+            result = []
+            if record.picking_type_id:
+                ptype = record.picking_type_id
+                result += ptype.allowed_source_location_ids.ids
+
+                for loc_type in ptype.allowed_source_location_type_ids:
+                    criteria = False
+                    if loc_type.is_warehouse_location and ptype.warehouse_id:
+                        criteria = [
+                            ("type_id", "=", loc_type.id),
+                            ("warehouse_id", "=", ptype.warehouse_id.id),
+                        ]
+                    elif not loc_type.is_warehouse_location:
+                        criteria = [
+                            ("type_id", "=", loc_type.id),
+                        ]
+                    if criteria:
+                        result += Location.search(criteria).ids
+            record.allowed_source_location_ids = result
+
+    @api.depends(
+        "picking_type_id",
+    )
+    def _compute_allowed_destination_location_ids(self):
+        Location = self.env["stock.location"]
+        for record in self:
+            result = []
+            if record.picking_type_id:
+                ptype = record.picking_type_id
+                result += ptype.allowed_destination_location_ids.ids
+
+                for loc_type in ptype.allowed_destination_location_type_ids:
+                    criteria = False
+                    if loc_type.is_warehouse_location and ptype.warehouse_id:
+                        criteria = [
+                            ("type_id", "=", loc_type.id),
+                            ("warehouse_id", "=", ptype.warehouse_id.id),
+                        ]
+                    elif not loc_type.is_warehouse_location:
+                        criteria = [
+                            ("type_id", "=", loc_type.id),
+                        ]
+                    if criteria:
+                        result += Location.search(criteria).ids
+            record.allowed_destination_location_ids = result
 
     @api.model
     def _get_policy_field(self):

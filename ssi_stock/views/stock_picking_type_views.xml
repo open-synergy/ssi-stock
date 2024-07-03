@@ -63,10 +63,18 @@
             </xpath>
             <xpath expr="//field[@name='default_location_src_id']" position="after">
                 <field name="allowed_source_location_ids" widget="many2many_tags" />
+                <field
+                        name="allowed_source_location_type_ids"
+                        widget="many2many_tags"
+                    />
             </xpath>
             <xpath expr="//field[@name='default_location_dest_id']" position="after">
                 <field
                         name="allowed_destination_location_ids"
+                        widget="many2many_tags"
+                    />
+                <field
+                        name="allowed_destination_location_type_ids"
                         widget="many2many_tags"
                     />
             </xpath>
