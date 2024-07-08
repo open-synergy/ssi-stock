@@ -22,7 +22,7 @@ class StockPicking(models.Model):
     )
     partner_tag_ids = fields.Many2many(
         string="Partner Tags",
-        related="partner_id.commercial_partner_id.category_id",
+        related="partner_id.category_id",
         store=False,
     )
     show_price_unit = fields.Boolean(
