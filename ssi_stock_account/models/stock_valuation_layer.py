@@ -58,7 +58,10 @@ class StockValuationLayer(models.Model):
 
     journal_id = fields.Many2one(
         string="Journal",
-        related="stock_move_id.picking_id.journal_id",
+        comodel_name="account.journal",
+        related=False,
+        compute="_compute_journal_id",
+        store=False,
         readonly=False,
     )
     debit_account_id = fields.Many2one(
@@ -95,6 +98,18 @@ class StockValuationLayer(models.Model):
         comodel_name="account.move.line",
         readonly=False,
     )
+
+    def _compute_journal_id(self):
+        for record in self:
+            journal = False
+            if (
+                record.stock_move_id.picking_id
+                and record.stock_move_id.picking_id.journal_id
+            ):
+                journal = record.stock_move_id.picking_id.journal_id.id
+            elif record.stock_move_id.picking_type_id.journal_id:
+                journal = record.stock_move_id.picking_type_id.journal_id.id
+            record.journal_id = journal
 
     @api.depends("create_date")
     def _compute_date(self):
