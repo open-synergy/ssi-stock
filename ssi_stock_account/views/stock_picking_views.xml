@@ -17,6 +17,14 @@
                         <field name="create_accounting_entry_ok" invisible="1" />
                     </group>
                     <separator string="SVL" />
+                    <button
+                            name="action_open_svl"
+                            type="object"
+                            string="Open SVL"
+                            class="oe_highlight"
+                            icon="fa-bars"
+                            style="margin-right:4px"
+                        />
                     <field name="stock_valuation_layer_ids" />
                     <separator string="Journal Entries" />
                     <button
