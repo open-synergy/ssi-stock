@@ -96,6 +96,11 @@ class StockPicking(models.Model):
         compute="_compute_policy",
         compute_sudo=True,
     )
+    change_actual_movement_date_ok = fields.Boolean(
+        string="Can Change Actual Movement Date",
+        compute="_compute_policy",
+        compute_sudo=True,
+    )
 
     def _compute_policy(self):
         _super = super(StockPicking, self)
@@ -164,6 +169,7 @@ class StockPicking(models.Model):
             "restart_ok",
             "validate_ok",
             "return_ok",
+            "change_actual_movement_date_ok",
         ]
         res += policy_field
         return res

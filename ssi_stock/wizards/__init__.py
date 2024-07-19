@@ -5,4 +5,5 @@
 from . import (
     mass_create_location,
     mass_create_picking_type,
+    change_picking_actual_movement_date,
 )

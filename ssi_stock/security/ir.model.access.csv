@@ -5,3 +5,4 @@ access_location_type_configurator,location_type - configurator,model_location_ty
 access_location_type_all,location_type - all user,model_location_type,,1,0,0,0
 access_create_mass_location_all,create_mass_location - all,model_mass_create_location,,1,1,1,1
 access_mass_create_picking_type_all,mass_create_picking_type - all,model_mass_create_picking_type,,1,1,1,1
+access_change_picking_actual_movement_date_all,change_picking_actual_movement_date - all,model_change_picking_actual_movement_date,,1,1,1,1

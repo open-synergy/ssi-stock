@@ -31,6 +31,7 @@
         "templates/picking_type_category_m2_configurator_templates.xml",
         "wizards/mass_create_location_views.xml",
         "wizards/mass_create_picking_type_views.xml",
+        "wizards/change_picking_actual_movement_date_views.xml",
         "views/picking_type_category_views.xml",
         "views/stock_picking_type_views.xml",
         "views/stock_move_views.xml",
