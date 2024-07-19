@@ -262,5 +262,26 @@ if document.state == 'cancel' and allowed_user:
     result = True
     </field>
 </record>
+
+<!-- Change Actual Movement Date -->
+<record
+            id="stock_picking_policy_template_detail_change_actual_movement_date"
+            model="policy.template_detail"
+        >
+    <field name="template_id" ref="stock_picking_policy_template" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','change_actual_movement_date_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','stock.picking'),('value','=','done')]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('base.group_system')])]" />
+    <field name="restrict_additional" eval="0" />
+</record>
 </data>
 </odoo>

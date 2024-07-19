@@ -137,6 +137,16 @@
                         attrs="{'invisible':[('restart_ok','=',False)]}"
                     />
             </xpath>
+            <xpath expr="//form/header/field[@name='state']" position="before">
+                <button
+                        name="%(change_picking_actual_movement_date_from_warehouse_action)d"
+                        type="action"
+                        string="Change Actual Movement Date"
+                        attrs="{'invisible':[('change_actual_movement_date_ok','=',False)]}"
+                    />
+            </xpath>
+
+
             <xpath expr="//field[@name='picking_type_id']" position="after">
                 <field name="picking_type_category_id" invisible="1" />
                 <field
@@ -233,6 +243,7 @@
                         <field name="cancel_ok" />
                         <field name="restart_ok" />
                         <field name="return_ok" />
+                        <field name="change_actual_movement_date_ok" />
                     </group>
                 </page>
             </xpath>
