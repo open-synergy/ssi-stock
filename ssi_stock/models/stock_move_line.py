@@ -52,7 +52,7 @@ class StockMoveLine(models.Model):
                     limit=1,
                 )
             )
-            if last_move_line_id:
+            if last_move_line_id and not self.env.context.get("bypass_check", False):
                 raise ValidationError(
                     _(
                         f"Please cancel transfer {last_move_line_id.picking_id.name} first."
