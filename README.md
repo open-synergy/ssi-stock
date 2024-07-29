@@ -25,6 +25,7 @@ addon | version | maintainers | summary
 [ssi_stock_account](ssi_stock_account/) | 14.0.2.12.0 |  | Inventory + Accounting Integration
 [ssi_stock_canvas_operation](ssi_stock_canvas_operation/) | 14.0.1.1.0 |  | Donation Inventory Operation
 [ssi_stock_donation_operation](ssi_stock_donation_operation/) | 14.0.1.1.0 |  | Donation Inventory Operation
+[ssi_stock_equipment_operation](ssi_stock_equipment_operation/) | 14.0.1.0.0 |  | Equipment Inventory Operation
 [ssi_stock_fixed_asset](ssi_stock_fixed_asset/) | 14.0.2.1.0 |  | Inventory + Fixed Asset Integration
 [ssi_stock_location_m2o_configurator_mixin](ssi_stock_location_m2o_configurator_mixin/) | 14.0.1.0.0 |  | stock.location Many2one Configurator Mixin
 [ssi_stock_picking_related_attachment](ssi_stock_picking_related_attachment/) | 14.0.1.2.0 |  | Assurance Report - Related Attachment Integration
