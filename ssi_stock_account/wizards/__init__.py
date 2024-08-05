@@ -4,4 +4,5 @@
 
 from . import (
     change_picking_actual_movement_date,
+    recompute_stock_valuation_layer_usage,
 )
