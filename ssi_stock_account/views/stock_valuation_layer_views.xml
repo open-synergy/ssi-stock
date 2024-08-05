@@ -3,6 +3,26 @@
      Copyright 2022 PT. Simetri Sinergi Indonesia
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
+<record id="stock_valuation_layer_view_tree" model="ir.ui.view">
+    <field name="name">stock.valuation.layer - tree</field>
+    <field name="model">stock.valuation.layer</field>
+    <field name="inherit_id" ref="stock_account.stock_valuation_layer_tree" />
+    <field name="arch" type="xml">
+        <data>
+            <xpath expr="//field[@name='quantity']" position="attributes">
+                <attribute name="sum">Total Quantity</attribute>
+            </xpath>
+            <xpath expr="//field[@name='value']" position="after">
+                <field name="usage_quantity" sum="Total Usage Quantity" />
+                <field name="usage_value" sum="Total Usage Value" />
+                <field name="incoming_usage_quantity" sum="Incoming Usage Quantity" />
+                <field name="incoming_usage_value" sum="Incoming Usage Value" />
+            </xpath>
+
+        </data>
+    </field>
+</record>
+
 
 <record id="stock_valuation_layer_view_form" model="ir.ui.view">
     <field name="name">stock.valuation.layer - form</field>
@@ -39,6 +59,26 @@
                 <field name="journal_id" />
                 <field name="debit_move_line_id" />
                 <field name="credit_move_line_id" />
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page name="usage" string="Usage">
+                    <field name="usage_ids">
+                        <tree>
+                            <field name="dest_stock_valuation_layer_id" />
+                            <field name="quantity" />
+                            <field name="value" />
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+            <xpath expr="//field[@name='remaining_qty']" position="after">
+                <field name="usage_quantity" />
+                <field name="usage_value" />
+                <field name="incoming_usage_quantity" />
+                <field name="incoming_usage_value" />
+                <field name="incoming_usage_quantity_diff" />
+                <field name="usage_quantity_diff" />
+
             </xpath>
         </data>
     </field>
