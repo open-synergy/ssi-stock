@@ -62,23 +62,36 @@
             </xpath>
             <xpath expr="//notebook" position="inside">
                 <page name="usage" string="Usage">
+                    <group name="usage_1" colspan="4" col="2">
+                        <group name="usage_1_1" string="Usage" colspan="1" col="2">
+                            <field name="usage_quantity" string="Qty" />
+                            <field name="usage_value" string="Value" />
+                            <field name="usage_quantity_diff" string="Qty Diff" />
+                        </group>
+                        <group name="usage_1_2" string="Incoming" colspan="1" col="2">
+                            <field name="incoming_usage_quantity" string="Qty" />
+                            <field name="incoming_usage_value" string="Value" />
+                            <field
+                                    name="incoming_usage_quantity_diff"
+                                    string="Qty Diff"
+                                />
+                        </group>
+                    </group>
                     <field name="usage_ids">
                         <tree>
                             <field name="dest_stock_valuation_layer_id" />
                             <field name="quantity" />
                             <field name="value" />
                         </tree>
+                        <form>
+                            <group name="usage_form" colspan="4" col="2">
+                                <field name="dest_stock_valuation_layer_id" />
+                                <field name="quantity" />
+                                <field name="value" />
+                            </group>
+                        </form>
                     </field>
                 </page>
-            </xpath>
-            <xpath expr="//field[@name='remaining_qty']" position="after">
-                <field name="usage_quantity" />
-                <field name="usage_value" />
-                <field name="incoming_usage_quantity" />
-                <field name="incoming_usage_value" />
-                <field name="incoming_usage_quantity_diff" />
-                <field name="usage_quantity_diff" />
-
             </xpath>
         </data>
     </field>
