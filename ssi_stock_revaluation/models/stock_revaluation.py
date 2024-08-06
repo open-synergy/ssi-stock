@@ -298,6 +298,22 @@ class StockRevaluation(models.Model):
         for record in self.sudo():
             record._reload_svl()
 
+    def action_open_svl(self):
+        for record in self.sudo():
+            result = record._open_svl()
+        return result
+
+    def _open_svl(self):
+        waction = self.env.ref("stock_account.stock_valuation_layer_action").read()[0]
+        waction.update(
+            {
+                "view_mode": "tree,form",
+                "domain": [("id", "in", self.stock_valuation_layer_ids.ids)],
+                "context": {},
+            }
+        )
+        return waction
+
     def _check_journal_entry(self):
         self.ensure_one()
         if self.state in ["draft", "confirm", "done", "reject"]:

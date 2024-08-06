@@ -105,8 +105,15 @@
                         class="oe_highlight"
                         icon="fa-refresh"
                         attrs="{'invisible':[('state','!=','draft')]}"
+                        style="margin-right:4px"
                     />
-
+                <button
+                        name="action_open_svl"
+                        type="object"
+                        string="Open SVL"
+                        class="oe_highlight"
+                        icon="fa-bars"
+                    />
                 <field name="stock_valuation_layer_ids" />
             </page>
         </xpath>
