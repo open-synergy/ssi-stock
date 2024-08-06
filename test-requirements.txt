@@ -1,3 +1,4 @@
 odoo14-addon-ssi-related-attachment-mixin
 odoo14-addon-ssi-state-change-constrain-mixin
 odoo14-addon-ssi-status-check-mixin
+odoo14-addon-ssi-m2o-configurator-mixin
