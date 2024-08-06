@@ -57,10 +57,11 @@ class RecomputeStockValuationLayer(models.TransientModel):
         self.ensure_one()
         Usage = self.env["stock_valuation_layer_usage"]
         for dest_svl in self.svl_ids:
+            qty = min(self.svl_id.usage_quantity_diff, abs(dest_svl.quantity))
             data = {
                 "stock_valuation_layer_id": self.svl_id.id,
                 "dest_stock_valuation_layer_id": dest_svl.id,
-                "quantity": abs(dest_svl.quantity),
-                "value": abs(dest_svl.value),
+                "quantity": qty,
+                "value": qty * dest_svl.unit_cost,
             }
             Usage.create(data)
