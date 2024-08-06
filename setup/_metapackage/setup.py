@@ -23,6 +23,7 @@ setuptools.setup(
         'odoo14-addon-ssi_stock_promotion_operation',
         'odoo14-addon-ssi_stock_reject_operation',
         'odoo14-addon-ssi_stock_rent_operation',
+        'odoo14-addon-ssi_stock_revaluation',
         'odoo14-addon-ssi_stock_route_m2o_configurator_mixin',
         'odoo14-addon-ssi_stock_warehouse_m2o_configurator_mixin',
     ],
