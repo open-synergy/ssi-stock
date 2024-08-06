@@ -62,6 +62,6 @@ class RecomputeStockValuationLayer(models.TransientModel):
                 "stock_valuation_layer_id": self.svl_id.id,
                 "dest_stock_valuation_layer_id": dest_svl.id,
                 "quantity": qty,
-                "value": qty * dest_svl.unit_cost,
+                "value": qty * self.svl_id.unit_cost,
             }
             Usage.create(data)
