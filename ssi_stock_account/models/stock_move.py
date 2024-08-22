@@ -38,6 +38,58 @@ class StockMove(models.Model):
         comodel_name="account.analytic.account",
     )
 
+    svl_total_amount = fields.Float(
+        string="SVL. Total Amount",
+        compute="_compute_svl_total_amount",
+        store=True,
+    )
+    journal_entry_total_amount = fields.Float(
+        string="Journal Entry Total Amount",
+        compute="_compute_journal_entry_total_amount",
+        store=True,
+    )
+    svl_journal_entry_diff = fields.Boolean(
+        string="SVL Different from Journal Entry",
+        compute="_compute_svl_journal_entry_diff",
+        store=True,
+    )
+
+    @api.depends(
+        "stock_valuation_layer_ids",
+        "stock_valuation_layer_ids.value",
+    )
+    def _compute_svl_total_amount(self):
+        for record in self:
+            result = 0.0
+            for svl in record.stock_valuation_layer_ids:
+                result += svl.value
+            record.svl_total_amount = result
+
+    @api.depends(
+        "account_move_ids",
+        "account_move_ids.line_ids",
+        "account_move_ids.line_ids.debit",
+        "account_move_ids.line_ids.credit",
+    )
+    def _compute_journal_entry_total_amount(self):
+        for record in self:
+            result = 0.0
+            for am in record.account_move_ids:
+                for line in am.line_ids:
+                    result += line.debit
+            record.journal_entry_total_amount = result
+
+    @api.depends(
+        "svl_total_amount",
+        "journal_entry_total_amount",
+    )
+    def _compute_svl_journal_entry_diff(self):
+        for record in self:
+            result = False
+            if record.svl_total_amount != record.journal_entry_total_amount:
+                result = True
+            record.svl_journal_entry_diff = result
+
     @api.onchange(
         "debit_usage_id",
         "product_id",
