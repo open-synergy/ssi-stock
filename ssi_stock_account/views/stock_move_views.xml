@@ -36,6 +36,7 @@
                 <group name="accounting_setting_3" colspan="4" col="2">
                     <field name="journal_entry_total_amount" />
                     <field name="svl_journal_entry_diff" />
+                    <field name="abs_svl_journal_entry_diff" />
                 </group>
             </xpath>
         </data>

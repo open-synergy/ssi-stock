@@ -53,6 +53,11 @@ class StockMove(models.Model):
         compute="_compute_svl_journal_entry_diff",
         store=True,
     )
+    abs_svl_journal_entry_diff = fields.Boolean(
+        string="Absolute SVL Different from Journal Entry",
+        compute="_compute_svl_journal_entry_diff",
+        store=True,
+    )
 
     @api.depends(
         "stock_valuation_layer_ids",
@@ -85,10 +90,15 @@ class StockMove(models.Model):
     )
     def _compute_svl_journal_entry_diff(self):
         for record in self:
-            result = False
+            result = abs_result = False
             if record.svl_total_amount != record.journal_entry_total_amount:
                 result = True
+
+            if abs(record.svl_total_amount) != abs(record.journal_entry_total_amount):
+                abs_result = True
+
             record.svl_journal_entry_diff = result
+            record.abs_svl_journal_entry_diff = abs_result
 
     @api.onchange(
         "debit_usage_id",
