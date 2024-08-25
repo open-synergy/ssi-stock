@@ -73,6 +73,9 @@
                 <field name="credit_account_id" />
                 <field name="analytic_account_id" />
                 <field name="journal_id" />
+                <field name="account_move_id" />
+                <field name="account_move_date" />
+                <field name="date_is_equal" />
                 <field name="debit_move_line_id" />
                 <field name="credit_move_line_id" />
             </xpath>
