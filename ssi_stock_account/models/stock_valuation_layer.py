@@ -88,6 +88,16 @@ class StockValuationLayer(models.Model):
         compute="_compute_date",
         store=True,
     )
+    account_move_date = fields.Date(
+        string="Account Move Date",
+        related="account_move_id.date",
+        store=True,
+    )
+    date_is_equal = fields.Boolean(
+        string="Date is Equal",
+        compute="_compute_date_is_equal",
+        store=True,
+    )
     debit_move_line_id = fields.Many2one(
         string="Debit Move Line",
         comodel_name="account.move.line",
@@ -134,6 +144,19 @@ class StockValuationLayer(models.Model):
         compute="_compute_usage_diff",
         store=True,
     )
+
+    @api.depends(
+        "date",
+        "account_move_date",
+        "account_move_id",
+        "account_move_id.date",
+    )
+    def _compute_date_is_equal(self):
+        for record in self:
+            result = True
+            if record.date != record.account_move_date:
+                result = False
+            record.date_is_equal = result
 
     @api.depends(
         "quantity",

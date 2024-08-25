@@ -28,3 +28,4 @@ class ChangePickingActualMovementDate(models.TransientModel):
                 "svl_ids": tuple(self.picking_ids.stock_valuation_layer_ids.ids),
             }
             self._cr.execute(query, params)
+            self.picking_ids.stock_valuation_layer_ids._compute_date()
