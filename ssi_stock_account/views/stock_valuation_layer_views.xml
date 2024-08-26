@@ -23,6 +23,13 @@
                             string="Delete Accounting Entry"
                             class="oe_highlight"
                         />
+                    <button
+                            name="action_sync_date_with_stock_move"
+                            type="object"
+                            string="Sync Date With Stock Move"
+                            class="oe_highlight"
+                            groups="base.group_system"
+                        />
                 </header>
             </xpath>
             <xpath expr="//field[@name='quantity']" position="attributes">
@@ -65,6 +72,14 @@
                             class="oe_highlight"
                             attrs="{'invisible':[('account_move_id','=',False)]}"
                         />
+                    <button
+                            name="action_sync_date_with_stock_move"
+                            type="object"
+                            string="Sync Date With Stock Move"
+                            class="oe_highlight"
+                            groups="base.group_system"
+                        />
+
                 </header>
             </xpath>
             <xpath expr="//field[@name='account_move_id']" position="after">
@@ -75,9 +90,11 @@
                 <field name="journal_id" />
                 <field name="account_move_id" />
                 <field name="account_move_date" />
-                <field name="date_is_equal" />
                 <field name="debit_move_line_id" />
                 <field name="credit_move_line_id" />
+                <field name="date_is_equal" />
+                <field name="stock_move_date" />
+                <field name="datetime_is_equal" />
             </xpath>
             <xpath expr="//notebook" position="inside">
                 <page name="usage" string="Usage">
