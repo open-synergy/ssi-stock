@@ -94,7 +94,7 @@ class StockValuationLayer(models.Model):
         store=True,
     )
     date_is_equal = fields.Boolean(
-        string="Date is Equal",
+        string="SVL Date is Equal to Journal Entry Date",
         compute="_compute_date_is_equal",
         store=True,
     )
@@ -107,6 +107,16 @@ class StockValuationLayer(models.Model):
         string="Credit Move Line",
         comodel_name="account.move.line",
         readonly=False,
+    )
+    stock_move_date = fields.Datetime(
+        string="Stock Move Date",
+        related="stock_move_id.date",
+        store=True,
+    )
+    datetime_is_equal = fields.Boolean(
+        string="SVL Create Date is Equal to Stock Move Date",
+        compute="_compute_datetime_is_equal",
+        store=True,
     )
 
     # Usage
@@ -157,6 +167,19 @@ class StockValuationLayer(models.Model):
             if record.date != record.account_move_date:
                 result = False
             record.date_is_equal = result
+
+    @api.depends(
+        "date",
+        "stock_move_date",
+        "stock_move_id",
+        "stock_move_id.date",
+    )
+    def _compute_datetime_is_equal(self):
+        for record in self:
+            result = True
+            if record.stock_move_id and record.create_date != record.stock_move_date:
+                result = False
+            record.datetime_is_equal = result
 
     @api.depends(
         "quantity",
@@ -229,6 +252,23 @@ class StockValuationLayer(models.Model):
     def action_delete_accounting_entry(self):
         for record in self.sudo():
             record._delete_accounting_entry()
+
+    def action_sync_date_with_stock_move(self):
+        for record in self.sudo():
+            record._sync_date_with_stock_move()
+
+    def _sync_date_with_stock_move(self):
+        self.ensure_one()
+        query = """
+            UPDATE public.stock_valuation_layer
+                SET create_date = %(create_date)s
+            WHERE id = %(svl_ids)s
+        """
+        params = {
+            "create_date": self.stock_move_id.date,
+            "svl_ids": self.id,
+        }
+        self._cr.execute(query, params)
 
     def _create_accounting_entry(self):
         if self.account_move_id:
