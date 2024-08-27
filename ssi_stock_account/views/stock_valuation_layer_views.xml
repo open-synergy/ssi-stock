@@ -3,6 +3,89 @@
      Copyright 2022 PT. Simetri Sinergi Indonesia
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
+<record id="stock_valuation_layer_view_search" model="ir.ui.view">
+    <field name="name">stock.valuation.layer - search</field>
+    <field name="model">stock.valuation.layer</field>
+    <field name="inherit_id" ref="stock_account.view_inventory_valuation_search" />
+    <field name="arch" type="xml">
+        <data>
+            <xpath expr="//separator[1]" position="after">
+                <filter
+                        name="incoming_quant"
+                        string="Incoming"
+                        domain="[('quantity','&gt;',0.0)]"
+                    />
+                <filter
+                        name="incoming_quant"
+                        string="Outgoing"
+                        domain="[('quantity','&lt;',0.0)]"
+                    />
+                <filter
+                        name="adjustment_quant"
+                        string="Value Adjustment"
+                        domain="[('quantity','=',0.0),('value','!=',0.0)]"
+                    />
+                <separator />
+                <filter
+                        name="usage_diff"
+                        string="Usage Diff."
+                        domain="[('usage_quantity_diff','!=',0.0)]"
+                    />
+                <filter
+                        name="incoming_diff"
+                        string="Incoming Diff."
+                        domain="[('incoming_usage_quantity_diff','!=',0.0)]"
+                    />
+                <separator />
+                <filter
+                        name="dom_am_set"
+                        string="Journal Entry Exist"
+                        domain="[('account_move_id','!=',False)]"
+                    />
+                <filter
+                        name="dom_am_not_set"
+                        string="Journal Entry Not Exist"
+                        domain="[('account_move_id','=',False)]"
+                    />
+                <separator />
+                <filter
+                        name="dom_date_equal_sm"
+                        string="Date Equal to Stock Move"
+                        domain="[('datetime_is_equal','=',True)]"
+                    />
+                <filter
+                        name="dom_date_diff_sm"
+                        string="Date Different to Stock Move"
+                        domain="[('datetime_is_equal','=',False)]"
+                    />
+                <separator />
+                <filter
+                        name="dom_date_equal_am"
+                        string="Date Equal to Account Move"
+                        domain="[('date_is_equal','=',True)]"
+                    />
+                <filter
+                        name="dom_date_diff_am"
+                        string="Date Different to Account Move"
+                        domain="[('date_is_equal','=',False)]"
+                    />
+            </xpath>
+            <xpath expr="//group[1]" position="inside">
+                <filter
+                        name="grp_sm_date"
+                        string="Stock Move Date"
+                        context="{'group_by':'datetime_is_equal'}"
+                    />
+                <filter
+                        name="grp_am_date"
+                        string="Account Move Date"
+                        context="{'group_by':'date_is_equal'}"
+                    />
+            </xpath>
+        </data>
+    </field>
+</record>
+
 <record id="stock_valuation_layer_view_tree" model="ir.ui.view">
     <field name="name">stock.valuation.layer - tree</field>
     <field name="model">stock.valuation.layer</field>
@@ -82,8 +165,16 @@
 
                 </header>
             </xpath>
+            <xpath expr="//field[@name='stock_move_id']" position="before">
+                <separator string="Stock Move" colspan="2" />
+            </xpath>
+            <xpath expr="//field[@name='stock_move_id']" position="after">
+                <field name="stock_move_date" string="Date" />
+                <field name="datetime_is_equal" string="Date is equal?" />
+            </xpath>
             <xpath expr="//field[@name='account_move_id']" position="after">
                 <field name="date" />
+                <field name="date_is_equal" />
                 <field name="debit_account_id" />
                 <field name="credit_account_id" />
                 <field name="analytic_account_id" />
@@ -92,9 +183,6 @@
                 <field name="account_move_date" />
                 <field name="debit_move_line_id" />
                 <field name="credit_move_line_id" />
-                <field name="date_is_equal" />
-                <field name="stock_move_date" />
-                <field name="datetime_is_equal" />
             </xpath>
             <xpath expr="//notebook" position="inside">
                 <page name="usage" string="Usage">
