@@ -269,6 +269,7 @@ class StockValuationLayer(models.Model):
             "svl_ids": self.id,
         }
         self._cr.execute(query, params)
+        self._compute_datetime_is_equal()
 
     def _create_accounting_entry(self):
         if self.account_move_id:
