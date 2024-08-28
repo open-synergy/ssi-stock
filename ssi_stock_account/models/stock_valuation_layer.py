@@ -293,3 +293,20 @@ class StockValuationLayer(models.Model):
     def _delete_accounting_entry(self):
         self.ensure_one()
         self._delete_standard_move()  # Mixin
+
+    def _add_incoming_usage(self, incoming_svl):
+        self.ensure_one()
+
+        # TODO: Check
+
+        Usage = self.env["stock_valuation_layer_usage"]
+        qty = min(
+            self.usage_quantity_diff, abs(incoming_svl.incoming_usage_quantity_diff)
+        )
+        data = {
+            "stock_valuation_layer_id": self.id,
+            "dest_stock_valuation_layer_id": incoming_svl.id,
+            "quantity": qty,
+            "value": qty * self.unit_cost,
+        }
+        Usage.create(data)

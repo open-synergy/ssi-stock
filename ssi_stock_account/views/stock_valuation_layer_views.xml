@@ -215,6 +215,21 @@
                             </group>
                         </form>
                     </field>
+                    <field name="incoming_usage_ids">
+                        <tree>
+                            <field name="dest_stock_valuation_layer_id" />
+                            <field name="quantity" />
+                            <field name="value" />
+                        </tree>
+                        <form>
+                            <group name="usage_form" colspan="4" col="2">
+                                <field name="dest_stock_valuation_layer_id" />
+                                <field name="quantity" />
+                                <field name="value" />
+                            </group>
+                        </form>
+                    </field>
+
                 </page>
             </xpath>
         </data>
