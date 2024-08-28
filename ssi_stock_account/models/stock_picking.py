@@ -96,7 +96,7 @@ class StockPicking(models.Model):
 
     def _create_accounting_entry(self):
         self.ensure_one()
-        for svl in self.stock_valuation_layer_ids:
+        for svl in self.stock_valuation_layer_ids.filtered(lambda r: r.quantity != 0.0):
             svl._create_accounting_entry()
 
     def _delete_accounting_entry(self):
