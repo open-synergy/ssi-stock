@@ -12,21 +12,25 @@ class StockProductionLot(models.Model):
 
     @api.depends(
         "stock_move_line_ids",
-        "stock_move_line_ids.date",
         "stock_move_line_ids.move_id.state",
         "tracking",
     )
-    def _compute_serial_number_in_date(self):
-        for rec in self:
-            serial_number_in_date = False
-            if rec.tracking == "serial":
-                criteria = [("lot_id", "=", rec.id), ("state", "=", "done")]
-
-                first_move_line_id = self.env["stock.move.line"].search(
-                    criteria, order="date, id", limit=1
+    def _compute_stock_move_line(self):
+        for record in self:
+            first_sml = last_sml = False
+            if record.tracking == "serial":
+                criteria = [
+                    ("lot_id", "=", record.id),
+                    ("move_id.state", "=", "done"),
+                ]
+                smls = self.env["stock.move.line"].search(
+                    criteria, order="date asc, id asc"
                 )
-                serial_number_in_date = first_move_line_id.date
-            rec.serial_number_in_date = serial_number_in_date
+                if len(smls) == 1:
+                    first_sml = smls[0]
+                    last_sml = smls[-1]
+            record.first_stock_move_line_id = first_sml
+            record.last_stock_move_line_id = last_sml
 
     tracking = fields.Selection(related="product_id.tracking", store=True)
     stock_move_line_ids = fields.One2many(
@@ -35,9 +39,25 @@ class StockProductionLot(models.Model):
         string="Stock Move Lines",
         copy=False,
     )
+    first_stock_move_line_id = fields.Many2one(
+        string="First Stock Move Line",
+        comodel_name="stock.move.line",
+        compute="_compute_stock_move_line",
+        store=True,
+    )
+    last_stock_move_line_id = fields.Many2one(
+        string="Last Stock Move Line",
+        comodel_name="stock.move.line",
+        compute="_compute_stock_move_line",
+        store=True,
+    )
     serial_number_in_date = fields.Datetime(
         string="Incoming Date",
-        compute="_compute_serial_number_in_date",
-        compute_sudo=False,
-        store=False,
+        related="first_stock_move_line_id.date",
+        store=True,
+    )
+    serial_number_current_location_id = fields.Many2one(
+        string="Current Location",
+        related="last_stock_move_line_id.location_dest_id",
+        store=True,
     )
