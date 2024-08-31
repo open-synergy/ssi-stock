@@ -13,3 +13,8 @@ class StockProductionLot(models.Model):
         string="Fixed Assets",
         comodel_name="fixed.asset.asset",
     )
+    fixed_asset_state = fields.Selection(
+        string="Fixed Asset State",
+        related="fixed_asset_id.state",
+        store=True,
+    )
