@@ -63,6 +63,6 @@ class StockProductionLot(models.Model):
     )
     serial_number_acquisition_value = fields.Float(
         string="Acquisition Value",
-        related="last_stock_move_line_id.move_id.price_unit",
+        related="first_stock_move_line_id.move_id.price_unit",
         store=True,
     )
