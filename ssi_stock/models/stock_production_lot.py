@@ -26,7 +26,7 @@ class StockProductionLot(models.Model):
                 smls = self.env["stock.move.line"].search(
                     criteria, order="date asc, id asc"
                 )
-                if len(smls) == 1:
+                if len(smls) > 0:
                     first_sml = smls[0]
                     last_sml = smls[-1]
             record.first_stock_move_line_id = first_sml
