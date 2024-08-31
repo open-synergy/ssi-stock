@@ -19,6 +19,11 @@
                         name="serial_number_current_location_id"
                         invisible="context.get('tracking') != 'serial'"
                     />
+                <field
+                        name="serial_number_acquisition_value"
+                        invisible="context.get('tracking') != 'serial'"
+                    />
+
 
             </xpath>
         </data>
@@ -84,6 +89,7 @@
                         <group name="tracking_1_2" colspan="1" col="2">
                             <field name="serial_number_in_date" />
                             <field name="serial_number_current_location_id" />
+                            <field name="serial_number_acquisition_value" />
                         </group>
                     </group>
                 </page>
