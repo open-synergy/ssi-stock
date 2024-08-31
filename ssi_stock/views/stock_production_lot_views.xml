@@ -67,25 +67,26 @@
     <field name="inherit_id" ref="stock.view_production_lot_form" />
     <field name="arch" type="xml">
         <data>
-            <xpath expr="//field[@name='product_id']" position="after">
-                <field name="tracking" invisible="1" />
-                <field
-                        name="first_stock_move_line_id"
-                        invisible="context.get('tracking') != 'serial'"
-                    />
-                <field
-                        name="last_stock_move_line_id"
-                        invisible="context.get('tracking') != 'serial'"
-                    />
-                <field
-                        name="serial_number_in_date"
-                        attrs="{'invisible': [('tracking', '!=', 'serial')]}"
-                    />
-                <field
-                        name="serial_number_current_location_id"
-                        invisible="context.get('tracking') != 'serial'"
-                    />
-
+            <xpath expr="//notebook" position="inside">
+                <page name="tracking" string="Tracking">
+                    <field name="stock_move_line_ids" />
+                    <group
+                            name="tracking_1"
+                            colspan="4"
+                            col="2"
+                            invisible="context.get('tracking') != 'serial'"
+                        >
+                        <group name="tracking_1_1" colspan="1" col="2">
+                            <field name="tracking" invisible="1" />
+                            <field name="first_stock_move_line_id" />
+                            <field name="last_stock_move_line_id" />
+                        </group>
+                        <group name="tracking_1_2" colspan="1" col="2">
+                            <field name="serial_number_in_date" />
+                            <field name="serial_number_current_location_id" />
+                        </group>
+                    </group>
+                </page>
             </xpath>
         </data>
     </field>
