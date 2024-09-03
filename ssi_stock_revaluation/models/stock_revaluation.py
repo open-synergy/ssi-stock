@@ -316,7 +316,7 @@ class StockRevaluation(models.Model):
 
     def _check_journal_entry(self):
         self.ensure_one()
-        if self.state in ["draft", "confirm", "done", "reject"]:
+        if self.state in ["confirm", "done", "reject"]:
             if self.stock_valuation_layer_id.debit_move_line_id:
                 error_message = _(
                     """
