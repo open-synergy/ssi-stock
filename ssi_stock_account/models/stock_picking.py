@@ -31,6 +31,33 @@ class StockPicking(models.Model):
         compute="_compute_create_accounting_entry_ok",
         store=False,
     )
+    account_move_created = fields.Boolean(
+        string="All Accounting Entries Created?",
+        compute="_compute_account_move_created",
+        store=True,
+        compute_sudo=True,
+    )
+
+    @api.depends(
+        "move_lines.stock_valuation_layer_ids",
+        "move_lines.stock_valuation_layer_ids.account_move_id",
+        "move_lines.stock_valuation_layer_ids.quantity",
+        "state",
+    )
+    def _compute_account_move_created(self):
+        SVL = self.env["stock.valuation.layer"]
+        for record in self:
+            result = False
+            if record.state == "done":
+                result = True
+                criteria = [
+                    ("account_move_id", "=", False),
+                    ("stock_move_id.picking_id.id", "=", record.id),
+                    ("quantity", "!=", 0.0),
+                ]
+                if SVL.search_count(criteria) > 0:
+                    result = False
+            record.account_move_created = result
 
     @api.onchange(
         "picking_type_id",
