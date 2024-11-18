@@ -15,6 +15,7 @@
                     <group name="accounting_1" colspan="4" col="2">
                         <field name="journal_id" />
                         <field name="create_accounting_entry_ok" invisible="1" />
+                        <field name="account_move_created" invisible="1" />
                     </group>
                     <separator string="SVL" />
                     <button
