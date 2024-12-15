@@ -17,7 +17,7 @@ class StockValuationLayer(models.Model):
     # account.move.line
     _journal_id_field_name = "journal_id"
     _move_id_field_name = "account_move_id"
-    _accounting_date_field_name = "date"  # TODO
+    _accounting_date_field_name = "final_date"  # TODO
     _currency_id_field_name = "company_currency_id"
     _company_currency_id_field_name = "company_currency_id"
     _number_field_name = False
@@ -35,7 +35,7 @@ class StockValuationLayer(models.Model):
     _debit_company_currency_id_field_name = "company_currency_id"
     _debit_amount_currency_field_name = "value"
     _debit_company_id_field_name = "company_id"
-    _debit_date_field_name = "date"
+    _debit_date_field_name = "final_date"
     _debit_need_date_due = False
     _debit_date_due_field_name = False
 
@@ -52,7 +52,7 @@ class StockValuationLayer(models.Model):
     _credit_company_currency_id_field_name = "company_currency_id"
     _credit_amount_currency_field_name = "value"
     _credit_company_id_field_name = "company_id"
-    _credit_date_field_name = "date"
+    _credit_date_field_name = "final_date"
     _credit_need_date_due = False
     _credit_date_due_field_name = False
 
@@ -83,10 +83,29 @@ class StockValuationLayer(models.Model):
         related="stock_move_id.picking_id.partner_id",
         readonly=False,
     )
-    date = fields.Date(
+    date_method = fields.Selection(
+        string="Date Method",
+        selection=[
+            ("auto", "Automatic"),
+            ("manual", "Manual"),
+        ],
+        required=True,
+        default="auto",
+    )
+    manual_date = fields.Date(
+        string="Manual Date",
+    )
+    final_date = fields.Date(
         string="Date",
+        compute="_compute_final_date",
+        store=True,
+        compute_sudo=True,
+    )
+    date = fields.Date(
+        string="Automatic Date",
         compute="_compute_date",
         store=True,
+        compute_sudo=True,
     )
     account_move_date = fields.Date(
         string="Account Move Date",
@@ -154,6 +173,19 @@ class StockValuationLayer(models.Model):
         compute="_compute_usage_diff",
         store=True,
     )
+
+    @api.depends(
+        "date_method",
+        "date",
+        "manual_date",
+    )
+    def _compute_final_date(self):
+        for record in self:
+            if record.date_method == "auto":
+                result = record.date
+            else:
+                result = record.manual_date
+            record.final_date = result
 
     @api.depends(
         "date",
