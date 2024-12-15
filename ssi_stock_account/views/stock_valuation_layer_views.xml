@@ -99,12 +99,16 @@
                             type="object"
                             string="Create Accounting Entry"
                             class="oe_highlight"
+                            confirm="Create accounting entries. Are you sure?"
+                            groups="base.group_system"
                         />
                     <button
                             name="action_delete_accounting_entry"
                             type="object"
                             string="Delete Accounting Entry"
                             class="oe_highlight"
+                            confirm="Delete accounting entries. Are you sure?"
+                            groups="base.group_system"
                         />
                     <button
                             name="action_sync_date_with_stock_move"
@@ -112,6 +116,7 @@
                             string="Sync Date With Stock Move"
                             class="oe_highlight"
                             groups="base.group_system"
+                            confirm="Sync date with stock move. Are you sure?"
                         />
                 </header>
             </xpath>
@@ -173,7 +178,18 @@
                 <field name="datetime_is_equal" string="Date is equal?" />
             </xpath>
             <xpath expr="//field[@name='account_move_id']" position="after">
-                <field name="date" />
+                <field name="date_method" />
+                <field name="final_date" invisible="1" />
+                <field
+                        name="date"
+                        string="Date"
+                        attrs="{'invisible':[('date_method','!=','auto')]}"
+                    />
+                <field
+                        name="manual_date"
+                        string="Date"
+                        attrs="{'invisible':[('date_method','!=','manual')]}"
+                    />
                 <field name="date_is_equal" />
                 <field name="debit_account_id" />
                 <field name="credit_account_id" />
