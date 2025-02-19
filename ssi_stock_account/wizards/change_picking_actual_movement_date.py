@@ -2,7 +2,8 @@
 # Copyright 2022 PT. Simetri Sinergi Indonesia
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import models
+from odoo import _, models
+from odoo.exceptions import UserError
 
 
 class ChangePickingActualMovementDate(models.TransientModel):
@@ -12,6 +13,18 @@ class ChangePickingActualMovementDate(models.TransientModel):
 
     def _confirm(self):
         _super = super(ChangePickingActualMovementDate, self)
+        for picking in self.picking_ids:
+            if picking.account_move_ids:
+                error_message = _(
+                    """
+                Context: Change picking actual movement date
+                Database ID: %s
+                Problem: Journal entry already exist for %s
+                Solution: Cancel accounting entries
+                """
+                    % (picking.id, picking.display_name)
+                )
+                raise UserError(error_message)
         _super._confirm()
         self._update_svl_actual_movement_date()
 
