@@ -1,0 +1,66 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* ssi_stock_reject_operation
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: ssi_stock_reject_operation
+#: model:res.groups,name:ssi_stock_reject_operation.customer_reject_in_all_group
+#: model:res.groups,name:ssi_stock_reject_operation.supplier_reject_out_all_group
+msgid "All"
+msgstr ""
+
+#. module: ssi_stock_reject_operation
+#: model:res.groups,name:ssi_stock_reject_operation.customer_reject_in_company_group
+#: model:res.groups,name:ssi_stock_reject_operation.supplier_reject_out_company_group
+msgid "Company"
+msgstr ""
+
+#. module: ssi_stock_reject_operation
+#: model:res.groups,name:ssi_stock_reject_operation.customer_reject_in_company_child_group
+#: model:res.groups,name:ssi_stock_reject_operation.supplier_reject_out_company_child_group
+msgid "Company and All Child Companies"
+msgstr ""
+
+#. module: ssi_stock_reject_operation
+#: model:ir.actions.act_window,name:ssi_stock_reject_operation.customer_reject_in_action
+#: model:ir.module.category,name:ssi_stock_reject_operation.customer_reject_in_data_ownership_module_category
+#: model:ir.module.category,name:ssi_stock_reject_operation.customer_reject_in_workflow_module_category
+#: model:ir.ui.menu,name:ssi_stock_reject_operation.customer_reject_in_menu
+msgid "Customer Reject In"
+msgstr ""
+
+#. module: ssi_stock_reject_operation
+#: model:ir.actions.act_window,name:ssi_stock_reject_operation.supplier_reject_out_action
+#: model:ir.module.category,name:ssi_stock_reject_operation.supplier_reject_out_data_ownership_module_category
+#: model:ir.module.category,name:ssi_stock_reject_operation.supplier_reject_out_workflow_module_category
+#: model:ir.ui.menu,name:ssi_stock_reject_operation.supplier_reject_out_menu
+msgid "Supplier Reject Out"
+msgstr ""
+
+#. module: ssi_stock_reject_operation
+#: model:res.groups,name:ssi_stock_reject_operation.customer_reject_in_user_group
+#: model:res.groups,name:ssi_stock_reject_operation.supplier_reject_out_user_group
+msgid "User"
+msgstr ""
+
+#. module: ssi_stock_reject_operation
+#: model:res.groups,name:ssi_stock_reject_operation.customer_reject_in_validator_group
+#: model:res.groups,name:ssi_stock_reject_operation.supplier_reject_out_validator_group
+msgid "Validator"
+msgstr ""
+
+#. module: ssi_stock_reject_operation
+#: model:res.groups,name:ssi_stock_reject_operation.customer_reject_in_viewer_group
+#: model:res.groups,name:ssi_stock_reject_operation.supplier_reject_out_viewer_group
+msgid "Viewer"
+msgstr ""
