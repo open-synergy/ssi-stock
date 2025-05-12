@@ -1,0 +1,126 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* ssi_stock_rent_operation
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: ssi_stock_rent_operation
+#: model:res.groups,name:ssi_stock_rent_operation.customer_rent_in_all_group
+#: model:res.groups,name:ssi_stock_rent_operation.customer_rent_out_all_group
+#: model:res.groups,name:ssi_stock_rent_operation.supplier_rent_in_all_group
+#: model:res.groups,name:ssi_stock_rent_operation.supplier_rent_out_all_group
+msgid "All"
+msgstr ""
+
+#. module: ssi_stock_rent_operation
+#: model:res.groups,name:ssi_stock_rent_operation.customer_rent_in_company_group
+#: model:res.groups,name:ssi_stock_rent_operation.customer_rent_out_company_group
+#: model:res.groups,name:ssi_stock_rent_operation.supplier_rent_in_company_group
+#: model:res.groups,name:ssi_stock_rent_operation.supplier_rent_out_company_group
+msgid "Company"
+msgstr ""
+
+#. module: ssi_stock_rent_operation
+#: model:res.groups,name:ssi_stock_rent_operation.customer_rent_in_company_child_group
+#: model:res.groups,name:ssi_stock_rent_operation.customer_rent_out_company_child_group
+#: model:res.groups,name:ssi_stock_rent_operation.supplier_rent_in_company_child_group
+#: model:res.groups,name:ssi_stock_rent_operation.supplier_rent_out_company_child_group
+msgid "Company and All Child Companies"
+msgstr ""
+
+#. module: ssi_stock_rent_operation
+#: model:ir.model,name:ssi_stock_rent_operation.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: ssi_stock_rent_operation
+#: model:ir.actions.act_window,name:ssi_stock_rent_operation.customer_rent_in_action
+#: model:ir.module.category,name:ssi_stock_rent_operation.customer_rent_in_data_ownership_module_category
+#: model:ir.module.category,name:ssi_stock_rent_operation.customer_rent_in_workflow_module_category
+#: model:ir.ui.menu,name:ssi_stock_rent_operation.customer_rent_in_menu
+msgid "Customer Rent In"
+msgstr ""
+
+#. module: ssi_stock_rent_operation
+#: model:ir.model.fields,field_description:ssi_stock_rent_operation.field_res_partner__customer_rent_location_id
+#: model:ir.model.fields,field_description:ssi_stock_rent_operation.field_res_users__customer_rent_location_id
+msgid "Customer Rent Location"
+msgstr ""
+
+#. module: ssi_stock_rent_operation
+#: model:ir.actions.act_window,name:ssi_stock_rent_operation.customer_rent_out_action
+#: model:ir.module.category,name:ssi_stock_rent_operation.customer_rent_out_data_ownership_module_category
+#: model:ir.module.category,name:ssi_stock_rent_operation.customer_rent_out_workflow_module_category
+#: model:ir.ui.menu,name:ssi_stock_rent_operation.customer_rent_out_menu
+msgid "Customer Rent Out"
+msgstr ""
+
+#. module: ssi_stock_rent_operation
+#: model:ir.model.fields,field_description:ssi_stock_rent_operation.field_res_partner__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: ssi_stock_rent_operation
+#: model:ir.model.fields,field_description:ssi_stock_rent_operation.field_res_partner__id
+msgid "ID"
+msgstr ""
+
+#. module: ssi_stock_rent_operation
+#: model:ir.model.fields,field_description:ssi_stock_rent_operation.field_res_partner____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: ssi_stock_rent_operation
+#: model:ir.actions.act_window,name:ssi_stock_rent_operation.supplier_rent_in_action
+#: model:ir.module.category,name:ssi_stock_rent_operation.supplier_rent_in_data_ownership_module_category
+#: model:ir.module.category,name:ssi_stock_rent_operation.supplier_rent_in_workflow_module_category
+#: model:ir.ui.menu,name:ssi_stock_rent_operation.supplier_rent_in_menu
+msgid "Supplier Rent In"
+msgstr ""
+
+#. module: ssi_stock_rent_operation
+#: model:ir.model.fields,field_description:ssi_stock_rent_operation.field_res_partner__supplier_rent_location_id
+#: model:ir.model.fields,field_description:ssi_stock_rent_operation.field_res_users__supplier_rent_location_id
+msgid "Supplier Rent Location"
+msgstr ""
+
+#. module: ssi_stock_rent_operation
+#: model:ir.actions.act_window,name:ssi_stock_rent_operation.supplier_rent_out_action
+#: model:ir.module.category,name:ssi_stock_rent_operation.supplier_rent_out_data_ownership_module_category
+#: model:ir.module.category,name:ssi_stock_rent_operation.supplier_rent_out_workflow_module_category
+#: model:ir.ui.menu,name:ssi_stock_rent_operation.supplier_rent_out_menu
+msgid "Supplier Rent Out"
+msgstr ""
+
+#. module: ssi_stock_rent_operation
+#: model:res.groups,name:ssi_stock_rent_operation.customer_rent_in_user_group
+#: model:res.groups,name:ssi_stock_rent_operation.customer_rent_out_user_group
+#: model:res.groups,name:ssi_stock_rent_operation.supplier_rent_in_user_group
+#: model:res.groups,name:ssi_stock_rent_operation.supplier_rent_out_user_group
+msgid "User"
+msgstr ""
+
+#. module: ssi_stock_rent_operation
+#: model:res.groups,name:ssi_stock_rent_operation.customer_rent_in_validator_group
+#: model:res.groups,name:ssi_stock_rent_operation.customer_rent_out_validator_group
+#: model:res.groups,name:ssi_stock_rent_operation.supplier_rent_in_validator_group
+#: model:res.groups,name:ssi_stock_rent_operation.supplier_rent_out_validator_group
+msgid "Validator"
+msgstr ""
+
+#. module: ssi_stock_rent_operation
+#: model:res.groups,name:ssi_stock_rent_operation.customer_rent_in_viewer_group
+#: model:res.groups,name:ssi_stock_rent_operation.customer_rent_out_viewer_group
+#: model:res.groups,name:ssi_stock_rent_operation.supplier_rent_in_viewer_group
+#: model:res.groups,name:ssi_stock_rent_operation.supplier_rent_out_viewer_group
+msgid "Viewer"
+msgstr ""
