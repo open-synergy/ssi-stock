@@ -12,8 +12,15 @@ class StockPicking(models.Model):
         "stock.picking",
         "mixin.print_document",
         "mixin.policy",
+        "mixin.multiple_approval",
     ]
     _automatically_insert_print_button = True
+
+    _approval_from_state = "confirmed"
+    _approval_to_state = "done"
+    _approval_state = "assigned"
+    _after_approved_method = "button_validate"
+    _automatically_insert_multiple_approval_page = True
 
     picking_type_category_id = fields.Many2one(
         string="Picking Type Category",
@@ -101,6 +108,30 @@ class StockPicking(models.Model):
         compute="_compute_policy",
         compute_sudo=True,
     )
+    approve_ok = fields.Boolean(
+        string="Can Approve",
+        compute="_compute_policy",
+        compute_sudo=True,
+        help="""Approve policy
+
+* If active user can see and execute 'Approve' button""",
+    )
+    reject_ok = fields.Boolean(
+        string="Can Reject",
+        compute="_compute_policy",
+        compute_sudo=True,
+        help="""Reject policy
+
+* If active user can see and execute 'Reject' button""",
+    )
+    restart_approval_ok = fields.Boolean(
+        string="Can Restart Approval",
+        compute="_compute_policy",
+        compute_sudo=True,
+        help="""Restart approval policy
+
+* If active user can see and execute 'Restart Approval' button""",
+    )
 
     def _compute_policy(self):
         _super = super(StockPicking, self)
@@ -170,6 +201,9 @@ class StockPicking(models.Model):
             "validate_ok",
             "return_ok",
             "change_actual_movement_date_ok",
+            "approve_ok",
+            "reject_ok",
+            "restart_approval_ok",
         ]
         res += policy_field
         return res

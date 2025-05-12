@@ -83,13 +83,57 @@ if document.show_check_availability and allowed_user:
     <field name="restrict_user" eval="0" />
     <field name="restrict_additional" eval="1" />
     <field name="additional_python_code">result = False
-allowed_user = False
-if env.user.id == document.picking_type_id.warehouse_id.manager_id.id:
-    allowed_user = True
-elif env.user.id in document.picking_type_id.warehouse_id.supervisor_ids.ids:
-    allowed_user = True
+    </field>
+</record>
 
-if document.show_validate and allowed_user:
+<!-- approve -->
+<record
+            id="stock_picking_policy_template_detail_approve"
+            model="policy.template_detail"
+        >
+    <field name="template_id" ref="stock_picking_policy_template" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','approve_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="0" />
+    <field name="restrict_additional" eval="1" />
+    <field name="additional_python_code">result = False
+if env.user.id in document.active_approver_user_ids.ids and document.show_validate:
+    result = True
+    </field>
+</record>
+
+<!-- reject -->
+<record id="stock_picking_policy_template_detail_reject" model="policy.template_detail">
+    <field name="template_id" ref="stock_picking_policy_template" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','reject_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="0" />
+    <field name="restrict_additional" eval="1" />
+    <field name="additional_python_code">result = False
+    </field>
+</record>
+
+<!-- restart approval -->
+<record
+            id="stock_picking_policy_template_detail_restart_approval"
+            model="policy.template_detail"
+        >
+    <field name="template_id" ref="stock_picking_policy_template" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','restart_approval_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="0" />
+    <field name="restrict_additional" eval="1" />
+    <field name="additional_python_code">result = False
+if env.user.id in document.active_approver_user_ids.ids and document.show_validate:
     result = True
     </field>
 </record>
@@ -114,13 +158,7 @@ if env.user.id == document.picking_type_id.warehouse_id.manager_id.id:
 elif env.user.id in document.picking_type_id.warehouse_id.supervisor_ids.ids:
     allowed_user = True
 
-if document.picking_type_code != 'incoming' and allowed_user:
-    result = True
-elif not document.immediate_transfer and allowed_user:
-    result = True
-elif document.state in ['assigned', 'partially_available'] and allowed_user and document.move_type != 'one':
-    result = True
-elif document.state == 'assigned' and allowed_user and document.move_type == 'one':
+if document.state in ['partially_available'] and allowed_user and document.move_type != 'one':
     result = True
     </field>
 </record>
@@ -147,73 +185,6 @@ if document.state == 'done' and allowed_user:
     </field>
 </record>
 
-<!-- approve -->
-<!-- <record
-            id="stock_picking_policy_template_detail_approve"
-            model="policy.template_detail"
-        >
-    <field name="template_id" ref="stock_picking_policy_template" />
-    <field
-                name="field_id"
-                search="[('model_id.model','=','stock_picking'),('name','=','approve_ok')]"
-            />
-    <field name="restrict_state" eval="1" />
-    <field
-                name="state_ids"
-                search="[('field_id.model_id.model','=','stock_picking'),('value','=','confirm')]"
-            />
-    <field name="restrict_user" eval="0" />
-    <field name="restrict_additional" eval="1" />
-    <field name="additional_python_code">result = False
-if env.user.id in document.active_approver_user_ids.ids:
-    result = True
-    </field>
-</record> -->
-
-<!-- reject -->
-<!-- <record id="stock_picking_policy_template_detail_reject" model="policy.template_detail">
-    <field name="template_id" ref="stock_picking_policy_template" />
-    <field
-                name="field_id"
-                search="[('model_id.model','=','stock_picking'),('name','=','reject_ok')]"
-            />
-    <field name="restrict_state" eval="1" />
-    <field
-                name="state_ids"
-                search="[('field_id.model_id.model','=','stock_picking'),('value','=','confirm')]"
-            />
-    <field name="restrict_user" eval="0" />
-    <field name="restrict_additional" eval="1" />
-    <field name="additional_python_code">result = False
-if env.user.id in document.active_approver_user_ids.ids:
-    result = True
-    </field>
-</record> -->
-
-<!-- restart approval -->
-<!-- <record
-            id="stock_picking_policy_template_detail_restart_approval"
-            model="policy.template_detail"
-        >
-    <field name="template_id" ref="stock_picking_policy_template" />
-    <field
-                name="field_id"
-                search="[('model_id.model','=','stock_picking'),('name','=','restart_approval_ok')]"
-            />
-    <field name="restrict_state" eval="1" />
-    <field
-                name="state_ids"
-                search="[('field_id.model_id.model','=','stock_picking'),('value','=','confirm')]"
-            />
-    <field name="restrict_user" eval="1" />
-    <field name="computation_method">use_group</field>
-    <field name="group_ids" eval="[(6,0,[ref('stock_picking_validator_group')])]" />
-    <field name="restrict_additional" eval="1" />
-    <field name="additional_python_code">result = False
-if not document.approval_template_id:
-    result = True
-    </field>
-</record> -->
 
 <!-- cancel -->
 <record id="stock_picking_policy_template_detail_cancel" model="policy.template_detail">
