@@ -1,0 +1,138 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* ssi_stock_route_m2o_configurator_mixin
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: ssi_stock_route_m2o_configurator_mixin
+#: model:ir.model.fields,field_description:ssi_stock_route_m2o_configurator_mixin.field_mixin_inbound_stock_route_m2o_configurator__display_name
+#: model:ir.model.fields,field_description:ssi_stock_route_m2o_configurator_mixin.field_mixin_outbound_stock_route_m2o_configurator__display_name
+#: model:ir.model.fields,field_description:ssi_stock_route_m2o_configurator_mixin.field_mixin_stock_route_m2o_configurator__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: ssi_stock_route_m2o_configurator_mixin
+#: model:ir.model.fields.selection,name:ssi_stock_route_m2o_configurator_mixin.selection__mixin_inbound_stock_route_m2o_configurator__inbound_route_selection_method__domain
+#: model:ir.model.fields.selection,name:ssi_stock_route_m2o_configurator_mixin.selection__mixin_outbound_stock_route_m2o_configurator__outbound_route_selection_method__domain
+#: model:ir.model.fields.selection,name:ssi_stock_route_m2o_configurator_mixin.selection__mixin_stock_route_m2o_configurator__route_selection_method__domain
+msgid "Domain"
+msgstr ""
+
+#. module: ssi_stock_route_m2o_configurator_mixin
+#: model:ir.model.fields,field_description:ssi_stock_route_m2o_configurator_mixin.field_mixin_inbound_stock_route_m2o_configurator__id
+#: model:ir.model.fields,field_description:ssi_stock_route_m2o_configurator_mixin.field_mixin_outbound_stock_route_m2o_configurator__id
+#: model:ir.model.fields,field_description:ssi_stock_route_m2o_configurator_mixin.field_mixin_stock_route_m2o_configurator__id
+msgid "ID"
+msgstr ""
+
+#. module: ssi_stock_route_m2o_configurator_mixin
+#: model_terms:ir.ui.view,arch_db:ssi_stock_route_m2o_configurator_mixin.inbound_stock_route_m2o_configurator_template
+msgid "Inbound Route"
+msgstr ""
+
+#. module: ssi_stock_route_m2o_configurator_mixin
+#: model:ir.model.fields,field_description:ssi_stock_route_m2o_configurator_mixin.field_mixin_inbound_stock_route_m2o_configurator__inbound_route_domain
+msgid "Inbound Route Domain"
+msgstr ""
+
+#. module: ssi_stock_route_m2o_configurator_mixin
+#: model:ir.model.fields,field_description:ssi_stock_route_m2o_configurator_mixin.field_mixin_inbound_stock_route_m2o_configurator__inbound_route_python_code
+msgid "Inbound Route Python Code"
+msgstr ""
+
+#. module: ssi_stock_route_m2o_configurator_mixin
+#: model:ir.model.fields,field_description:ssi_stock_route_m2o_configurator_mixin.field_mixin_inbound_stock_route_m2o_configurator__inbound_route_selection_method
+msgid "Inbound Route Selection Method"
+msgstr ""
+
+#. module: ssi_stock_route_m2o_configurator_mixin
+#: model:ir.model.fields,field_description:ssi_stock_route_m2o_configurator_mixin.field_mixin_inbound_stock_route_m2o_configurator__inbound_route_ids
+msgid "Inbound Routes"
+msgstr ""
+
+#. module: ssi_stock_route_m2o_configurator_mixin
+#: model:ir.model.fields,field_description:ssi_stock_route_m2o_configurator_mixin.field_mixin_inbound_stock_route_m2o_configurator____last_update
+#: model:ir.model.fields,field_description:ssi_stock_route_m2o_configurator_mixin.field_mixin_outbound_stock_route_m2o_configurator____last_update
+#: model:ir.model.fields,field_description:ssi_stock_route_m2o_configurator_mixin.field_mixin_stock_route_m2o_configurator____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: ssi_stock_route_m2o_configurator_mixin
+#: model:ir.model.fields.selection,name:ssi_stock_route_m2o_configurator_mixin.selection__mixin_inbound_stock_route_m2o_configurator__inbound_route_selection_method__manual
+#: model:ir.model.fields.selection,name:ssi_stock_route_m2o_configurator_mixin.selection__mixin_outbound_stock_route_m2o_configurator__outbound_route_selection_method__manual
+#: model:ir.model.fields.selection,name:ssi_stock_route_m2o_configurator_mixin.selection__mixin_stock_route_m2o_configurator__route_selection_method__manual
+msgid "Manual"
+msgstr ""
+
+#. module: ssi_stock_route_m2o_configurator_mixin
+#: model_terms:ir.ui.view,arch_db:ssi_stock_route_m2o_configurator_mixin.outbound_stock_route_m2o_configurator_template
+msgid "Outbound Route"
+msgstr ""
+
+#. module: ssi_stock_route_m2o_configurator_mixin
+#: model:ir.model.fields,field_description:ssi_stock_route_m2o_configurator_mixin.field_mixin_outbound_stock_route_m2o_configurator__outbound_route_domain
+msgid "Outbound Route Domain"
+msgstr ""
+
+#. module: ssi_stock_route_m2o_configurator_mixin
+#: model:ir.model.fields,field_description:ssi_stock_route_m2o_configurator_mixin.field_mixin_outbound_stock_route_m2o_configurator__outbound_route_python_code
+msgid "Outbound Route Python Code"
+msgstr ""
+
+#. module: ssi_stock_route_m2o_configurator_mixin
+#: model:ir.model.fields,field_description:ssi_stock_route_m2o_configurator_mixin.field_mixin_outbound_stock_route_m2o_configurator__outbound_route_selection_method
+msgid "Outbound Route Selection Method"
+msgstr ""
+
+#. module: ssi_stock_route_m2o_configurator_mixin
+#: model:ir.model.fields,field_description:ssi_stock_route_m2o_configurator_mixin.field_mixin_outbound_stock_route_m2o_configurator__outbound_route_ids
+msgid "Outbound Routes"
+msgstr ""
+
+#. module: ssi_stock_route_m2o_configurator_mixin
+#: model:ir.model.fields.selection,name:ssi_stock_route_m2o_configurator_mixin.selection__mixin_inbound_stock_route_m2o_configurator__inbound_route_selection_method__code
+#: model:ir.model.fields.selection,name:ssi_stock_route_m2o_configurator_mixin.selection__mixin_outbound_stock_route_m2o_configurator__outbound_route_selection_method__code
+#: model:ir.model.fields.selection,name:ssi_stock_route_m2o_configurator_mixin.selection__mixin_stock_route_m2o_configurator__route_selection_method__code
+msgid "Python Code"
+msgstr ""
+
+#. module: ssi_stock_route_m2o_configurator_mixin
+#: model_terms:ir.ui.view,arch_db:ssi_stock_route_m2o_configurator_mixin.stock_route_m2o_configurator_template
+msgid "Route"
+msgstr ""
+
+#. module: ssi_stock_route_m2o_configurator_mixin
+#: model:ir.model.fields,field_description:ssi_stock_route_m2o_configurator_mixin.field_mixin_stock_route_m2o_configurator__route_domain
+msgid "Route Domain"
+msgstr ""
+
+#. module: ssi_stock_route_m2o_configurator_mixin
+#: model:ir.model.fields,field_description:ssi_stock_route_m2o_configurator_mixin.field_mixin_stock_route_m2o_configurator__route_python_code
+msgid "Route Python Code"
+msgstr ""
+
+#. module: ssi_stock_route_m2o_configurator_mixin
+#: model:ir.model.fields,field_description:ssi_stock_route_m2o_configurator_mixin.field_mixin_stock_route_m2o_configurator__route_selection_method
+msgid "Route Selection Method"
+msgstr ""
+
+#. module: ssi_stock_route_m2o_configurator_mixin
+#: model:ir.model.fields,field_description:ssi_stock_route_m2o_configurator_mixin.field_mixin_stock_route_m2o_configurator__route_ids
+msgid "Routes"
+msgstr ""
+
+#. module: ssi_stock_route_m2o_configurator_mixin
+#: model:ir.model,name:ssi_stock_route_m2o_configurator_mixin.model_mixin_inbound_stock_route_m2o_configurator
+#: model:ir.model,name:ssi_stock_route_m2o_configurator_mixin.model_mixin_outbound_stock_route_m2o_configurator
+#: model:ir.model,name:ssi_stock_route_m2o_configurator_mixin.model_mixin_stock_route_m2o_configurator
+msgid "stock.location.route Many2one Configurator Mixin"
+msgstr ""
