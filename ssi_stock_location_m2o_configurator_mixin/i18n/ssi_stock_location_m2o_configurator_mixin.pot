@@ -1,0 +1,138 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* ssi_stock_location_m2o_configurator_mixin
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: ssi_stock_location_m2o_configurator_mixin
+#: model:ir.model.fields,field_description:ssi_stock_location_m2o_configurator_mixin.field_mixin_inbound_stock_location_m2o_configurator__display_name
+#: model:ir.model.fields,field_description:ssi_stock_location_m2o_configurator_mixin.field_mixin_outbound_stock_location_m2o_configurator__display_name
+#: model:ir.model.fields,field_description:ssi_stock_location_m2o_configurator_mixin.field_mixin_stock_location_m2o_configurator__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: ssi_stock_location_m2o_configurator_mixin
+#: model:ir.model.fields.selection,name:ssi_stock_location_m2o_configurator_mixin.selection__mixin_inbound_stock_location_m2o_configurator__inbound_location_selection_method__domain
+#: model:ir.model.fields.selection,name:ssi_stock_location_m2o_configurator_mixin.selection__mixin_outbound_stock_location_m2o_configurator__outbound_location_selection_method__domain
+#: model:ir.model.fields.selection,name:ssi_stock_location_m2o_configurator_mixin.selection__mixin_stock_location_m2o_configurator__location_selection_method__domain
+msgid "Domain"
+msgstr ""
+
+#. module: ssi_stock_location_m2o_configurator_mixin
+#: model:ir.model.fields,field_description:ssi_stock_location_m2o_configurator_mixin.field_mixin_inbound_stock_location_m2o_configurator__id
+#: model:ir.model.fields,field_description:ssi_stock_location_m2o_configurator_mixin.field_mixin_outbound_stock_location_m2o_configurator__id
+#: model:ir.model.fields,field_description:ssi_stock_location_m2o_configurator_mixin.field_mixin_stock_location_m2o_configurator__id
+msgid "ID"
+msgstr ""
+
+#. module: ssi_stock_location_m2o_configurator_mixin
+#: model_terms:ir.ui.view,arch_db:ssi_stock_location_m2o_configurator_mixin.inbound_stock_location_m2o_configurator_template
+msgid "Inbound Location"
+msgstr ""
+
+#. module: ssi_stock_location_m2o_configurator_mixin
+#: model:ir.model.fields,field_description:ssi_stock_location_m2o_configurator_mixin.field_mixin_inbound_stock_location_m2o_configurator__inbound_location_domain
+msgid "Inbound Location Domain"
+msgstr ""
+
+#. module: ssi_stock_location_m2o_configurator_mixin
+#: model:ir.model.fields,field_description:ssi_stock_location_m2o_configurator_mixin.field_mixin_inbound_stock_location_m2o_configurator__inbound_location_python_code
+msgid "Inbound Location Python Code"
+msgstr ""
+
+#. module: ssi_stock_location_m2o_configurator_mixin
+#: model:ir.model.fields,field_description:ssi_stock_location_m2o_configurator_mixin.field_mixin_inbound_stock_location_m2o_configurator__inbound_location_selection_method
+msgid "Inbound Location Selection Method"
+msgstr ""
+
+#. module: ssi_stock_location_m2o_configurator_mixin
+#: model:ir.model.fields,field_description:ssi_stock_location_m2o_configurator_mixin.field_mixin_inbound_stock_location_m2o_configurator__inbound_location_ids
+msgid "Inbound Locations"
+msgstr ""
+
+#. module: ssi_stock_location_m2o_configurator_mixin
+#: model:ir.model.fields,field_description:ssi_stock_location_m2o_configurator_mixin.field_mixin_inbound_stock_location_m2o_configurator____last_update
+#: model:ir.model.fields,field_description:ssi_stock_location_m2o_configurator_mixin.field_mixin_outbound_stock_location_m2o_configurator____last_update
+#: model:ir.model.fields,field_description:ssi_stock_location_m2o_configurator_mixin.field_mixin_stock_location_m2o_configurator____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: ssi_stock_location_m2o_configurator_mixin
+#: model_terms:ir.ui.view,arch_db:ssi_stock_location_m2o_configurator_mixin.stock_location_m2o_configurator_template
+msgid "Location"
+msgstr ""
+
+#. module: ssi_stock_location_m2o_configurator_mixin
+#: model:ir.model.fields,field_description:ssi_stock_location_m2o_configurator_mixin.field_mixin_stock_location_m2o_configurator__location_domain
+msgid "Location Domain"
+msgstr ""
+
+#. module: ssi_stock_location_m2o_configurator_mixin
+#: model:ir.model.fields,field_description:ssi_stock_location_m2o_configurator_mixin.field_mixin_stock_location_m2o_configurator__location_python_code
+msgid "Location Python Code"
+msgstr ""
+
+#. module: ssi_stock_location_m2o_configurator_mixin
+#: model:ir.model.fields,field_description:ssi_stock_location_m2o_configurator_mixin.field_mixin_stock_location_m2o_configurator__location_selection_method
+msgid "Location Selection Method"
+msgstr ""
+
+#. module: ssi_stock_location_m2o_configurator_mixin
+#: model:ir.model.fields,field_description:ssi_stock_location_m2o_configurator_mixin.field_mixin_stock_location_m2o_configurator__location_ids
+msgid "Locations"
+msgstr ""
+
+#. module: ssi_stock_location_m2o_configurator_mixin
+#: model:ir.model.fields.selection,name:ssi_stock_location_m2o_configurator_mixin.selection__mixin_inbound_stock_location_m2o_configurator__inbound_location_selection_method__manual
+#: model:ir.model.fields.selection,name:ssi_stock_location_m2o_configurator_mixin.selection__mixin_outbound_stock_location_m2o_configurator__outbound_location_selection_method__manual
+#: model:ir.model.fields.selection,name:ssi_stock_location_m2o_configurator_mixin.selection__mixin_stock_location_m2o_configurator__location_selection_method__manual
+msgid "Manual"
+msgstr ""
+
+#. module: ssi_stock_location_m2o_configurator_mixin
+#: model_terms:ir.ui.view,arch_db:ssi_stock_location_m2o_configurator_mixin.outbound_stock_location_m2o_configurator_template
+msgid "Outbound Location"
+msgstr ""
+
+#. module: ssi_stock_location_m2o_configurator_mixin
+#: model:ir.model.fields,field_description:ssi_stock_location_m2o_configurator_mixin.field_mixin_outbound_stock_location_m2o_configurator__outbound_location_domain
+msgid "Outbound Location Domain"
+msgstr ""
+
+#. module: ssi_stock_location_m2o_configurator_mixin
+#: model:ir.model.fields,field_description:ssi_stock_location_m2o_configurator_mixin.field_mixin_outbound_stock_location_m2o_configurator__outbound_location_python_code
+msgid "Outbound Location Python Code"
+msgstr ""
+
+#. module: ssi_stock_location_m2o_configurator_mixin
+#: model:ir.model.fields,field_description:ssi_stock_location_m2o_configurator_mixin.field_mixin_outbound_stock_location_m2o_configurator__outbound_location_selection_method
+msgid "Outbound Location Selection Method"
+msgstr ""
+
+#. module: ssi_stock_location_m2o_configurator_mixin
+#: model:ir.model.fields,field_description:ssi_stock_location_m2o_configurator_mixin.field_mixin_outbound_stock_location_m2o_configurator__outbound_location_ids
+msgid "Outbound Locations"
+msgstr ""
+
+#. module: ssi_stock_location_m2o_configurator_mixin
+#: model:ir.model.fields.selection,name:ssi_stock_location_m2o_configurator_mixin.selection__mixin_inbound_stock_location_m2o_configurator__inbound_location_selection_method__code
+#: model:ir.model.fields.selection,name:ssi_stock_location_m2o_configurator_mixin.selection__mixin_outbound_stock_location_m2o_configurator__outbound_location_selection_method__code
+#: model:ir.model.fields.selection,name:ssi_stock_location_m2o_configurator_mixin.selection__mixin_stock_location_m2o_configurator__location_selection_method__code
+msgid "Python Code"
+msgstr ""
+
+#. module: ssi_stock_location_m2o_configurator_mixin
+#: model:ir.model,name:ssi_stock_location_m2o_configurator_mixin.model_mixin_inbound_stock_location_m2o_configurator
+#: model:ir.model,name:ssi_stock_location_m2o_configurator_mixin.model_mixin_outbound_stock_location_m2o_configurator
+#: model:ir.model,name:ssi_stock_location_m2o_configurator_mixin.model_mixin_stock_location_m2o_configurator
+msgid "stock.location Many2one Configurator Mixin"
+msgstr ""
