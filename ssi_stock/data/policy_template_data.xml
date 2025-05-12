@@ -133,7 +133,13 @@ if env.user.id in document.active_approver_user_ids.ids and document.show_valida
     <field name="restrict_user" eval="0" />
     <field name="restrict_additional" eval="1" />
     <field name="additional_python_code">result = False
-if env.user.id in document.active_approver_user_ids.ids and document.show_validate:
+allowed_user = False
+if env.user.id == document.picking_type_id.warehouse_id.manager_id.id:
+    allowed_user = True
+elif env.user.id in document.picking_type_id.warehouse_id.supervisor_ids.ids:
+    allowed_user = True
+
+if document.state == 'assigned' and allowed_user:
     result = True
     </field>
 </record>
