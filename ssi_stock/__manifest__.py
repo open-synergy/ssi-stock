@@ -18,6 +18,7 @@
         "stock_move_line_auto_fill",
         "ssi_print_mixin",
         "ssi_policy_mixin",
+        "base_automation",
     ],
     "data": [
         "security/ir_module_category_data.xml",
