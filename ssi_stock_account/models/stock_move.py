@@ -125,6 +125,7 @@ class StockMove(models.Model):
     @api.onchange(
         "picking_type_id",
         "price_unit",
+        "product_id",
     )
     def onchange_debit_usage_id(self):
         self.debit_usage_id = False
@@ -148,6 +149,7 @@ class StockMove(models.Model):
     @api.onchange(
         "picking_type_id",
         "price_unit",
+        "product_id",
     )
     def onchange_credit_usage_id(self):
         self.credit_usage_id = False
