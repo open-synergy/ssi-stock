@@ -63,6 +63,8 @@
                     expr="//field[@name='move_ids_without_package']/tree/field[@name='product_id']"
                     position="after"
                 >
+                <field name="picking_location_id" optional="hide" />
+                <field name="picking_location_dest_id" optional="hide" />
                 <field name="debit_usage_id" optional="hide" />
                 <field name="debit_account_id" optional="hide" />
                 <field name="credit_usage_id" optional="hide" />
