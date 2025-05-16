@@ -444,6 +444,16 @@ msgid "Partner"
 msgstr ""
 
 #. module: ssi_stock_account
+#: model:ir.model.fields,field_description:ssi_stock_account.field_stock_move__picking_location_id
+msgid "Picking Location"
+msgstr ""
+
+#. module: ssi_stock_account
+#: model:ir.model.fields,field_description:ssi_stock_account.field_stock_move__picking_location_dest_id
+msgid "Picking Location Dest"
+msgstr ""
+
+#. module: ssi_stock_account
 #: model:ir.model,name:ssi_stock_account.model_stock_picking_type
 msgid "Picking Type"
 msgstr ""
