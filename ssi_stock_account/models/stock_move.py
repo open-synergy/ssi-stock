@@ -58,6 +58,36 @@ class StockMove(models.Model):
         compute="_compute_svl_journal_entry_diff",
         store=True,
     )
+    picking_location_id = fields.Many2one(
+        comodel_name="stock.location",
+        compute="_compute_move_location",
+        store=True,
+        compute_sudo=True,
+    )
+    picking_location_dest_id = fields.Many2one(
+        comodel_name="stock.location",
+        compute="_compute_move_location",
+        store=True,
+        compute_sudo=True,
+    )
+
+    @api.depends(
+        "picking_id.location_id",
+        "picking_id.location_dest_id",
+    )
+    def _compute_move_location(self):
+        for record in self:
+            picking_location_id = picking_location_dest_id = False
+            if record.picking_id:
+                picking = record.picking_id
+                picking_location_id = picking.location_id
+                picking_location_dest_id = picking.location_dest_id
+            record.picking_location_id = picking_location_id
+            record.picking_location_dest_id = picking_location_dest_id
+            record.onchange_debit_usage_id()
+            record.onchange_credit_usage_id()
+            record.onchange_debit_account_id()
+            record.onchange_credit_account_id()
 
     @api.depends(
         "stock_valuation_layer_ids",
@@ -126,6 +156,8 @@ class StockMove(models.Model):
         "picking_type_id",
         "price_unit",
         "product_id",
+        "picking_location_id",
+        "picking_location_dest_id",
     )
     def onchange_debit_usage_id(self):
         self.debit_usage_id = False
@@ -150,6 +182,8 @@ class StockMove(models.Model):
         "picking_type_id",
         "price_unit",
         "product_id",
+        "picking_location_id",
+        "picking_location_dest_id",
     )
     def onchange_credit_usage_id(self):
         self.credit_usage_id = False
