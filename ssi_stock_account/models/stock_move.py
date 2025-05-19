@@ -61,13 +61,13 @@ class StockMove(models.Model):
     picking_location_id = fields.Many2one(
         comodel_name="stock.location",
         compute="_compute_move_location",
-        store=True,
+        store=False,
         compute_sudo=True,
     )
     picking_location_dest_id = fields.Many2one(
         comodel_name="stock.location",
         compute="_compute_move_location",
-        store=True,
+        store=False,
         compute_sudo=True,
     )
 
