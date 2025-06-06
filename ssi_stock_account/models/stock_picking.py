@@ -3,7 +3,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import UserError
 
 
 class StockPicking(models.Model):
@@ -85,6 +86,23 @@ class StockPicking(models.Model):
             for move in self.move_lines:
                 result += move.account_move_ids
             record.account_move_ids = result
+
+    @api.constrains(
+        "state",
+    )
+    def constrain_no_cancel_if_accounting_entry_exists(self):
+        for record in self.sudo():
+            if record.state == "cancel" and record.account_move_ids:
+                error_message = _(
+                    """
+                Context: Cancel stock transfer
+                Database ID: %s
+                Problem: Accounting entry already exist
+                Solution: Delete accounting entry
+                """
+                    % (record.id)
+                )
+                raise UserError(error_message)
 
     def _compute_stock_valuation_layer_ids(self):
         for record in self:
