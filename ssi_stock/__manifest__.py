@@ -18,6 +18,7 @@
         "stock_move_line_auto_fill",
         "ssi_print_mixin",
         "ssi_policy_mixin",
+        "ssi_multiple_approval_mixin",
         "base_automation",
     ],
     "data": [
