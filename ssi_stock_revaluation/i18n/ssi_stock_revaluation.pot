@@ -668,6 +668,11 @@ msgid ""
 msgstr ""
 
 #. module: ssi_stock_revaluation
+#: model:ir.model.fields,field_description:ssi_stock_revaluation.field_stock_revaluation__reviewer_id
+msgid "Reviewer"
+msgstr ""
+
+#. module: ssi_stock_revaluation
 #: model:ir.model.fields,field_description:ssi_stock_revaluation.field_stock_revaluation__stock_valuation_layer_id
 #: model_terms:ir.ui.view,arch_db:ssi_stock_revaluation.stock_revaluation_view_form
 msgid "SVL"
@@ -782,6 +787,14 @@ msgid ""
 "* Create user can be different with responsible user\n"
 "* Automatically filled with user that initiate document creation.\n"
 "  Default responsible can be changed."
+msgstr ""
+
+#. module: ssi_stock_revaluation
+#: model:ir.model.fields,help:ssi_stock_revaluation.field_stock_revaluation__reviewer_id
+msgid ""
+"User that responsible to review document\n"
+"\n"
+"* Unless it configured to approve reviewer does not equal to approver"
 msgstr ""
 
 #. module: ssi_stock_revaluation
