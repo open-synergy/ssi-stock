@@ -794,6 +794,7 @@ msgid "Main Attachment"
 msgstr ""
 
 #. module: ssi_stock
+#: model:ir.model.fields,field_description:ssi_stock.field_picking_type_category__manager_id
 #: model:ir.model.fields,field_description:ssi_stock.field_stock_warehouse__manager_id
 msgid "Manager"
 msgstr ""
@@ -1177,6 +1178,11 @@ msgid "Reload Template Policy"
 msgstr ""
 
 #. module: ssi_stock
+#: model_terms:ir.ui.view,arch_db:ssi_stock.picking_type_category_view_form
+msgid "Responsible"
+msgstr ""
+
+#. module: ssi_stock
 #: model:ir.model.fields,field_description:ssi_stock.field_location_type__activity_user_id
 #: model:ir.model.fields,field_description:ssi_stock.field_picking_type_category__activity_user_id
 msgid "Responsible User"
@@ -1307,6 +1313,7 @@ msgid "Stolen"
 msgstr ""
 
 #. module: ssi_stock
+#: model:ir.model.fields,field_description:ssi_stock.field_picking_type_category__supervisor_ids
 #: model:ir.model.fields,field_description:ssi_stock.field_stock_warehouse__supervisor_ids
 msgid "Supervisors"
 msgstr ""
@@ -1394,6 +1401,7 @@ msgid "User"
 msgstr ""
 
 #. module: ssi_stock
+#: model:ir.model.fields,field_description:ssi_stock.field_picking_type_category__user_ids
 #: model:ir.model.fields,field_description:ssi_stock.field_stock_warehouse__user_ids
 msgid "Users"
 msgstr ""
