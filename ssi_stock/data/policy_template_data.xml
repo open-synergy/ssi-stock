@@ -30,12 +30,20 @@
     <field name="restrict_additional" eval="1" />
     <field name="additional_python_code">result = False
 allowed_user = False
-if env.user.id == document.picking_type_id.warehouse_id.manager_id.id:
-    allowed_user = True
-elif env.user.id in document.picking_type_id.warehouse_id.supervisor_ids.ids:
-    allowed_user = True
-elif env.user.id in document.picking_type_id.warehouse_id.user_ids.ids:
-    allowed_user = True
+if document.picking_type_id.warehouse_id:
+    if env.user.id == document.picking_type_id.warehouse_id.manager_id.id:
+        allowed_user = True
+    elif env.user.id in document.picking_type_id.warehouse_id.supervisor_ids.ids:
+        allowed_user = True
+    elif env.user.id in document.picking_type_id.warehouse_id.user_ids.ids:
+        allowed_user = True
+else:
+    if env.user.id == document.picking_type_category_id.manager_id.id:
+        allowed_user = True
+    elif env.user.id in document.picking_type_category_id.supervisor_ids.ids:
+        allowed_user = True
+    elif env.user.id in document.picking_type_category_id.user_ids.ids:
+        allowed_user = True
 
 if document.show_mark_as_todo and allowed_user:
     result = True
@@ -57,12 +65,20 @@ if document.show_mark_as_todo and allowed_user:
     <field name="restrict_additional" eval="1" />
     <field name="additional_python_code">result = False
 allowed_user = False
-if env.user.id == document.picking_type_id.warehouse_id.manager_id.id:
-    allowed_user = True
-elif env.user.id in document.picking_type_id.warehouse_id.supervisor_ids.ids:
-    allowed_user = True
-elif env.user.id in document.picking_type_id.warehouse_id.user_ids.ids:
-    allowed_user = True
+if document.picking_type_id.warehouse_id:
+    if env.user.id == document.picking_type_id.warehouse_id.manager_id.id:
+        allowed_user = True
+    elif env.user.id in document.picking_type_id.warehouse_id.supervisor_ids.ids:
+        allowed_user = True
+    elif env.user.id in document.picking_type_id.warehouse_id.user_ids.ids:
+        allowed_user = True
+else:
+    if env.user.id == document.picking_type_category_id.manager_id.id:
+        allowed_user = True
+    elif env.user.id in document.picking_type_category_id.supervisor_ids.ids:
+        allowed_user = True
+    elif env.user.id in document.picking_type_category_id.user_ids.ids:
+        allowed_user = True
 
 if document.show_check_availability and allowed_user:
     result = True
@@ -143,10 +159,16 @@ if env.user.id in document.active_approver_user_ids.ids and document.show_valida
     <field name="restrict_additional" eval="1" />
     <field name="additional_python_code">result = False
 allowed_user = False
-if env.user.id == document.picking_type_id.warehouse_id.manager_id.id:
-    allowed_user = True
-elif env.user.id in document.picking_type_id.warehouse_id.supervisor_ids.ids:
-    allowed_user = True
+if document.picking_type_id.warehouse_id:
+    if env.user.id == document.picking_type_id.warehouse_id.manager_id.id:
+        allowed_user = True
+    elif env.user.id in document.picking_type_id.warehouse_id.supervisor_ids.ids:
+        allowed_user = True
+else:
+    if env.user.id == document.picking_type_category_id.manager_id.id:
+        allowed_user = True
+    elif env.user.id in document.picking_type_category_id.supervisor_ids.ids:
+        allowed_user = True
 
 if document.state == 'assigned' and allowed_user:
     result = True
@@ -168,10 +190,17 @@ if document.state == 'assigned' and allowed_user:
     <field name="restrict_additional" eval="1" />
     <field name="additional_python_code">result = False
 allowed_user = False
-if env.user.id == document.picking_type_id.warehouse_id.manager_id.id:
-    allowed_user = True
-elif env.user.id in document.picking_type_id.warehouse_id.supervisor_ids.ids:
-    allowed_user = True
+
+if document.picking_type_id.warehouse_id:
+    if env.user.id == document.picking_type_id.warehouse_id.manager_id.id:
+        allowed_user = True
+    elif env.user.id in document.picking_type_id.warehouse_id.supervisor_ids.ids:
+        allowed_user = True
+else:
+    if env.user.id == document.picking_type_category_id.manager_id.id:
+        allowed_user = True
+    elif env.user.id in document.picking_type_category_id.supervisor_ids.ids:
+        allowed_user = True
 
 if document.state in ['partially_available'] and allowed_user and document.move_type != 'one':
     result = True
@@ -190,10 +219,16 @@ if document.state in ['partially_available'] and allowed_user and document.move_
     <field name="restrict_additional" eval="1" />
     <field name="additional_python_code">result = False
 allowed_user = False
-if env.user.id == document.picking_type_id.warehouse_id.manager_id.id:
-    allowed_user = True
-elif env.user.id in document.picking_type_id.warehouse_id.supervisor_ids.ids:
-    allowed_user = True
+if document.picking_type_id.warehouse_id:
+    if env.user.id == document.picking_type_id.warehouse_id.manager_id.id:
+        allowed_user = True
+    elif env.user.id in document.picking_type_id.warehouse_id.supervisor_ids.ids:
+        allowed_user = True
+else:
+    if env.user.id == document.picking_type_category_id.manager_id.id:
+        allowed_user = True
+    elif env.user.id in document.picking_type_category_id.supervisor_ids.ids:
+        allowed_user = True
 
 if document.state == 'done' and allowed_user:
     result = True
@@ -214,10 +249,16 @@ if document.state == 'done' and allowed_user:
     <field name="restrict_additional" eval="1" />
     <field name="additional_python_code">result = False
 allowed_user = False
-if env.user.id == document.picking_type_id.warehouse_id.manager_id.id:
-    allowed_user = True
-elif env.user.id in document.picking_type_id.warehouse_id.supervisor_ids.ids:
-    allowed_user = True
+if document.picking_type_id.warehouse_id:
+    if env.user.id == document.picking_type_id.warehouse_id.manager_id.id:
+        allowed_user = True
+    elif env.user.id in document.picking_type_id.warehouse_id.supervisor_ids.ids:
+        allowed_user = True
+else:
+    if env.user.id == document.picking_type_category_id.manager_id.id:
+        allowed_user = True
+    elif env.user.id in document.picking_type_category_id.supervisor_ids.ids:
+        allowed_user = True
 
 if document.state != 'cancel' and allowed_user:
     result = True
@@ -239,10 +280,16 @@ if document.state != 'cancel' and allowed_user:
     <field name="restrict_additional" eval="1" />
     <field name="additional_python_code">result = False
 allowed_user = False
-if env.user.id == document.picking_type_id.warehouse_id.manager_id.id:
-    allowed_user = True
-elif env.user.id in document.picking_type_id.warehouse_id.supervisor_ids.ids:
-    allowed_user = True
+if document.picking_type_id.warehouse_id:
+    if env.user.id == document.picking_type_id.warehouse_id.manager_id.id:
+        allowed_user = True
+    elif env.user.id in document.picking_type_id.warehouse_id.supervisor_ids.ids:
+        allowed_user = True
+else:
+    if env.user.id == document.picking_type_category_id.manager_id.id:
+        allowed_user = True
+    elif env.user.id in document.picking_type_category_id.supervisor_ids.ids:
+        allowed_user = True
 
 if document.state == 'cancel' and allowed_user:
     result = True
