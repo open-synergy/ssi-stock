@@ -56,6 +56,7 @@
         "views/waste_views.xml",
         "views/stolen_views.xml",
         "views/lost_views.xml",
+        "views/shrinkage_views.xml",
         "views/adjustment_in_views.xml",
         "views/adjustment_out_views.xml",
         "views/interwarehouse_in_views.xml",

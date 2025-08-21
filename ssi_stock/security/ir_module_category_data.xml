@@ -184,4 +184,15 @@
     <field name="name">Inter-Warehouse In</field>
     <field name="parent_id" ref="inventory_data_ownership_module_category" />
 </record>
+
+<!-- Shrinkage-->
+<record id="shrinkage_module_category" model="ir.module.category">
+    <field name="name">Shrinkage</field>
+    <field name="parent_id" ref="inventory_workflow_module_category" />
+</record>
+
+<record id="shrinkage_data_ownership_module_category" model="ir.module.category">
+    <field name="name">Shrinkage</field>
+    <field name="parent_id" ref="inventory_data_ownership_module_category" />
+</record>
 </odoo>

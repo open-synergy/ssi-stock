@@ -48,6 +48,13 @@
     <field name="is_warehouse_location" eval="0" />
 </record>
 
+<record id="location_type_shrinkage" model="location_type">
+    <field name="name">Shrinkage</field>
+    <field name="code">SHR</field>
+    <field name="usage">inventory</field>
+    <field name="is_warehouse_location" eval="0" />
+</record>
+
 <record id="location_type_waste" model="location_type">
     <field name="name">Waste</field>
     <field name="code">WST</field>
