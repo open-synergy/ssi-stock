@@ -96,6 +96,25 @@ class PickingTypeCategory(models.Model):
         readonly=True,
     )
 
+    manager_id = fields.Many2one(
+        string="Manager",
+        comodel_name="res.users",
+    )
+    supervisor_ids = fields.Many2many(
+        string="Supervisors",
+        comodel_name="res.users",
+        relation="rel_picking_type_category_2_supervisor",
+        column1="category_id",
+        column2="user_id",
+    )
+    user_ids = fields.Many2many(
+        string="Users",
+        comodel_name="res.users",
+        relation="rel_picking_type_category_2_user",
+        column1="category_id",
+        column2="user_id",
+    )
+
     def action_create_menu(self):
         for record in self.sudo():
             record._create_menu()

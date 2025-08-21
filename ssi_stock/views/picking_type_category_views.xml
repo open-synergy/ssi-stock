@@ -95,6 +95,13 @@
                     </group>
                     <field name="allowed_destination_location_type_ids" />
                 </page>
+                <page name="responsibe" string="Responsible">
+                    <group name="responsible_1" colspan="4" col="2">
+                        <field name="manager_id" widget="many2one_avatar" />
+                        <field name="supervisor_ids" widget="many2many_tags_avatar" />
+                        <field name="user_ids" widget="many2many_tags_avatar" />
+                    </group>
+                </page>
                 <page name="menu" string="Menu">
                     <button
                             name="action_create_menu"
