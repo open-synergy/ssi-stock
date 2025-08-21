@@ -120,6 +120,7 @@ msgstr ""
 #: model:res.groups,name:ssi_stock.lost_all_group
 #: model:res.groups,name:ssi_stock.pack_all_group
 #: model:res.groups,name:ssi_stock.pick_all_group
+#: model:res.groups,name:ssi_stock.shrinkage_all_group
 #: model:res.groups,name:ssi_stock.stolen_all_group
 #: model:res.groups,name:ssi_stock.waste_all_group
 msgid "All"
@@ -318,6 +319,7 @@ msgstr ""
 #: model:res.groups,name:ssi_stock.lost_company_group
 #: model:res.groups,name:ssi_stock.pack_company_group
 #: model:res.groups,name:ssi_stock.pick_company_group
+#: model:res.groups,name:ssi_stock.shrinkage_company_group
 #: model:res.groups,name:ssi_stock.stolen_company_group
 #: model:res.groups,name:ssi_stock.waste_company_group
 msgid "Company"
@@ -335,6 +337,7 @@ msgstr ""
 #: model:res.groups,name:ssi_stock.lost_company_child_group
 #: model:res.groups,name:ssi_stock.pack_company_child_group
 #: model:res.groups,name:ssi_stock.pick_company_child_group
+#: model:res.groups,name:ssi_stock.shrinkage_company_child_group
 #: model:res.groups,name:ssi_stock.stolen_company_child_group
 #: model:res.groups,name:ssi_stock.waste_company_child_group
 msgid "Company and All Child Companies"
@@ -1254,6 +1257,18 @@ msgid "Show original inventory menu"
 msgstr ""
 
 #. module: ssi_stock
+#: model:ir.actions.act_window,name:ssi_stock.shrinkage_action
+#: model:ir.module.category,name:ssi_stock.shrinkage_data_ownership_module_category
+#: model:ir.module.category,name:ssi_stock.shrinkage_module_category
+msgid "Shrinkage"
+msgstr ""
+
+#. module: ssi_stock
+#: model:ir.ui.menu,name:ssi_stock.shrinkage_menu
+msgid "Shrinkages"
+msgstr ""
+
+#. module: ssi_stock
 #: model_terms:ir.ui.view,arch_db:ssi_stock.picking_type_category_view_form
 msgid "Source Locations"
 msgstr ""
@@ -1372,6 +1387,7 @@ msgstr ""
 #: model:res.groups,name:ssi_stock.lost_user_group
 #: model:res.groups,name:ssi_stock.pack_user_group
 #: model:res.groups,name:ssi_stock.pick_user_group
+#: model:res.groups,name:ssi_stock.shrinkage_user_group
 #: model:res.groups,name:ssi_stock.stolen_user_group
 #: model:res.groups,name:ssi_stock.waste_user_group
 msgid "User"
@@ -1399,6 +1415,7 @@ msgstr ""
 #: model:res.groups,name:ssi_stock.lost_validator_group
 #: model:res.groups,name:ssi_stock.pack_validator_group
 #: model:res.groups,name:ssi_stock.pick_validator_group
+#: model:res.groups,name:ssi_stock.shrinkage_validator_group
 #: model:res.groups,name:ssi_stock.stolen_validator_group
 #: model:res.groups,name:ssi_stock.waste_validator_group
 msgid "Validator"
@@ -1426,6 +1443,7 @@ msgstr ""
 #: model:res.groups,name:ssi_stock.lost_viewer_group
 #: model:res.groups,name:ssi_stock.pack_viewer_group
 #: model:res.groups,name:ssi_stock.pick_viewer_group
+#: model:res.groups,name:ssi_stock.shrinkage_viewer_group
 #: model:res.groups,name:ssi_stock.stolen_viewer_group
 #: model:res.groups,name:ssi_stock.waste_viewer_group
 msgid "Viewer"
