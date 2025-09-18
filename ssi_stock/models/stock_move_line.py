@@ -58,20 +58,22 @@ class StockMoveLine(models.Model):
                         f"Please cancel transfer {last_move_line_id.picking_id.name} first."
                     )
                 )
-            quant_obj = self.env["stock.quant"]
-            quant_obj._update_available_quantity(
-                ml.product_id,
-                ml.location_id,
-                ml.qty_done,
-                lot_id=ml.lot_id,
-                package_id=ml.package_id,
-                owner_id=ml.owner_id,
-            )
-            quant_obj._update_available_quantity(
-                ml.product_id,
-                ml.location_dest_id,
-                -ml.qty_done,
-                lot_id=ml.lot_id,
-                package_id=ml.result_package_id,
-                owner_id=ml.owner_id,
-            )
+
+            if ml.product_id.type == "product":
+                quant_obj = self.env["stock.quant"]
+                quant_obj._update_available_quantity(
+                    ml.product_id,
+                    ml.location_id,
+                    ml.qty_done,
+                    lot_id=ml.lot_id,
+                    package_id=ml.package_id,
+                    owner_id=ml.owner_id,
+                )
+                quant_obj._update_available_quantity(
+                    ml.product_id,
+                    ml.location_dest_id,
+                    -ml.qty_done,
+                    lot_id=ml.lot_id,
+                    package_id=ml.result_package_id,
+                    owner_id=ml.owner_id,
+                )
