@@ -21,10 +21,16 @@ msgid "All"
 msgstr ""
 
 #. module: ssi_stock_canvas_operation
+#: model:location_type,name:ssi_stock_canvas_operation.location_type_canvas
+msgid "Canvas"
+msgstr ""
+
+#. module: ssi_stock_canvas_operation
 #: model:ir.actions.act_window,name:ssi_stock_canvas_operation.canvas_in_action
 #: model:ir.module.category,name:ssi_stock_canvas_operation.canvas_in_data_ownership_module_category
 #: model:ir.module.category,name:ssi_stock_canvas_operation.canvas_in_workflow_module_category
 #: model:ir.ui.menu,name:ssi_stock_canvas_operation.canvas_in_menu
+#: model:picking_type_category,name:ssi_stock_canvas_operation.picking_category_canvas_in
 msgid "Canvas In"
 msgstr ""
 
@@ -39,6 +45,7 @@ msgstr ""
 #: model:ir.module.category,name:ssi_stock_canvas_operation.canvas_out_data_ownership_module_category
 #: model:ir.module.category,name:ssi_stock_canvas_operation.canvas_out_workflow_module_category
 #: model:ir.ui.menu,name:ssi_stock_canvas_operation.canvas_out_menu
+#: model:picking_type_category,name:ssi_stock_canvas_operation.picking_category_canvas_out
 msgid "Canvas Out"
 msgstr ""
 
@@ -81,6 +88,7 @@ msgstr ""
 #: model:ir.module.category,name:ssi_stock_canvas_operation.sale_canvas_data_ownership_module_category
 #: model:ir.module.category,name:ssi_stock_canvas_operation.sale_canvas_workflow_module_category
 #: model:ir.ui.menu,name:ssi_stock_canvas_operation.sale_canvas_menu
+#: model:picking_type_category,name:ssi_stock_canvas_operation.picking_category_sale_canvas
 msgid "Sale Canvas"
 msgstr ""
 
