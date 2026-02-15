@@ -21,6 +21,7 @@
                 name="allowed_destination_location_type_ids"
                 eval="[(4, ref('location_type_main_stock')),(4, ref('location_type_stock'))]"
             />
+    <field name="module_categ_id" ref="goods_receipt_module_category" />
 </record>
 
 <record id="picking_category_do" model="picking_type_category">
@@ -40,6 +41,7 @@
                 name="allowed_destination_location_type_ids"
                 eval="[(4, ref('location_type_customer'))]"
             />
+    <field name="module_categ_id" ref="delivery_order_module_category" />
 </record>
 
 <record id="picking_category_int" model="picking_type_category">
@@ -59,6 +61,7 @@
                 name="allowed_destination_location_type_ids"
                 eval="[(4, ref('location_type_main_stock')), (4, ref('location_type_stock'))]"
             />
+    <field name="module_categ_id" ref="internal_transfer_module_category" />
 </record>
 
 <record id="picking_category_pick" model="picking_type_category">
@@ -78,6 +81,7 @@
                 name="allowed_destination_location_type_ids"
                 eval="[(4, ref('location_type_main_stock')), (4, ref('location_type_stock'))]"
             />
+    <field name="module_categ_id" ref="pick_module_category" />
 </record>
 
 <record id="picking_category_pack" model="picking_type_category">
@@ -97,6 +101,7 @@
                 name="allowed_destination_location_type_ids"
                 eval="[(4, ref('location_type_main_stock')), (4, ref('location_type_stock'))]"
             />
+    <field name="module_categ_id" ref="pack_module_category" />
 </record>
 
 <record id="picking_category_con" model="picking_type_category">
@@ -119,6 +124,7 @@
                 name="allowed_destination_location_type_ids"
                 eval="[(4, ref('location_type_consumption'))]"
             />
+    <field name="module_categ_id" ref="consume_module_category" />
 </record>
 
 <record id="picking_category_wst" model="picking_type_category">
@@ -138,6 +144,7 @@
                 name="allowed_destination_location_type_ids"
                 eval="[(4, ref('location_type_waste'))]"
             />
+    <field name="module_categ_id" ref="waste_module_category" />
 </record>
 
 <record id="picking_category_stl" model="picking_type_category">
@@ -157,6 +164,7 @@
                 name="allowed_destination_location_type_ids"
                 eval="[(4, ref('location_type_stolen'))]"
             />
+    <field name="module_categ_id" ref="stolen_module_category" />
 </record>
 
 <record id="picking_category_lst" model="picking_type_category">
@@ -176,6 +184,7 @@
                 name="allowed_destination_location_type_ids"
                 eval="[(4, ref('location_type_lost'))]"
             />
+    <field name="module_categ_id" ref="lost_module_category" />
 </record>
 
 <record id="picking_category_adjustment" model="picking_type_category">
@@ -201,6 +210,7 @@
                 name="allowed_destination_location_type_ids"
                 eval="[(4, ref('location_type_main_stock')), (4, ref('location_type_stock'))]"
             />
+    <field name="module_categ_id" ref="adjustment_in_module_category" />
 </record>
 
 <record id="picking_category_ado" model="picking_type_category">
@@ -223,6 +233,7 @@
                 name="allowed_destination_location_type_ids"
                 eval="[(4, ref('location_type_inventory_loss'))]"
             />
+    <field name="module_categ_id" ref="adjustment_out_module_category" />
 </record>
 
 <record id="picking_category_iwo" model="picking_type_category">
@@ -241,6 +252,7 @@
                 name="allowed_destination_location_type_ids"
                 eval="[(6, 0, [ref('location_type_push')])]"
             />
+    <field name="module_categ_id" ref="interwarehouse_out_module_category" />
 </record>
 
 <record id="picking_category_iwi" model="picking_type_category">
@@ -259,6 +271,7 @@
                 name="allowed_destination_location_type_ids"
                 eval="[(6, 0, [ref('location_type_pull')])]"
             />
+    <field name="module_categ_id" ref="interwarehouse_in_module_category" />
 </record>
 
 <record id="picking_category_shr" model="picking_type_category">
@@ -278,6 +291,7 @@
                 name="allowed_destination_location_type_ids"
                 eval="[(4, ref('location_type_shrinkage'))]"
             />
+    <field name="module_categ_id" ref="shrinkage_module_category" />
 </record>
 </data>
 </odoo>
