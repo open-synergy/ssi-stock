@@ -36,6 +36,7 @@ msgstr ""
 #: model:ir.module.category,name:ssi_stock_reject_operation.customer_reject_in_data_ownership_module_category
 #: model:ir.module.category,name:ssi_stock_reject_operation.customer_reject_in_workflow_module_category
 #: model:ir.ui.menu,name:ssi_stock_reject_operation.customer_reject_in_menu
+#: model:picking_type_category,name:ssi_stock_reject_operation.picking_category_customer_reject_in
 msgid "Customer Reject In"
 msgstr ""
 
@@ -44,6 +45,7 @@ msgstr ""
 #: model:ir.module.category,name:ssi_stock_reject_operation.supplier_reject_out_data_ownership_module_category
 #: model:ir.module.category,name:ssi_stock_reject_operation.supplier_reject_out_workflow_module_category
 #: model:ir.ui.menu,name:ssi_stock_reject_operation.supplier_reject_out_menu
+#: model:picking_type_category,name:ssi_stock_reject_operation.picking_category_supplier_reject_out
 msgid "Supplier Reject Out"
 msgstr ""
 
