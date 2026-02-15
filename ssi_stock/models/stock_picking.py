@@ -1,7 +1,7 @@
 # Copyright 2023 OpenSynergy Indonesia
 # Copyright 2023 PT. Simetri Sinergi Indonesia
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-
+from lxml import etree
 
 from odoo import api, fields, models
 
@@ -134,7 +134,7 @@ class StockPicking(models.Model):
     )
 
     def _compute_policy(self):
-        _super = super(StockPicking, self)
+        _super = super()
         _super._compute_policy()
 
     @api.depends(
@@ -191,7 +191,7 @@ class StockPicking(models.Model):
 
     @api.model
     def _get_policy_field(self):
-        res = super(StockPicking, self)._get_policy_field()
+        res = super()._get_policy_field()
         policy_field = [
             "mark_as_todo_ok",
             "check_availability_ok",
@@ -232,3 +232,44 @@ class StockPicking(models.Model):
 
     def action_draft(self):
         self.move_lines.action_draft()
+
+    def check_group(self, module_categ_id):
+        Group = self.env["res.groups"]
+        criteria = [("category_id", "=", module_categ_id), ("name", "<>", "Viewer")]
+        group = Group.search(criteria)
+        if group:
+            user = self.env.user
+            return bool(set(group.ids) & set(user.groups_id.ids))
+        return False
+
+    @api.model
+    def fields_view_get(
+        self, view_id=None, view_type="form", toolbar=False, submenu=False
+    ):
+        result = super().fields_view_get(
+            view_id=view_id, view_type=view_type, toolbar=toolbar, submenu=submenu
+        )
+        if view_type not in ("tree", "form"):
+            return result
+
+        ctx = self.env.context
+        picking_type_categ_id = ctx.get("default_picking_type_category_id")
+        if not picking_type_categ_id:
+            return result
+
+        picking_type_categ = self.env["picking_type_category"].browse(
+            picking_type_categ_id
+        )
+        can_ced = False
+
+        if self.check_group(picking_type_categ.module_categ_id.id):
+            can_ced = True
+
+        if can_ced:
+            doc = etree.XML(result["arch"])
+            doc.set("create", "true")
+            doc.set("edit", "true")
+            doc.set("delete", "true")
+            result["arch"] = etree.tostring(doc, encoding="unicode")
+
+        return result

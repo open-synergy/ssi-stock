@@ -114,6 +114,10 @@ class PickingTypeCategory(models.Model):
         column1="category_id",
         column2="user_id",
     )
+    module_categ_id = fields.Many2one(
+        string="Application",
+        comodel_name="ir.module.category",
+    )
 
     def action_create_menu(self):
         for record in self.sudo():

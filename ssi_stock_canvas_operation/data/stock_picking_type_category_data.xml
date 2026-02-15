@@ -21,6 +21,7 @@
                 name="allowed_destination_location_type_ids"
                 eval="[(6, 0, [ref('location_type_canvas')])]"
             />
+    <field name="module_categ_id" ref="canvas_out_workflow_module_category" />
 </record>
 
 <record id="picking_category_canvas_in" model="picking_type_category">
@@ -40,6 +41,7 @@
                 name="allowed_destination_location_type_ids"
                 eval="[(6, 0, [ref('ssi_stock.location_type_main_stock'),ref('ssi_stock.location_type_stock')])]"
             />
+    <field name="module_categ_id" ref="canvas_in_workflow_module_category" />
 </record>
 
 <record id="picking_category_sale_canvas" model="picking_type_category">
@@ -59,6 +61,7 @@
                 name="allowed_destination_location_type_ids"
                 eval="[(6, 0, [ref('ssi_stock.location_type_customer')])]"
             />
+    <field name="module_categ_id" ref="sale_canvas_workflow_module_category" />
 </record>
 
 
