@@ -21,18 +21,18 @@ addon | version | maintainers | summary
 [ssi_landed_cost](ssi_landed_cost/) | 14.0.2.0.0 |  | Landed Cost Extension
 [ssi_mrp_landed_cost](ssi_mrp_landed_cost/) | 14.0.2.0.0 |  | Landed Cost - MRP Extension
 [ssi_production_lot_qrcode](ssi_production_lot_qrcode/) | 14.0.1.0.0 |  | Inventory Lot QR Code
-[ssi_stock](ssi_stock/) | 14.0.8.2.1 |  | Inventory
+[ssi_stock](ssi_stock/) | 14.0.8.3.0 |  | Inventory
 [ssi_stock_account](ssi_stock_account/) | 14.0.2.26.1 |  | Inventory + Accounting Integration
-[ssi_stock_canvas_operation](ssi_stock_canvas_operation/) | 14.0.1.1.0 |  | Donation Inventory Operation
-[ssi_stock_donation_operation](ssi_stock_donation_operation/) | 14.0.1.1.0 |  | Donation Inventory Operation
-[ssi_stock_equipment_operation](ssi_stock_equipment_operation/) | 14.0.1.0.0 |  | Equipment Inventory Operation
+[ssi_stock_canvas_operation](ssi_stock_canvas_operation/) | 14.0.1.2.0 |  | Donation Inventory Operation
+[ssi_stock_donation_operation](ssi_stock_donation_operation/) | 14.0.1.2.0 |  | Donation Inventory Operation
+[ssi_stock_equipment_operation](ssi_stock_equipment_operation/) | 14.0.1.1.0 |  | Equipment Inventory Operation
 [ssi_stock_fixed_asset](ssi_stock_fixed_asset/) | 14.0.2.2.0 |  | Inventory + Fixed Asset Integration
 [ssi_stock_location_m2o_configurator_mixin](ssi_stock_location_m2o_configurator_mixin/) | 14.0.1.0.0 |  | stock.location Many2one Configurator Mixin
 [ssi_stock_picking_related_attachment](ssi_stock_picking_related_attachment/) | 14.0.1.2.0 |  | Assurance Report - Related Attachment Integration
 [ssi_stock_picking_state_change_constrain](ssi_stock_picking_state_change_constrain/) | 14.0.1.1.0 |  | Stock Picking + State Change Constrain Integration
-[ssi_stock_promotion_operation](ssi_stock_promotion_operation/) | 14.0.1.1.0 |  | Promotion Inventory Operation
-[ssi_stock_reject_operation](ssi_stock_reject_operation/) | 14.0.1.0.0 |  | Reject Inventory Operation
-[ssi_stock_rent_operation](ssi_stock_rent_operation/) | 14.0.1.1.0 |  | Donation Inventory Operation
+[ssi_stock_promotion_operation](ssi_stock_promotion_operation/) | 14.0.1.2.0 |  | Promotion Inventory Operation
+[ssi_stock_reject_operation](ssi_stock_reject_operation/) | 14.0.1.1.0 |  | Reject Inventory Operation
+[ssi_stock_rent_operation](ssi_stock_rent_operation/) | 14.0.1.2.0 |  | Donation Inventory Operation
 [ssi_stock_revaluation](ssi_stock_revaluation/) | 14.0.1.2.0 |  | Stock Revaluation
 [ssi_stock_route_m2o_configurator_mixin](ssi_stock_route_m2o_configurator_mixin/) | 14.0.1.0.0 |  | stock.location.route Many2one Configurator Mixin
 [ssi_stock_valuation_layer_recomputation](ssi_stock_valuation_layer_recomputation/) | 14.0.1.0.0 |  | Stock Valuation Layer Usage Recomputation
