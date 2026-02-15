@@ -87,10 +87,16 @@ msgid "Actual Movement date"
 msgstr ""
 
 #. module: ssi_stock
+#: model:picking_type_category,name:ssi_stock.picking_category_adjustment
+msgid "Adjustment"
+msgstr ""
+
+#. module: ssi_stock
 #: model:ir.actions.act_window,name:ssi_stock.adjustment_in_action
 #: model:ir.module.category,name:ssi_stock.adjustment_in_data_ownership_module_category
 #: model:ir.module.category,name:ssi_stock.adjustment_in_module_category
 #: model:ir.ui.menu,name:ssi_stock.adjustment_in_menu
+#: model:picking_type_category,name:ssi_stock.picking_category_adi
 msgid "Adjustment In"
 msgstr ""
 
@@ -99,6 +105,7 @@ msgstr ""
 #: model:ir.module.category,name:ssi_stock.adjustment_out_data_ownership_module_category
 #: model:ir.module.category,name:ssi_stock.adjustment_out_module_category
 #: model:ir.ui.menu,name:ssi_stock.adjustment_out_menu
+#: model:picking_type_category,name:ssi_stock.picking_category_ado
 msgid "Adjustment Out"
 msgstr ""
 
@@ -167,6 +174,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:ssi_stock.field_stock_picking__allowed_source_location_ids
 #: model:ir.model.fields,field_description:ssi_stock.field_stock_picking_type__allowed_source_location_ids
 msgid "Allowed Source Locations"
+msgstr ""
+
+#. module: ssi_stock
+#: model:ir.model.fields,field_description:ssi_stock.field_picking_type_category__module_categ_id
+msgid "Application"
 msgstr ""
 
 #. module: ssi_stock
@@ -358,7 +370,13 @@ msgstr ""
 #. module: ssi_stock
 #: model:ir.module.category,name:ssi_stock.consume_data_ownership_module_category
 #: model:ir.module.category,name:ssi_stock.consume_module_category
+#: model:picking_type_category,name:ssi_stock.picking_category_con
 msgid "Consume"
+msgstr ""
+
+#. module: ssi_stock
+#: model:location_type,name:ssi_stock.location_type_consumption
+msgid "Consumption"
 msgstr ""
 
 #. module: ssi_stock
@@ -403,6 +421,7 @@ msgstr ""
 
 #. module: ssi_stock
 #: model:ir.model.fields.selection,name:ssi_stock.selection__location_type__usage__customer
+#: model:location_type,name:ssi_stock.location_type_customer
 msgid "Customer Location"
 msgstr ""
 
@@ -435,6 +454,7 @@ msgstr ""
 #. module: ssi_stock
 #: model:ir.module.category,name:ssi_stock.delivery_order_data_ownership_module_category
 #: model:ir.module.category,name:ssi_stock.delivery_order_module_category
+#: model:picking_type_category,name:ssi_stock.picking_category_do
 msgid "Delivery Order"
 msgstr ""
 
@@ -529,6 +549,7 @@ msgstr ""
 #. module: ssi_stock
 #: model:ir.module.category,name:ssi_stock.goods_receipt_data_ownership_module_category
 #: model:ir.module.category,name:ssi_stock.goods_receipt_module_category
+#: model:picking_type_category,name:ssi_stock.picking_category_gr
 msgid "Goods Receipt"
 msgstr ""
 
@@ -610,6 +631,7 @@ msgstr ""
 #: model:ir.module.category,name:ssi_stock.interwarehouse_in_data_ownership_module_category
 #: model:ir.module.category,name:ssi_stock.interwarehouse_in_module_category
 #: model:ir.ui.menu,name:ssi_stock.interwarehouse_in_menu
+#: model:picking_type_category,name:ssi_stock.picking_category_iwi
 msgid "Inter-Warehouse In"
 msgstr ""
 
@@ -618,6 +640,7 @@ msgstr ""
 #: model:ir.module.category,name:ssi_stock.interwarehouse_out_data_ownership_module_category
 #: model:ir.module.category,name:ssi_stock.interwarehouse_out_module_category
 #: model:ir.ui.menu,name:ssi_stock.interwarehouse_out_menu
+#: model:picking_type_category,name:ssi_stock.picking_category_iwo
 msgid "Inter-Warehouse Out"
 msgstr ""
 
@@ -639,6 +662,7 @@ msgstr ""
 #. module: ssi_stock
 #: model:ir.module.category,name:ssi_stock.internal_transfer_data_ownership_module_category
 #: model:ir.module.category,name:ssi_stock.internal_transfer_module_category
+#: model:picking_type_category,name:ssi_stock.picking_category_int
 msgid "Internal Transfer"
 msgstr ""
 
@@ -686,6 +710,7 @@ msgstr ""
 
 #. module: ssi_stock
 #: model:ir.model.fields.selection,name:ssi_stock.selection__location_type__usage__inventory
+#: model:location_type,name:ssi_stock.location_type_inventory_loss
 msgid "Inventory Loss"
 msgstr ""
 
@@ -768,6 +793,8 @@ msgstr ""
 #: model:ir.module.category,name:ssi_stock.lost_data_ownership_module_category
 #: model:ir.module.category,name:ssi_stock.lost_module_category
 #: model:ir.ui.menu,name:ssi_stock.lost_menu
+#: model:location_type,name:ssi_stock.location_type_lost
+#: model:picking_type_category,name:ssi_stock.picking_category_lst
 msgid "Lost"
 msgstr ""
 
@@ -791,6 +818,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:ssi_stock.field_location_type__message_main_attachment_id
 #: model:ir.model.fields,field_description:ssi_stock.field_picking_type_category__message_main_attachment_id
 msgid "Main Attachment"
+msgstr ""
+
+#. module: ssi_stock
+#: model:location_type,name:ssi_stock.location_type_main_stock
+msgid "Main Stock Location"
 msgstr ""
 
 #. module: ssi_stock
@@ -972,6 +1004,8 @@ msgstr ""
 #. module: ssi_stock
 #: model:ir.module.category,name:ssi_stock.pack_data_ownership_module_category
 #: model:ir.module.category,name:ssi_stock.pack_module_category
+#: model:location_type,name:ssi_stock.location_type_pack
+#: model:picking_type_category,name:ssi_stock.picking_category_pack
 msgid "Pack"
 msgstr ""
 
@@ -994,6 +1028,8 @@ msgstr ""
 #. module: ssi_stock
 #: model:ir.module.category,name:ssi_stock.pick_data_ownership_module_category
 #: model:ir.module.category,name:ssi_stock.pick_module_category
+#: model:location_type,name:ssi_stock.location_type_pick
+#: model:picking_type_category,name:ssi_stock.picking_category_pick
 msgid "Pick"
 msgstr ""
 
@@ -1266,6 +1302,8 @@ msgstr ""
 #: model:ir.actions.act_window,name:ssi_stock.shrinkage_action
 #: model:ir.module.category,name:ssi_stock.shrinkage_data_ownership_module_category
 #: model:ir.module.category,name:ssi_stock.shrinkage_module_category
+#: model:location_type,name:ssi_stock.location_type_shrinkage
+#: model:picking_type_category,name:ssi_stock.picking_category_shr
 msgid "Shrinkage"
 msgstr ""
 
@@ -1290,6 +1328,11 @@ msgid ""
 msgstr ""
 
 #. module: ssi_stock
+#: model:location_type,name:ssi_stock.location_type_stock
+msgid "Stock Location"
+msgstr ""
+
+#. module: ssi_stock
 #: model:ir.model,name:ssi_stock.model_stock_move
 msgid "Stock Move"
 msgstr ""
@@ -1309,6 +1352,8 @@ msgstr ""
 #: model:ir.module.category,name:ssi_stock.stolen_data_ownership_module_category
 #: model:ir.module.category,name:ssi_stock.stolen_module_category
 #: model:ir.ui.menu,name:ssi_stock.stolen_menu
+#: model:location_type,name:ssi_stock.location_type_stolen
+#: model:picking_type_category,name:ssi_stock.picking_category_stl
 msgid "Stolen"
 msgstr ""
 
@@ -1316,6 +1361,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:ssi_stock.field_picking_type_category__supervisor_ids
 #: model:ir.model.fields,field_description:ssi_stock.field_stock_warehouse__supervisor_ids
 msgid "Supervisors"
+msgstr ""
+
+#. module: ssi_stock
+#: model:location_type,name:ssi_stock.location_type_supplier
+msgid "Supplier Location"
 msgstr ""
 
 #. module: ssi_stock
@@ -1345,6 +1395,16 @@ msgstr ""
 #. module: ssi_stock
 #: model:ir.model.fields.selection,name:ssi_stock.selection__location_type__usage__transit
 msgid "Transit Location"
+msgstr ""
+
+#. module: ssi_stock
+#: model:location_type,name:ssi_stock.location_type_pull
+msgid "Transit Pull"
+msgstr ""
+
+#. module: ssi_stock
+#: model:location_type,name:ssi_stock.location_type_push
+msgid "Transit Push"
 msgstr ""
 
 #. module: ssi_stock
@@ -1464,6 +1524,11 @@ msgid "Warehouse"
 msgstr ""
 
 #. module: ssi_stock
+#: model:location_type,name:ssi_stock.location_type_root
+msgid "Warehouse Root View"
+msgstr ""
+
+#. module: ssi_stock
 #: model:ir.model.fields,field_description:ssi_stock.field_mass_create_location__warehouse_ids
 #: model:ir.model.fields,field_description:ssi_stock.field_mass_create_picking_type__warehouse_ids
 msgid "Warehouses"
@@ -1474,6 +1539,8 @@ msgstr ""
 #: model:ir.module.category,name:ssi_stock.waste_data_ownership_module_category
 #: model:ir.module.category,name:ssi_stock.waste_module_category
 #: model:ir.ui.menu,name:ssi_stock.waste_menu
+#: model:location_type,name:ssi_stock.location_type_waste
+#: model:picking_type_category,name:ssi_stock.picking_category_wst
 msgid "Waste"
 msgstr ""
 
