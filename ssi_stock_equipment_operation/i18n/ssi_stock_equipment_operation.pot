@@ -42,10 +42,16 @@ msgid "Display Name"
 msgstr ""
 
 #. module: ssi_stock_equipment_operation
+#: model:location_type,name:ssi_stock_equipment_operation.location_type_equipment
+msgid "Equipment"
+msgstr ""
+
+#. module: ssi_stock_equipment_operation
 #: model:ir.actions.act_window,name:ssi_stock_equipment_operation.equipment_in_action
 #: model:ir.module.category,name:ssi_stock_equipment_operation.equipment_in_data_ownership_module_category
 #: model:ir.module.category,name:ssi_stock_equipment_operation.equipment_in_workflow_module_category
 #: model:ir.ui.menu,name:ssi_stock_equipment_operation.equipment_in_menu
+#: model:picking_type_category,name:ssi_stock_equipment_operation.picking_category_eqi
 msgid "Equipment In"
 msgstr ""
 
@@ -60,6 +66,7 @@ msgstr ""
 #: model:ir.module.category,name:ssi_stock_equipment_operation.equipment_out_data_ownership_module_category
 #: model:ir.module.category,name:ssi_stock_equipment_operation.equipment_out_workflow_module_category
 #: model:ir.ui.menu,name:ssi_stock_equipment_operation.equipment_out_menu
+#: model:picking_type_category,name:ssi_stock_equipment_operation.picking_category_eqo
 msgid "Equipment Out"
 msgstr ""
 
