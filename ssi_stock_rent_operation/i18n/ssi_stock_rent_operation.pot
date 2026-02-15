@@ -43,10 +43,16 @@ msgid "Contact"
 msgstr ""
 
 #. module: ssi_stock_rent_operation
+#: model:location_type,name:ssi_stock_rent_operation.location_type_customer_rent
+msgid "Customer Rent"
+msgstr ""
+
+#. module: ssi_stock_rent_operation
 #: model:ir.actions.act_window,name:ssi_stock_rent_operation.customer_rent_in_action
 #: model:ir.module.category,name:ssi_stock_rent_operation.customer_rent_in_data_ownership_module_category
 #: model:ir.module.category,name:ssi_stock_rent_operation.customer_rent_in_workflow_module_category
 #: model:ir.ui.menu,name:ssi_stock_rent_operation.customer_rent_in_menu
+#: model:picking_type_category,name:ssi_stock_rent_operation.picking_category_customer_rent_in
 msgid "Customer Rent In"
 msgstr ""
 
@@ -61,6 +67,7 @@ msgstr ""
 #: model:ir.module.category,name:ssi_stock_rent_operation.customer_rent_out_data_ownership_module_category
 #: model:ir.module.category,name:ssi_stock_rent_operation.customer_rent_out_workflow_module_category
 #: model:ir.ui.menu,name:ssi_stock_rent_operation.customer_rent_out_menu
+#: model:picking_type_category,name:ssi_stock_rent_operation.picking_category_customer_rent_out
 msgid "Customer Rent Out"
 msgstr ""
 
@@ -80,10 +87,16 @@ msgid "Last Modified on"
 msgstr ""
 
 #. module: ssi_stock_rent_operation
+#: model:location_type,name:ssi_stock_rent_operation.location_type_supplier_rent
+msgid "Supplier Rent"
+msgstr ""
+
+#. module: ssi_stock_rent_operation
 #: model:ir.actions.act_window,name:ssi_stock_rent_operation.supplier_rent_in_action
 #: model:ir.module.category,name:ssi_stock_rent_operation.supplier_rent_in_data_ownership_module_category
 #: model:ir.module.category,name:ssi_stock_rent_operation.supplier_rent_in_workflow_module_category
 #: model:ir.ui.menu,name:ssi_stock_rent_operation.supplier_rent_in_menu
+#: model:picking_type_category,name:ssi_stock_rent_operation.picking_category_supplier_rent_in
 msgid "Supplier Rent In"
 msgstr ""
 
@@ -98,6 +111,7 @@ msgstr ""
 #: model:ir.module.category,name:ssi_stock_rent_operation.supplier_rent_out_data_ownership_module_category
 #: model:ir.module.category,name:ssi_stock_rent_operation.supplier_rent_out_workflow_module_category
 #: model:ir.ui.menu,name:ssi_stock_rent_operation.supplier_rent_out_menu
+#: model:picking_type_category,name:ssi_stock_rent_operation.picking_category_supplier_rent_out
 msgid "Supplier Rent Out"
 msgstr ""
 
