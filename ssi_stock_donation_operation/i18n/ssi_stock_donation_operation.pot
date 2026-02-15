@@ -39,6 +39,8 @@ msgstr ""
 #. module: ssi_stock_donation_operation
 #: model:ir.module.category,name:ssi_stock_donation_operation.customer_donation_data_ownership_module_category
 #: model:ir.module.category,name:ssi_stock_donation_operation.customer_donation_workflow_module_category
+#: model:location_type,name:ssi_stock_donation_operation.location_type_customer_donation
+#: model:picking_type_category,name:ssi_stock_donation_operation.picking_category_cd
 msgid "Customer Donation"
 msgstr ""
 
@@ -72,6 +74,8 @@ msgstr ""
 #. module: ssi_stock_donation_operation
 #: model:ir.module.category,name:ssi_stock_donation_operation.supplier_donation_data_ownership_module_category
 #: model:ir.module.category,name:ssi_stock_donation_operation.supplier_donation_workflow_module_category
+#: model:location_type,name:ssi_stock_donation_operation.location_type_supplier_donation
+#: model:picking_type_category,name:ssi_stock_donation_operation.picking_category_sd
 msgid "Supplier Donation"
 msgstr ""
 
