@@ -32,11 +32,21 @@ msgid "Company and All Child Companies"
 msgstr ""
 
 #. module: ssi_stock_promotion_operation
+#: model:picking_type_category,name:ssi_stock_promotion_operation.picking_category_customer_promotion
+msgid "Customer Promotion"
+msgstr ""
+
+#. module: ssi_stock_promotion_operation
 #: model:ir.actions.act_window,name:ssi_stock_promotion_operation.customer_promotion_action
 #: model:ir.module.category,name:ssi_stock_promotion_operation.customer_promotion_data_ownership_module_category
 #: model:ir.module.category,name:ssi_stock_promotion_operation.customer_promotion_workflow_module_category
 #: model:ir.ui.menu,name:ssi_stock_promotion_operation.customer_promotion_menu
 msgid "Customer Promotion "
+msgstr ""
+
+#. module: ssi_stock_promotion_operation
+#: model:picking_type_category,name:ssi_stock_promotion_operation.picking_category_supplier_promotion
+msgid "Supplier Promotion"
 msgstr ""
 
 #. module: ssi_stock_promotion_operation
