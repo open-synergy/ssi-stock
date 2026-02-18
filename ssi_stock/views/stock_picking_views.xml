@@ -62,6 +62,15 @@
                 <attribute name="edit">false</attribute>
                 <attribute name="delete">false</attribute>
             </xpath>
+            <xpath
+                    expr="//button[@name='%(stock.act_stock_return_picking)d']"
+                    position="attributes"
+                >
+                <attribute
+                        name="attrs"
+                    >{'invisible':[('return_ok','=',False)]}</attribute>
+                <attribute name="groups" />
+            </xpath>
             <xpath expr="//button[@name='action_confirm']" position="attributes">
                 <attribute
                         name="attrs"
