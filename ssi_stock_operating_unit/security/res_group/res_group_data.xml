@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 OpenSynergy Indonesia
+     Copyright 2026 PT. Simetri Sinergi Indonesia
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+<!-- Good Receipt: Data Ownership -->
+<record id="good_receipt_ou_group" model="res.groups">
+    <field name="name">Operating Unit</field>
+    <field
+            name="category_id"
+            ref="ssi_stock.goods_receipt_data_ownership_module_category"
+        />
+</record>
+
+<record id="ssi_stock.goods_receipt_company_group" model="res.groups">
+    <field name="name">Company</field>
+    <field
+            name="category_id"
+            ref="ssi_stock.goods_receipt_data_ownership_module_category"
+        />
+    <field name="implied_ids" eval="[(4, ref('good_receipt_ou_group'))]" />
+    <field
+            name="users"
+            eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
+        />
+</record>
+
+<!-- Delivery Order: Data Ownership -->
+<record id="delivery_order_ou_group" model="res.groups">
+    <field name="name">Operating Unit</field>
+    <field
+            name="category_id"
+            ref="ssi_stock.delivery_order_data_ownership_module_category"
+        />
+</record>
+
+<record id="ssi_stock.delivery_order_company_group" model="res.groups">
+    <field name="name">Company</field>
+    <field
+            name="category_id"
+            ref="ssi_stock.delivery_order_data_ownership_module_category"
+        />
+    <field name="implied_ids" eval="[(4, ref('delivery_order_ou_group'))]" />
+    <field
+            name="users"
+            eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
+        />
+</record>
+
+<!-- Internal Transfer: Data Ownership -->
+<record id="internal_transfer_ou_group" model="res.groups">
+    <field name="name">Operating Unit</field>
+    <field
+            name="category_id"
+            ref="ssi_stock.internal_transfer_data_ownership_module_category"
+        />
+</record>
+
+<record id="ssi_stock.internal_transfer_company_group" model="res.groups">
+    <field name="name">Company</field>
+    <field
+            name="category_id"
+            ref="ssi_stock.internal_transfer_data_ownership_module_category"
+        />
+    <field name="implied_ids" eval="[(4, ref('internal_transfer_ou_group'))]" />
+    <field
+            name="users"
+            eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
+        />
+</record>
+
+<!-- Pick: Data Ownership -->
+<record id="pick_ou_group" model="res.groups">
+    <field name="name">Operating Unit</field>
+    <field name="category_id" ref="ssi_stock.pick_data_ownership_module_category" />
+</record>
+
+<record id="ssi_stock.pick_company_group" model="res.groups">
+    <field name="name">Company</field>
+    <field name="category_id" ref="ssi_stock.pick_data_ownership_module_category" />
+    <field name="implied_ids" eval="[(4, ref('pick_ou_group'))]" />
+    <field
+            name="users"
+            eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
+        />
+</record>
+
+<!-- Pack: Data Ownership -->
+<record id="pack_ou_group" model="res.groups">
+    <field name="name">Operating Unit</field>
+    <field name="category_id" ref="ssi_stock.pack_data_ownership_module_category" />
+</record>
+
+<record id="ssi_stock.pack_company_group" model="res.groups">
+    <field name="name">Company</field>
+    <field name="category_id" ref="ssi_stock.pack_data_ownership_module_category" />
+    <field name="implied_ids" eval="[(4, ref('pack_ou_group'))]" />
+    <field
+            name="users"
+            eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
+        />
+</record>
+
+<!-- Consume: Data Ownership -->
+<record id="consume_ou_group" model="res.groups">
+    <field name="name">Operating Unit</field>
+    <field name="category_id" ref="ssi_stock.consume_data_ownership_module_category" />
+</record>
+
+<record id="ssi_stock.consume_company_group" model="res.groups">
+    <field name="name">Company</field>
+    <field name="category_id" ref="ssi_stock.consume_data_ownership_module_category" />
+    <field name="implied_ids" eval="[(4, ref('consume_ou_group'))]" />
+    <field
+            name="users"
+            eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
+        />
+</record>
+
+<!-- Waste: Data Ownership -->
+<record id="waste_ou_group" model="res.groups">
+    <field name="name">Operating Unit</field>
+    <field name="category_id" ref="ssi_stock.waste_data_ownership_module_category" />
+</record>
+
+<record id="ssi_stock.waste_company_group" model="res.groups">
+    <field name="name">Company</field>
+    <field name="category_id" ref="ssi_stock.waste_data_ownership_module_category" />
+    <field name="implied_ids" eval="[(4, ref('waste_ou_group'))]" />
+    <field
+            name="users"
+            eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
+        />
+</record>
+
+<!-- Stolen: Data Ownership -->
+<record id="stolen_ou_group" model="res.groups">
+    <field name="name">Operating Unit</field>
+    <field name="category_id" ref="ssi_stock.stolen_data_ownership_module_category" />
+</record>
+
+<record id="ssi_stock.stolen_company_group" model="res.groups">
+    <field name="name">Company</field>
+    <field name="category_id" ref="ssi_stock.stolen_data_ownership_module_category" />
+    <field name="implied_ids" eval="[(4, ref('stolen_ou_group'))]" />
+    <field
+            name="users"
+            eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
+        />
+</record>
+
+<!-- Lost: Data Ownership -->
+<record id="lost_ou_group" model="res.groups">
+    <field name="name">Operating Unit</field>
+    <field name="category_id" ref="ssi_stock.lost_data_ownership_module_category" />
+</record>
+
+<record id="ssi_stock.lost_company_group" model="res.groups">
+    <field name="name">Company</field>
+    <field name="category_id" ref="ssi_stock.lost_data_ownership_module_category" />
+    <field name="implied_ids" eval="[(4, ref('lost_ou_group'))]" />
+    <field
+            name="users"
+            eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
+        />
+</record>
+
+<!-- Adjustment In: Data Ownership -->
+<record id="adjustment_in_ou_group" model="res.groups">
+    <field name="name">Operating Unit</field>
+    <field
+            name="category_id"
+            ref="ssi_stock.adjustment_in_data_ownership_module_category"
+        />
+</record>
+
+<record id="ssi_stock.adjustment_in_company_group" model="res.groups">
+    <field name="name">Company</field>
+    <field
+            name="category_id"
+            ref="ssi_stock.adjustment_in_data_ownership_module_category"
+        />
+    <field name="implied_ids" eval="[(4, ref('adjustment_in_ou_group'))]" />
+    <field
+            name="users"
+            eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
+        />
+</record>
+
+<!-- Adjustment In: Data Ownership -->
+<record id="adjustment_out_ou_group" model="res.groups">
+    <field name="name">Operating Unit</field>
+    <field
+            name="category_id"
+            ref="ssi_stock.adjustment_out_data_ownership_module_category"
+        />
+</record>
+
+<record id="ssi_stock.adjustment_out_company_group" model="res.groups">
+    <field name="name">Company</field>
+    <field
+            name="category_id"
+            ref="ssi_stock.adjustment_out_data_ownership_module_category"
+        />
+    <field name="implied_ids" eval="[(4, ref('adjustment_out_ou_group'))]" />
+    <field
+            name="users"
+            eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
+        />
+</record>
+
+<!-- Inter-Warehouse Out: Data Ownership -->
+<record id="interwarehouse_out_ou_group" model="res.groups">
+    <field name="name">Operating Unit</field>
+    <field
+            name="category_id"
+            ref="ssi_stock.interwarehouse_out_data_ownership_module_category"
+        />
+</record>
+
+<record id="ssi_stock.interwarehouse_out_company_group" model="res.groups">
+    <field name="name">Company</field>
+    <field
+            name="category_id"
+            ref="ssi_stock.interwarehouse_out_data_ownership_module_category"
+        />
+    <field name="implied_ids" eval="[(4, ref('interwarehouse_out_ou_group'))]" />
+    <field
+            name="users"
+            eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
+        />
+</record>
+
+<!-- Inter-Warehouse In: Data Ownership -->
+<record id="interwarehouse_in_ou_group" model="res.groups">
+    <field name="name">Operating Unit</field>
+    <field
+            name="category_id"
+            ref="ssi_stock.interwarehouse_in_data_ownership_module_category"
+        />
+</record>
+
+<record id="ssi_stock.interwarehouse_in_company_group" model="res.groups">
+    <field name="name">Company</field>
+    <field
+            name="category_id"
+            ref="ssi_stock.interwarehouse_in_data_ownership_module_category"
+        />
+    <field name="implied_ids" eval="[(4, ref('interwarehouse_in_ou_group'))]" />
+    <field
+            name="users"
+            eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
+        />
+</record>
+
+<!-- Shrinkage: Data Ownership -->
+<record id="shrinkage_ou_group" model="res.groups">
+    <field name="name">Operating Unit</field>
+    <field
+            name="category_id"
+            ref="ssi_stock.shrinkage_data_ownership_module_category"
+        />
+</record>
+
+<record id="ssi_stock.shrinkage_company_group" model="res.groups">
+    <field name="name">Company</field>
+    <field
+            name="category_id"
+            ref="ssi_stock.shrinkage_data_ownership_module_category"
+        />
+    <field name="implied_ids" eval="[(4, ref('shrinkage_ou_group'))]" />
+    <field
+            name="users"
+            eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
+        />
+</record>
+</odoo>
