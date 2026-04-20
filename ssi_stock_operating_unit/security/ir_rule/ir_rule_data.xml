@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 OpenSynergy Indonesia
+     Copyright 2026 PT. Simetri Sinergi Indonesia
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+<!-- Picking Type: Rule -->
+<record id="stock_picking_type_rule_ou" model="ir.rule">
+    <field name="name">Stock Picking Type - Responsible to operating unit data</field>
+    <field name="model_id" ref="stock.model_stock_picking_type" />
+    <field name="groups" eval="[(5,)]" />
+    <field name="domain_force">['|', ('operating_unit_id','=',False),
+        ('operating_unit_id','in',user.operating_unit_ids.ids)]</field>
+    <field eval="0" name="perm_unlink" />
+    <field eval="0" name="perm_write" />
+    <field eval="1" name="perm_read" />
+    <field eval="0" name="perm_create" />
+</record>
+
+<!-- Good Receipt: Rule -->
+<record id="good_receipt_rule_ou" model="ir.rule">
+    <field name="name">Good Receipt - Responsible to operating unit data</field>
+    <field name="model_id" ref="stock.model_stock_picking" />
+    <field name="groups" eval="[(4, ref('good_receipt_ou_group'))]" />
+    <field
+            name="domain_force"
+        >[('operating_unit_id','in',[g.id for g in user.operating_unit_ids])]</field>
+    <field name="perm_unlink" eval="1" />
+    <field name="perm_write" eval="1" />
+    <field name="perm_read" eval="1" />
+    <field name="perm_create" eval="1" />
+</record>
+
+<!-- Delivery Order: Rule -->
+<record id="delivery_order_rule_ou" model="ir.rule">
+    <field name="name">Delivery Order - Responsible to operating unit data</field>
+    <field name="model_id" ref="stock.model_stock_picking" />
+    <field name="groups" eval="[(4, ref('delivery_order_ou_group'))]" />
+    <field
+            name="domain_force"
+        >[('operating_unit_id','in',[g.id for g in user.operating_unit_ids])]</field>
+    <field name="perm_unlink" eval="1" />
+    <field name="perm_write" eval="1" />
+    <field name="perm_read" eval="1" />
+    <field name="perm_create" eval="1" />
+</record>
+
+<!-- Internal Transfer: Rule -->
+<record id="internal_transfer_rule_ou" model="ir.rule">
+    <field name="name">Internal Transfer - Responsible to operating unit data</field>
+    <field name="model_id" ref="stock.model_stock_picking" />
+    <field name="groups" eval="[(4, ref('internal_transfer_ou_group'))]" />
+    <field
+            name="domain_force"
+        >[('operating_unit_id','in',[g.id for g in user.operating_unit_ids])]</field>
+    <field name="perm_unlink" eval="1" />
+    <field name="perm_write" eval="1" />
+    <field name="perm_read" eval="1" />
+    <field name="perm_create" eval="1" />
+</record>
+
+<!-- Pick: Rule -->
+<record id="pick_rule_ou" model="ir.rule">
+    <field name="name">Pick - Responsible to operating unit data</field>
+    <field name="model_id" ref="stock.model_stock_picking" />
+    <field name="groups" eval="[(4, ref('pick_ou_group'))]" />
+    <field
+            name="domain_force"
+        >[('operating_unit_id','in',[g.id for g in user.operating_unit_ids])]</field>
+    <field name="perm_unlink" eval="1" />
+    <field name="perm_write" eval="1" />
+    <field name="perm_read" eval="1" />
+    <field name="perm_create" eval="1" />
+</record>
+
+<!-- Pack: Rule -->
+<record id="pack_rule_ou" model="ir.rule">
+    <field name="name">Pack - Responsible to operating unit data</field>
+    <field name="model_id" ref="stock.model_stock_picking" />
+    <field name="groups" eval="[(4, ref('pack_ou_group'))]" />
+    <field
+            name="domain_force"
+        >[('operating_unit_id','in',[g.id for g in user.operating_unit_ids])]</field>
+    <field name="perm_unlink" eval="1" />
+    <field name="perm_write" eval="1" />
+    <field name="perm_read" eval="1" />
+    <field name="perm_create" eval="1" />
+</record>
+
+<!-- Consume: Rule -->
+<record id="consume_rule_ou" model="ir.rule">
+    <field name="name">Consume - Responsible to operating unit data</field>
+    <field name="model_id" ref="stock.model_stock_picking" />
+    <field name="groups" eval="[(4, ref('consume_ou_group'))]" />
+    <field
+            name="domain_force"
+        >[('operating_unit_id','in',[g.id for g in user.operating_unit_ids])]</field>
+    <field name="perm_unlink" eval="1" />
+    <field name="perm_write" eval="1" />
+    <field name="perm_read" eval="1" />
+    <field name="perm_create" eval="1" />
+</record>
+
+<!-- Waste: Rule -->
+<record id="waste_rule_ou" model="ir.rule">
+    <field name="name">Waste - Responsible to operating unit data</field>
+    <field name="model_id" ref="stock.model_stock_picking" />
+    <field name="groups" eval="[(4, ref('waste_ou_group'))]" />
+    <field
+            name="domain_force"
+        >[('operating_unit_id','in',[g.id for g in user.operating_unit_ids])]</field>
+    <field name="perm_unlink" eval="1" />
+    <field name="perm_write" eval="1" />
+    <field name="perm_read" eval="1" />
+    <field name="perm_create" eval="1" />
+</record>
+
+<!-- Stolen: Rule -->
+<record id="stolen_rule_ou" model="ir.rule">
+    <field name="name">Stolen - Responsible to operating unit data</field>
+    <field name="model_id" ref="stock.model_stock_picking" />
+    <field name="groups" eval="[(4, ref('stolen_ou_group'))]" />
+    <field
+            name="domain_force"
+        >[('operating_unit_id','in',[g.id for g in user.operating_unit_ids])]</field>
+    <field name="perm_unlink" eval="1" />
+    <field name="perm_write" eval="1" />
+    <field name="perm_read" eval="1" />
+    <field name="perm_create" eval="1" />
+</record>
+
+<!-- Lost: Rule -->
+<record id="lost_rule_ou" model="ir.rule">
+    <field name="name">Lost - Responsible to operating unit data</field>
+    <field name="model_id" ref="stock.model_stock_picking" />
+    <field name="groups" eval="[(4, ref('lost_ou_group'))]" />
+    <field
+            name="domain_force"
+        >[('operating_unit_id','in',[g.id for g in user.operating_unit_ids])]</field>
+    <field name="perm_unlink" eval="1" />
+    <field name="perm_write" eval="1" />
+    <field name="perm_read" eval="1" />
+    <field name="perm_create" eval="1" />
+</record>
+
+<!-- Adjustment In: Rule -->
+<record id="adjustment_in_rule_ou" model="ir.rule">
+    <field name="name">Adjustment In - Responsible to operating unit data</field>
+    <field name="model_id" ref="stock.model_stock_picking" />
+    <field name="groups" eval="[(4, ref('adjustment_in_ou_group'))]" />
+    <field
+            name="domain_force"
+        >[('operating_unit_id','in',[g.id for g in user.operating_unit_ids])]</field>
+    <field name="perm_unlink" eval="1" />
+    <field name="perm_write" eval="1" />
+    <field name="perm_read" eval="1" />
+    <field name="perm_create" eval="1" />
+</record>
+
+<!-- Adjustment Out: Rule -->
+<record id="adjustment_out_rule_ou" model="ir.rule">
+    <field name="name">Adjustment Out - Responsible to operating unit data</field>
+    <field name="model_id" ref="stock.model_stock_picking" />
+    <field name="groups" eval="[(4, ref('adjustment_out_ou_group'))]" />
+    <field
+            name="domain_force"
+        >[('operating_unit_id','in',[g.id for g in user.operating_unit_ids])]</field>
+    <field name="perm_unlink" eval="1" />
+    <field name="perm_write" eval="1" />
+    <field name="perm_read" eval="1" />
+    <field name="perm_create" eval="1" />
+</record>
+
+<!-- Inter-Warehouse Out: Rule -->
+<record id="interwarehouse_out_rule_ou" model="ir.rule">
+    <field name="name">Inter-Warehouse Out - Responsible to operating unit data</field>
+    <field name="model_id" ref="stock.model_stock_picking" />
+    <field name="groups" eval="[(4, ref('interwarehouse_out_ou_group'))]" />
+    <field
+            name="domain_force"
+        >[('operating_unit_id','in',[g.id for g in user.operating_unit_ids])]</field>
+    <field name="perm_unlink" eval="1" />
+    <field name="perm_write" eval="1" />
+    <field name="perm_read" eval="1" />
+    <field name="perm_create" eval="1" />
+</record>
+
+<!-- Inter-Warehouse In: Rule -->
+<record id="interwarehouse_in_rule_ou" model="ir.rule">
+    <field name="name">Inter-Warehouse In - Responsible to operating unit data</field>
+    <field name="model_id" ref="stock.model_stock_picking" />
+    <field name="groups" eval="[(4, ref('interwarehouse_in_ou_group'))]" />
+    <field
+            name="domain_force"
+        >[('operating_unit_id','in',[g.id for g in user.operating_unit_ids])]</field>
+    <field name="perm_unlink" eval="1" />
+    <field name="perm_write" eval="1" />
+    <field name="perm_read" eval="1" />
+    <field name="perm_create" eval="1" />
+</record>
+
+<!-- Shrinkage: Rule -->
+<record id="shrinkage_rule_ou" model="ir.rule">
+    <field name="name">Shrinkage - Responsible to operating unit data</field>
+    <field name="model_id" ref="stock.model_stock_picking" />
+    <field name="groups" eval="[(4, ref('shrinkage_ou_group'))]" />
+    <field
+            name="domain_force"
+        >[('operating_unit_id','in',[g.id for g in user.operating_unit_ids])]</field>
+    <field name="perm_unlink" eval="1" />
+    <field name="perm_write" eval="1" />
+    <field name="perm_read" eval="1" />
+    <field name="perm_create" eval="1" />
+</record>
+</odoo>
