@@ -19,6 +19,7 @@
     ],
     "data": [
         "security/ir.model.access.csv",
+        "data/policy_template_data.xml",
         "wizards/recompute_stock_valuation_layer_usage_views.xml",
         "views/stock_picking_type_views.xml",
         "views/stock_picking_views.xml",
