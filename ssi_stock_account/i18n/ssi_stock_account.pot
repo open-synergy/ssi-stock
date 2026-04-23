@@ -64,6 +64,11 @@ msgid "All Accounting Entries Created?"
 msgstr ""
 
 #. module: ssi_stock_account
+#: model:ir.model.fields,field_description:ssi_stock_account.field_stock_picking__allowed_policy_template_ids
+msgid "Allowed Policy Templates"
+msgstr ""
+
+#. module: ssi_stock_account
 #: model:ir.model.fields,field_description:ssi_stock_account.field_recompute_stock_valuation_layer_usage__allowed_svl_ids
 msgid "Allowed SVLs"
 msgstr ""
@@ -90,8 +95,18 @@ msgid "Automatic Date"
 msgstr ""
 
 #. module: ssi_stock_account
-#: model:ir.model.fields,field_description:ssi_stock_account.field_stock_picking__create_accounting_entry_ok
+#: model:ir.model.fields,field_description:ssi_stock_account.field_stock_picking__accounting_entry_create_ok
 msgid "Can Create Accounting Entries"
+msgstr ""
+
+#. module: ssi_stock_account
+#: model:ir.model.fields,field_description:ssi_stock_account.field_stock_picking__accounting_entry_delete_ok
+msgid "Can Delete Accounting Entries"
+msgstr ""
+
+#. module: ssi_stock_account
+#: model:ir.model.fields,field_description:ssi_stock_account.field_stock_picking__accounting_entry_reload_ok
+msgid "Can Reload Accounting Setting"
 msgstr ""
 
 #. module: ssi_stock_account
@@ -102,6 +117,11 @@ msgstr ""
 #. module: ssi_stock_account
 #: model:ir.model,name:ssi_stock_account.model_change_picking_actual_movement_date
 msgid "Change Picking Actual Movement Date"
+msgstr ""
+
+#. module: ssi_stock_account
+#: model:ir.model.fields,field_description:ssi_stock_account.field_stock_picking__create_accounting_entry_ok
+msgid "Check Create Accounting Entries"
 msgstr ""
 
 #. module: ssi_stock_account
@@ -473,6 +493,11 @@ msgstr ""
 #. module: ssi_stock_account
 #: model:ir.model,name:ssi_stock_account.model_picking_type_category
 msgid "Picking Type Category"
+msgstr ""
+
+#. module: ssi_stock_account
+#: model:ir.model.fields,field_description:ssi_stock_account.field_stock_picking__policy_template_id
+msgid "Policy Template"
 msgstr ""
 
 #. module: ssi_stock_account
