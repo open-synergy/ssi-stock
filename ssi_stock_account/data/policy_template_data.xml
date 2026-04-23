@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 OpenSynergy Indonesia
+     Copyright 2024 PT. Simetri Sinergi Indonesia
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl-3.0-standalone.html). -->
+<odoo>
+<data noupdate="1">
+<!-- CREATE ACCOUNTING ENTRIES -->
+<record
+            id="stock_picking_policy_template_detail_create_accounting_entries"
+            model="policy.template_detail"
+        >
+    <field name="template_id" ref="ssi_stock.stock_picking_policy_template" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','accounting_entry_create_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field
+                name="group_ids"
+                eval="[(6,0,[ref('ssi_financial_accounting.journal_entry_user_group')])]"
+            />
+    <field name="restrict_additional" eval="1" />
+    <field name="additional_python_code">result = False
+if document.create_accounting_entry_ok:
+    result = True
+    </field>
+</record>
+
+<!-- DELETE ACCOUNTING ENTRIES -->
+<record
+            id="stock_picking_policy_template_detail_delete_accounting_entries"
+            model="policy.template_detail"
+        >
+    <field name="template_id" ref="ssi_stock.stock_picking_policy_template" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','accounting_entry_delete_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field
+                name="group_ids"
+                eval="[(6,0,[ref('ssi_financial_accounting.journal_entry_user_group')])]"
+            />
+    <field name="restrict_additional" eval="1" />
+    <field name="additional_python_code">result = False
+if not document.create_accounting_entry_ok:
+    result = True
+    </field>
+</record>
+
+<!-- RELOAD ACCOUNTING ENTRIES -->
+<record
+            id="stock_picking_policy_template_detail_reload_accounting_entries"
+            model="policy.template_detail"
+        >
+    <field name="template_id" ref="ssi_stock.stock_picking_policy_template" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','stock.picking'),('name','=','accounting_entry_reload_ok')]"
+            />
+    <field name="restrict_state" eval="0" />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field
+                name="group_ids"
+                eval="[(6,0,[ref('ssi_financial_accounting.journal_entry_user_group')])]"
+            />
+    <field name="restrict_additional" eval="1" />
+    <field name="additional_python_code">result = False
+if not document.create_accounting_entry_ok:
+    result = True
+    </field>
+</record>
+</data>
+</odoo>

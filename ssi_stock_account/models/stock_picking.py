@@ -9,7 +9,10 @@ from odoo.exceptions import UserError
 
 class StockPicking(models.Model):
     _name = "stock.picking"
-    _inherit = ["stock.picking"]
+    _inherit = [
+        "stock.picking",
+        "mixin.policy",
+    ]
 
     journal_id = fields.Many2one(
         string="Journal",
@@ -28,7 +31,7 @@ class StockPicking(models.Model):
         store=False,
     )
     create_accounting_entry_ok = fields.Boolean(
-        string="Can Create Accounting Entries",
+        string="Check Create Accounting Entries",
         compute="_compute_create_accounting_entry_ok",
         store=False,
     )
@@ -38,6 +41,34 @@ class StockPicking(models.Model):
         store=True,
         compute_sudo=True,
     )
+
+    # Fields for policy mixin
+    accounting_entry_create_ok = fields.Boolean(
+        string="Can Create Accounting Entries",
+        compute="_compute_policy",
+        compute_sudo=True,
+    )
+    accounting_entry_delete_ok = fields.Boolean(
+        string="Can Delete Accounting Entries",
+        compute="_compute_policy",
+        compute_sudo=True,
+    )
+    accounting_entry_reload_ok = fields.Boolean(
+        string="Can Reload Accounting Setting",
+        compute="_compute_policy",
+        compute_sudo=True,
+    )
+
+    @api.model
+    def _get_policy_field(self):
+        res = super()._get_policy_field()
+        policy_field = [
+            "accounting_entry_create_ok",
+            "accounting_entry_delete_ok",
+            "accounting_entry_reload_ok",
+        ]
+        res += policy_field
+        return res
 
     @api.depends(
         "move_lines.stock_valuation_layer_ids",
