@@ -1318,6 +1318,12 @@ msgid "Source Locations"
 msgstr ""
 
 #. module: ssi_stock
+#: code:addons/ssi_stock/models/stock_picking.py:0
+#, python-format
+msgid "Source location and destination location cannot be the same."
+msgstr ""
+
+#. module: ssi_stock
 #: model:ir.model.fields,help:ssi_stock.field_location_type__activity_state
 #: model:ir.model.fields,help:ssi_stock.field_picking_type_category__activity_state
 msgid ""
