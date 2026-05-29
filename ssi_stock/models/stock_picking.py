@@ -3,7 +3,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from lxml import etree
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
 
 
 class StockPicking(models.Model):
@@ -136,6 +137,21 @@ class StockPicking(models.Model):
     def _compute_policy(self):
         _super = super()
         _super._compute_policy()
+
+    def _check_location_not_same(self):
+        for record in self:
+            if (
+                record.location_id
+                and record.location_dest_id
+                and record.location_id == record.location_dest_id
+            ):
+                raise ValidationError(
+                    _("Source location and destination location " "cannot be the same.")
+                )
+
+    def action_confirm(self):
+        self._check_location_not_same()
+        return super().action_confirm()
 
     @api.depends(
         "picking_type_id",
