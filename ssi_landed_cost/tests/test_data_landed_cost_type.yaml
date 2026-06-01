@@ -1,0 +1,65 @@
+scenarios:
+  - name: "Create Landed Cost Type"
+    steps:
+      - step: "Create landed cost type"
+        action: "create"
+        model: "landed_cost_type"
+        save_as: "lct"
+        values:
+          name: "Test Landed Cost Type"
+          code: "TLCT001"
+      - step: "Assert created"
+        action: "assert"
+        target: "lct"
+        asserts:
+          id:
+            type: "value"
+            operator: "is_truthy"
+          name:
+            type: "value"
+            expected: "Test Landed Cost Type"
+          code:
+            type: "value"
+            expected: "TLCT001"
+
+  - name: "Edit Landed Cost Type Name"
+    steps:
+      - step: "Create landed cost type"
+        action: "create"
+        model: "landed_cost_type"
+        save_as: "lct"
+        values:
+          name: "Edit Test LCT"
+          code: "ELCT001"
+      - step: "Write new name"
+        action: "write"
+        target: "lct"
+        values:
+          name: "Updated LCT Name"
+      - step: "Assert name updated"
+        action: "assert"
+        target: "lct"
+        asserts:
+          name:
+            type: "value"
+            expected: "Updated LCT Name"
+
+  - name: "Delete Landed Cost Type"
+    steps:
+      - step: "Create landed cost type"
+        action: "create"
+        model: "landed_cost_type"
+        save_as: "lct"
+        values:
+          name: "Delete Test LCT"
+          code: "DLCT001"
+      - step: "Delete record"
+        action: "call"
+        target: "lct"
+        method: "unlink"
+      - step: "Verify deleted"
+        action: "search"
+        model: "landed_cost_type"
+        domain: [["code", "=", "DLCT001"]]
+        save_as: "result"
+        expect_count: 0
