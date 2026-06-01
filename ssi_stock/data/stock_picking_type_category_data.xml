@@ -3,7 +3,6 @@
      Copyright 2022 PT. Simetri Sinergi Indonesia
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
-<data>
 <record id="picking_category_gr" model="picking_type_category">
     <field name="name">Goods Receipt</field>
     <field name="code">GR</field>
@@ -14,13 +13,13 @@
     <field name="default_source_location_type_id" ref="location_type_supplier" />
     <field name="default_destination_location_type_id" ref="location_type_main_stock" />
     <field
-                name="allowed_source_location_type_ids"
-                eval="[(4, ref('location_type_supplier'))]"
-            />
+            name="allowed_source_location_type_ids"
+            eval="[(4, ref('location_type_supplier'))]"
+        />
     <field
-                name="allowed_destination_location_type_ids"
-                eval="[(4, ref('location_type_main_stock')),(4, ref('location_type_stock'))]"
-            />
+            name="allowed_destination_location_type_ids"
+            eval="[(4, ref('location_type_main_stock')),(4, ref('location_type_stock'))]"
+        />
     <field name="module_categ_id" ref="goods_receipt_module_category" />
 </record>
 
@@ -34,13 +33,13 @@
     <field name="default_source_location_type_id" ref="location_type_main_stock" />
     <field name="default_destination_location_type_id" ref="location_type_customer" />
     <field
-                name="allowed_source_location_type_ids"
-                eval="[(4, ref('location_type_main_stock')), (4, ref('location_type_stock'))]"
-            />
+            name="allowed_source_location_type_ids"
+            eval="[(4, ref('location_type_main_stock')), (4, ref('location_type_stock'))]"
+        />
     <field
-                name="allowed_destination_location_type_ids"
-                eval="[(4, ref('location_type_customer'))]"
-            />
+            name="allowed_destination_location_type_ids"
+            eval="[(4, ref('location_type_customer'))]"
+        />
     <field name="module_categ_id" ref="delivery_order_module_category" />
 </record>
 
@@ -54,13 +53,13 @@
     <field name="default_source_location_type_id" ref="location_type_main_stock" />
     <field name="default_destination_location_type_id" ref="location_type_main_stock" />
     <field
-                name="allowed_source_location_type_ids"
-                eval="[(4, ref('location_type_main_stock')), (4, ref('location_type_stock'))]"
-            />
+            name="allowed_source_location_type_ids"
+            eval="[(4, ref('location_type_main_stock')), (4, ref('location_type_stock'))]"
+        />
     <field
-                name="allowed_destination_location_type_ids"
-                eval="[(4, ref('location_type_main_stock')), (4, ref('location_type_stock'))]"
-            />
+            name="allowed_destination_location_type_ids"
+            eval="[(4, ref('location_type_main_stock')), (4, ref('location_type_stock'))]"
+        />
     <field name="module_categ_id" ref="internal_transfer_module_category" />
 </record>
 
@@ -74,13 +73,13 @@
     <field name="default_source_location_type_id" ref="location_type_main_stock" />
     <field name="default_destination_location_type_id" ref="location_type_main_stock" />
     <field
-                name="allowed_source_location_type_ids"
-                eval="[(4, ref('location_type_main_stock')), (4, ref('location_type_stock'))]"
-            />
+            name="allowed_source_location_type_ids"
+            eval="[(4, ref('location_type_main_stock')), (4, ref('location_type_stock'))]"
+        />
     <field
-                name="allowed_destination_location_type_ids"
-                eval="[(4, ref('location_type_main_stock')), (4, ref('location_type_stock'))]"
-            />
+            name="allowed_destination_location_type_ids"
+            eval="[(4, ref('location_type_main_stock')), (4, ref('location_type_stock'))]"
+        />
     <field name="module_categ_id" ref="pick_module_category" />
 </record>
 
@@ -94,13 +93,13 @@
     <field name="default_source_location_type_id" ref="location_type_main_stock" />
     <field name="default_destination_location_type_id" ref="location_type_main_stock" />
     <field
-                name="allowed_source_location_type_ids"
-                eval="[(4, ref('location_type_main_stock')), (4, ref('location_type_stock'))]"
-            />
+            name="allowed_source_location_type_ids"
+            eval="[(4, ref('location_type_main_stock')), (4, ref('location_type_stock'))]"
+        />
     <field
-                name="allowed_destination_location_type_ids"
-                eval="[(4, ref('location_type_main_stock')), (4, ref('location_type_stock'))]"
-            />
+            name="allowed_destination_location_type_ids"
+            eval="[(4, ref('location_type_main_stock')), (4, ref('location_type_stock'))]"
+        />
     <field name="module_categ_id" ref="pack_module_category" />
 </record>
 
@@ -113,17 +112,17 @@
     <field name="use_existing_lots" eval="1" />
     <field name="default_source_location_type_id" ref="location_type_main_stock" />
     <field
-                name="default_destination_location_type_id"
-                ref="location_type_consumption"
-            />
+            name="default_destination_location_type_id"
+            ref="location_type_consumption"
+        />
     <field
-                name="allowed_source_location_type_ids"
-                eval="[(4, ref('location_type_main_stock')), (4, ref('location_type_stock'))]"
-            />
+            name="allowed_source_location_type_ids"
+            eval="[(4, ref('location_type_main_stock')), (4, ref('location_type_stock'))]"
+        />
     <field
-                name="allowed_destination_location_type_ids"
-                eval="[(4, ref('location_type_consumption'))]"
-            />
+            name="allowed_destination_location_type_ids"
+            eval="[(4, ref('location_type_consumption'))]"
+        />
     <field name="module_categ_id" ref="consume_module_category" />
 </record>
 
@@ -137,13 +136,13 @@
     <field name="default_source_location_type_id" ref="location_type_main_stock" />
     <field name="default_destination_location_type_id" ref="location_type_waste" />
     <field
-                name="allowed_source_location_type_ids"
-                eval="[(4, ref('location_type_main_stock')), (4, ref('location_type_stock'))]"
-            />
+            name="allowed_source_location_type_ids"
+            eval="[(4, ref('location_type_main_stock')), (4, ref('location_type_stock'))]"
+        />
     <field
-                name="allowed_destination_location_type_ids"
-                eval="[(4, ref('location_type_waste'))]"
-            />
+            name="allowed_destination_location_type_ids"
+            eval="[(4, ref('location_type_waste'))]"
+        />
     <field name="module_categ_id" ref="waste_module_category" />
 </record>
 
@@ -157,13 +156,13 @@
     <field name="default_source_location_type_id" ref="location_type_main_stock" />
     <field name="default_destination_location_type_id" ref="location_type_stolen" />
     <field
-                name="allowed_source_location_type_ids"
-                eval="[(4, ref('location_type_main_stock')), (4, ref('location_type_stock'))]"
-            />
+            name="allowed_source_location_type_ids"
+            eval="[(4, ref('location_type_main_stock')), (4, ref('location_type_stock'))]"
+        />
     <field
-                name="allowed_destination_location_type_ids"
-                eval="[(4, ref('location_type_stolen'))]"
-            />
+            name="allowed_destination_location_type_ids"
+            eval="[(4, ref('location_type_stolen'))]"
+        />
     <field name="module_categ_id" ref="stolen_module_category" />
 </record>
 
@@ -177,13 +176,13 @@
     <field name="default_source_location_type_id" ref="location_type_main_stock" />
     <field name="default_destination_location_type_id" ref="location_type_lost" />
     <field
-                name="allowed_source_location_type_ids"
-                eval="[(4, ref('location_type_main_stock')), (4, ref('location_type_stock'))]"
-            />
+            name="allowed_source_location_type_ids"
+            eval="[(4, ref('location_type_main_stock')), (4, ref('location_type_stock'))]"
+        />
     <field
-                name="allowed_destination_location_type_ids"
-                eval="[(4, ref('location_type_lost'))]"
-            />
+            name="allowed_destination_location_type_ids"
+            eval="[(4, ref('location_type_lost'))]"
+        />
     <field name="module_categ_id" ref="lost_module_category" />
 </record>
 
@@ -203,13 +202,13 @@
     <field name="default_source_location_type_id" ref="location_type_inventory_loss" />
     <field name="default_destination_location_type_id" ref="location_type_main_stock" />
     <field
-                name="allowed_source_location_type_ids"
-                eval="[(4, ref('location_type_inventory_loss'))]"
-            />
+            name="allowed_source_location_type_ids"
+            eval="[(4, ref('location_type_inventory_loss'))]"
+        />
     <field
-                name="allowed_destination_location_type_ids"
-                eval="[(4, ref('location_type_main_stock')), (4, ref('location_type_stock'))]"
-            />
+            name="allowed_destination_location_type_ids"
+            eval="[(4, ref('location_type_main_stock')), (4, ref('location_type_stock'))]"
+        />
     <field name="module_categ_id" ref="adjustment_in_module_category" />
 </record>
 
@@ -222,17 +221,17 @@
     <field name="use_existing_lots" eval="1" />
     <field name="default_source_location_type_id" ref="location_type_main_stock" />
     <field
-                name="default_destination_location_type_id"
-                ref="location_type_inventory_loss"
-            />
+            name="default_destination_location_type_id"
+            ref="location_type_inventory_loss"
+        />
     <field
-                name="allowed_source_location_type_ids"
-                eval="[(4, ref('location_type_main_stock')), (4, ref('location_type_stock'))]"
-            />
+            name="allowed_source_location_type_ids"
+            eval="[(4, ref('location_type_main_stock')), (4, ref('location_type_stock'))]"
+        />
     <field
-                name="allowed_destination_location_type_ids"
-                eval="[(4, ref('location_type_inventory_loss'))]"
-            />
+            name="allowed_destination_location_type_ids"
+            eval="[(4, ref('location_type_inventory_loss'))]"
+        />
     <field name="module_categ_id" ref="adjustment_out_module_category" />
 </record>
 
@@ -245,13 +244,13 @@
     <field name="use_existing_lots" eval="1" />
     <field name="default_source_location_type_id" ref="location_type_main_stock" />
     <field
-                name="allowed_source_location_type_ids"
-                eval="[(6, 0, [ref('location_type_main_stock'),ref('location_type_stock')])]"
-            />
+            name="allowed_source_location_type_ids"
+            eval="[(6, 0, [ref('location_type_main_stock'),ref('location_type_stock')])]"
+        />
     <field
-                name="allowed_destination_location_type_ids"
-                eval="[(6, 0, [ref('location_type_push')])]"
-            />
+            name="allowed_destination_location_type_ids"
+            eval="[(6, 0, [ref('location_type_push')])]"
+        />
     <field name="module_categ_id" ref="interwarehouse_out_module_category" />
 </record>
 
@@ -264,13 +263,13 @@
     <field name="use_existing_lots" eval="1" />
     <field name="default_source_location_type_id" ref="location_type_main_stock" />
     <field
-                name="allowed_source_location_type_ids"
-                eval="[(6, 0, [ref('location_type_main_stock'),ref('location_type_stock')])]"
-            />
+            name="allowed_source_location_type_ids"
+            eval="[(6, 0, [ref('location_type_main_stock'),ref('location_type_stock')])]"
+        />
     <field
-                name="allowed_destination_location_type_ids"
-                eval="[(6, 0, [ref('location_type_pull')])]"
-            />
+            name="allowed_destination_location_type_ids"
+            eval="[(6, 0, [ref('location_type_pull')])]"
+        />
     <field name="module_categ_id" ref="interwarehouse_in_module_category" />
 </record>
 
@@ -284,14 +283,13 @@
     <field name="default_source_location_type_id" ref="location_type_main_stock" />
     <field name="default_destination_location_type_id" ref="location_type_shrinkage" />
     <field
-                name="allowed_source_location_type_ids"
-                eval="[(4, ref('location_type_main_stock')), (4, ref('location_type_stock'))]"
-            />
+            name="allowed_source_location_type_ids"
+            eval="[(4, ref('location_type_main_stock')), (4, ref('location_type_stock'))]"
+        />
     <field
-                name="allowed_destination_location_type_ids"
-                eval="[(4, ref('location_type_shrinkage'))]"
-            />
+            name="allowed_destination_location_type_ids"
+            eval="[(4, ref('location_type_shrinkage'))]"
+        />
     <field name="module_categ_id" ref="shrinkage_module_category" />
 </record>
-</data>
 </odoo>

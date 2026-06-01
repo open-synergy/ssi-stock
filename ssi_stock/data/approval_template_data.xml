@@ -2,8 +2,7 @@
 <!-- Copyright 2024 OpenSynergy Indonesia
      Copyright 2024 PT. Simetri Sinergi Indonesia
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
-<odoo>
-<data noupdate="1">
+<odoo noupdate="1">
 <record id="stock_picking_approval_template" model="approval.template">
     <field name="name">Standard</field>
     <field name="model_id" ref="model_stock_picking" />
@@ -30,5 +29,4 @@ else:
         user += rec.picking_type_category_id.supervisor_ids.ids
     </field>
 </record>
-</data>
 </odoo>

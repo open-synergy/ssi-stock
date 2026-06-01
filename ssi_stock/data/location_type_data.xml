@@ -3,7 +3,6 @@
      Copyright 2022 PT. Simetri Sinergi Indonesia
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
-<data>
 <record id="location_type_root" model="location_type">
     <field name="name">Warehouse Root View</field>
     <field name="code">ROOT</field>
@@ -114,6 +113,4 @@
     <field name="usage">inventory</field>
     <field name="is_warehouse_location" eval="0" />
 </record>
-
-</data>
 </odoo>

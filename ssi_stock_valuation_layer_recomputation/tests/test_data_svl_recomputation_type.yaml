@@ -1,0 +1,65 @@
+scenarios:
+  - name: "Create SVL Recomputation Type"
+    steps:
+      - step: "Create SVL recomputation type"
+        action: "create"
+        model: "svl_recomputation_type"
+        save_as: "rtype"
+        values:
+          name: "Test SVL Type"
+          code: "TSVLT001"
+      - step: "Assert created"
+        action: "assert"
+        target: "rtype"
+        asserts:
+          id:
+            type: "value"
+            operator: "is_truthy"
+          name:
+            type: "value"
+            expected: "Test SVL Type"
+          code:
+            type: "value"
+            expected: "TSVLT001"
+
+  - name: "Edit SVL Recomputation Type Name"
+    steps:
+      - step: "Create SVL recomputation type"
+        action: "create"
+        model: "svl_recomputation_type"
+        save_as: "rtype"
+        values:
+          name: "Edit SVL Type"
+          code: "ESVLT001"
+      - step: "Write new name"
+        action: "write"
+        target: "rtype"
+        values:
+          name: "Updated SVL Type"
+      - step: "Assert name updated"
+        action: "assert"
+        target: "rtype"
+        asserts:
+          name:
+            type: "value"
+            expected: "Updated SVL Type"
+
+  - name: "Delete SVL Recomputation Type"
+    steps:
+      - step: "Create SVL recomputation type"
+        action: "create"
+        model: "svl_recomputation_type"
+        save_as: "rtype"
+        values:
+          name: "Delete SVL Type"
+          code: "DSVLT001"
+      - step: "Delete record"
+        action: "call"
+        target: "rtype"
+        method: "unlink"
+      - step: "Verify deleted"
+        action: "search"
+        model: "svl_recomputation_type"
+        domain: [["code", "=", "DSVLT001"]]
+        save_as: "result"
+        expect_count: 0

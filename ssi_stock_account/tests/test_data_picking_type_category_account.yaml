@@ -1,0 +1,46 @@
+scenarios:
+  - name: "Create Picking Type Category with Account Fields"
+    steps:
+      - step: "Create picking type category"
+        action: "create"
+        model: "picking_type_category"
+        save_as: "ptc"
+        values:
+          name: "Test Account PTC"
+          code: "TAPTC001"
+          direction: "outgoing"
+      - step: "Assert created"
+        action: "assert"
+        target: "ptc"
+        asserts:
+          id:
+            type: "value"
+            operator: "is_truthy"
+          name:
+            type: "value"
+            expected: "Test Account PTC"
+
+  - name: "Edit Picking Type Category Account Fields"
+    steps:
+      - step: "Create picking type category"
+        action: "create"
+        model: "picking_type_category"
+        save_as: "ptc"
+        values:
+          name: "Edit Account PTC"
+          code: "EAPTC001"
+          direction: "incoming"
+          debit_account_selection_method: "domain"
+          credit_account_selection_method: "domain"
+      - step: "Update selection method"
+        action: "write"
+        target: "ptc"
+        values:
+          debit_account_selection_method: "manual"
+      - step: "Assert selection method updated"
+        action: "assert"
+        target: "ptc"
+        asserts:
+          debit_account_selection_method:
+            type: "value"
+            expected: "manual"

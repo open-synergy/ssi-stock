@@ -1,0 +1,68 @@
+scenarios:
+  - name: "Create Picking Type Category"
+    steps:
+      - step: "Create picking type category"
+        action: "create"
+        model: "picking_type_category"
+        save_as: "ptc"
+        values:
+          name: "Test Picking Category"
+          code: "TPTC001"
+          direction: "outgoing"
+      - step: "Assert created"
+        action: "assert"
+        target: "ptc"
+        asserts:
+          id:
+            type: "value"
+            operator: "is_truthy"
+          name:
+            type: "value"
+            expected: "Test Picking Category"
+          direction:
+            type: "value"
+            expected: "outgoing"
+
+  - name: "Edit Picking Type Category Name"
+    steps:
+      - step: "Create picking type category"
+        action: "create"
+        model: "picking_type_category"
+        save_as: "ptc"
+        values:
+          name: "Edit Picking Category"
+          code: "EPTC001"
+          direction: "incoming"
+      - step: "Write new name"
+        action: "write"
+        target: "ptc"
+        values:
+          name: "Updated Picking Category"
+      - step: "Assert name updated"
+        action: "assert"
+        target: "ptc"
+        asserts:
+          name:
+            type: "value"
+            expected: "Updated Picking Category"
+
+  - name: "Delete Picking Type Category"
+    steps:
+      - step: "Create picking type category"
+        action: "create"
+        model: "picking_type_category"
+        save_as: "ptc"
+        values:
+          name: "Delete Picking Category"
+          code: "DPTC001"
+          direction: "internal"
+      - step: "Delete record"
+        action: "call"
+        target: "ptc"
+        method: "unlink"
+      - step: "Verify deleted"
+        action: "search"
+        model: "picking_type_category"
+        domain: [["code", "=", "DPTC001"]]
+        save_as: "result"
+        expect_count: 0

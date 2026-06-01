@@ -1,0 +1,62 @@
+scenarios:
+  - name: "Create Location Type"
+    steps:
+      - step: "Create location type"
+        action: "create"
+        model: "location_type"
+        save_as: "lt"
+        values:
+          name: "Test Location Type"
+          code: "TLT001"
+      - step: "Assert created"
+        action: "assert"
+        target: "lt"
+        asserts:
+          id:
+            type: "value"
+            operator: "is_truthy"
+          name:
+            type: "value"
+            expected: "Test Location Type"
+
+  - name: "Edit Location Type Name"
+    steps:
+      - step: "Create location type"
+        action: "create"
+        model: "location_type"
+        save_as: "lt"
+        values:
+          name: "Edit Location Type"
+          code: "ELT001"
+      - step: "Write new name"
+        action: "write"
+        target: "lt"
+        values:
+          name: "Updated Location Type"
+      - step: "Assert name updated"
+        action: "assert"
+        target: "lt"
+        asserts:
+          name:
+            type: "value"
+            expected: "Updated Location Type"
+
+  - name: "Delete Location Type"
+    steps:
+      - step: "Create location type"
+        action: "create"
+        model: "location_type"
+        save_as: "lt"
+        values:
+          name: "Delete Location Type"
+          code: "DLT001"
+      - step: "Delete record"
+        action: "call"
+        target: "lt"
+        method: "unlink"
+      - step: "Verify deleted"
+        action: "search"
+        model: "location_type"
+        domain: [["code", "=", "DLT001"]]
+        save_as: "result"
+        expect_count: 0

@@ -1,0 +1,14 @@
+scenarios:
+  - name: "Verify Promotion Operation Data Loaded"
+    steps:
+      - step: "Get customer promotion picking type category via XML ID"
+        action: "ref"
+        xml_id: "ssi_stock_promotion_operation.picking_category_customer_promotion"
+        save_as: "ptc"
+      - step: "Assert customer promotion picking type category exists"
+        action: "assert"
+        target: "ptc"
+        asserts:
+          id:
+            type: "value"
+            operator: "is_truthy"

@@ -1,0 +1,22 @@
+scenarios:
+  - name: "Landed Cost Total Quantity Compute - Empty"
+    steps:
+      - step: "Search for existing landed cost vendor bill journal"
+        action: "search"
+        model: "account.journal"
+        domain: [["type", "=", "purchase"]]
+        save_as: "journal"
+        limit: 1
+      - step: "Create landed cost without pickings"
+        action: "create"
+        model: "stock.landed.cost"
+        save_as: "lc"
+        values:
+          vendor_bill_id: false
+      - step: "Assert total quantity is zero"
+        action: "assert"
+        target: "lc"
+        asserts:
+          total_quantity:
+            type: "value"
+            expected: 0.0

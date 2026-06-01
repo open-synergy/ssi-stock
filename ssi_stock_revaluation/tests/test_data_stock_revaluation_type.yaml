@@ -1,0 +1,65 @@
+scenarios:
+  - name: "Create Stock Revaluation Type"
+    steps:
+      - step: "Create revaluation type"
+        action: "create"
+        model: "stock_revaluation_type"
+        save_as: "rtype"
+        values:
+          name: "Test Revaluation Type"
+          code: "TSRT001"
+      - step: "Assert created"
+        action: "assert"
+        target: "rtype"
+        asserts:
+          id:
+            type: "value"
+            operator: "is_truthy"
+          name:
+            type: "value"
+            expected: "Test Revaluation Type"
+          code:
+            type: "value"
+            expected: "TSRT001"
+
+  - name: "Edit Stock Revaluation Type Name"
+    steps:
+      - step: "Create revaluation type"
+        action: "create"
+        model: "stock_revaluation_type"
+        save_as: "rtype"
+        values:
+          name: "Edit Revaluation Type"
+          code: "ESRT001"
+      - step: "Write new name"
+        action: "write"
+        target: "rtype"
+        values:
+          name: "Updated Revaluation Type"
+      - step: "Assert name updated"
+        action: "assert"
+        target: "rtype"
+        asserts:
+          name:
+            type: "value"
+            expected: "Updated Revaluation Type"
+
+  - name: "Delete Stock Revaluation Type"
+    steps:
+      - step: "Create revaluation type"
+        action: "create"
+        model: "stock_revaluation_type"
+        save_as: "rtype"
+        values:
+          name: "Delete Revaluation Type"
+          code: "DSRT001"
+      - step: "Delete record"
+        action: "call"
+        target: "rtype"
+        method: "unlink"
+      - step: "Verify deleted"
+        action: "search"
+        model: "stock_revaluation_type"
+        domain: [["code", "=", "DSRT001"]]
+        save_as: "result"
+        expect_count: 0

@@ -1,0 +1,56 @@
+scenarios:
+  - name: "Create Production Lot with QR Code Fields"
+    steps:
+      - step: "Create product for lot"
+        action: "create"
+        model: "product.product"
+        save_as: "product"
+        values:
+          name: "Test Product Lot QR"
+          tracking: "lot"
+      - step: "Create production lot"
+        action: "create"
+        model: "stock.production.lot"
+        save_as: "lot"
+        values:
+          name: "LOT-QR-001"
+          product_id: "EVAL: registry['product'].id"
+      - step: "Assert lot created"
+        action: "assert"
+        target: "lot"
+        asserts:
+          id:
+            type: "value"
+            operator: "is_truthy"
+          name:
+            type: "value"
+            expected: "LOT-QR-001"
+
+  - name: "Edit Production Lot Name"
+    steps:
+      - step: "Create product for lot"
+        action: "create"
+        model: "product.product"
+        save_as: "product"
+        values:
+          name: "Test Product Edit QR"
+          tracking: "lot"
+      - step: "Create production lot"
+        action: "create"
+        model: "stock.production.lot"
+        save_as: "lot"
+        values:
+          name: "LOT-QR-EDIT"
+          product_id: "EVAL: registry['product'].id"
+      - step: "Update lot name"
+        action: "write"
+        target: "lot"
+        values:
+          name: "LOT-QR-EDIT-UPDATED"
+      - step: "Assert name updated"
+        action: "assert"
+        target: "lot"
+        asserts:
+          name:
+            type: "value"
+            expected: "LOT-QR-EDIT-UPDATED"

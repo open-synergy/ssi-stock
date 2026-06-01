@@ -3,7 +3,6 @@
      Copyright 2022 PT. Simetri Sinergi Indonesia
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
-<data>
 <record id="location_type_customer_donation" model="location_type">
     <field name="name">Customer Donation</field>
     <field name="code">CD</field>
@@ -15,5 +14,4 @@
     <field name="code">SD</field>
     <field name="usage">supplier</field>
 </record>
-</data>
 </odoo>

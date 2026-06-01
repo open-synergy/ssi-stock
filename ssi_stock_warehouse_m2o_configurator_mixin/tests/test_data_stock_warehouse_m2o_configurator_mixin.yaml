@@ -1,0 +1,44 @@
+scenarios:
+  - name: "Create Picking Type Category with Warehouse Configurator"
+    steps:
+      - step: "Create picking type category"
+        action: "create"
+        model: "picking_type_category"
+        save_as: "ptc"
+        values:
+          name: "Test Warehouse Config PTC"
+          code: "TWCPTC001"
+          direction: "outgoing"
+      - step: "Assert created"
+        action: "assert"
+        target: "ptc"
+        asserts:
+          id:
+            type: "value"
+            operator: "is_truthy"
+          name:
+            type: "value"
+            expected: "Test Warehouse Config PTC"
+
+  - name: "Edit Picking Type Category Name"
+    steps:
+      - step: "Create picking type category"
+        action: "create"
+        model: "picking_type_category"
+        save_as: "ptc"
+        values:
+          name: "Edit Warehouse Config PTC"
+          code: "EWCPTC001"
+          direction: "incoming"
+      - step: "Update name"
+        action: "write"
+        target: "ptc"
+        values:
+          name: "Updated Warehouse Config PTC"
+      - step: "Assert name updated"
+        action: "assert"
+        target: "ptc"
+        asserts:
+          name:
+            type: "value"
+            expected: "Updated Warehouse Config PTC"
