@@ -1,0 +1,44 @@
+scenarios:
+  - name: "Picking Type Category Has Location M2O Configurator Fields"
+    steps:
+      - step: "Create picking type category"
+        action: "create"
+        model: "picking_type_category"
+        save_as: "ptc"
+        values:
+          name: "Test Location Configurator PTC"
+          code: "TLCPTC001"
+          direction: "outgoing"
+      - step: "Assert created with default selection method"
+        action: "assert"
+        target: "ptc"
+        asserts:
+          id:
+            type: "value"
+            operator: "is_truthy"
+          name:
+            type: "value"
+            expected: "Test Location Configurator PTC"
+
+  - name: "Edit Picking Type Category Name"
+    steps:
+      - step: "Create picking type category"
+        action: "create"
+        model: "picking_type_category"
+        save_as: "ptc"
+        values:
+          name: "Edit Location Config PTC"
+          code: "ELCPTC001"
+          direction: "incoming"
+      - step: "Update name"
+        action: "write"
+        target: "ptc"
+        values:
+          name: "Updated Location Config PTC"
+      - step: "Assert name updated"
+        action: "assert"
+        target: "ptc"
+        asserts:
+          name:
+            type: "value"
+            expected: "Updated Location Config PTC"
