@@ -1,0 +1,45 @@
+scenarios:
+  - name: "Create Product with Fixed Asset Fields"
+    steps:
+      - step: "Create product with auto create fixed asset enabled"
+        action: "create"
+        model: "product.product"
+        save_as: "product"
+        values:
+          name: "Test Fixed Asset Product"
+          auto_create_fixed_asset: false
+      - step: "Assert product created"
+        action: "assert"
+        target: "product"
+        asserts:
+          id:
+            type: "value"
+            operator: "is_truthy"
+          name:
+            type: "value"
+            expected: "Test Fixed Asset Product"
+          auto_create_fixed_asset:
+            type: "value"
+            expected: false
+
+  - name: "Edit Product Fixed Asset Flag"
+    steps:
+      - step: "Create product"
+        action: "create"
+        model: "product.product"
+        save_as: "product"
+        values:
+          name: "Edit Fixed Asset Product"
+          auto_create_fixed_asset: false
+      - step: "Update auto create flag"
+        action: "write"
+        target: "product"
+        values:
+          auto_create_fixed_asset: true
+      - step: "Assert flag updated"
+        action: "assert"
+        target: "product"
+        asserts:
+          auto_create_fixed_asset:
+            type: "value"
+            expected: true
