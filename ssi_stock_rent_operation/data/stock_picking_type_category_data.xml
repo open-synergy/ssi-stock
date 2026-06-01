@@ -3,24 +3,23 @@
      Copyright 2022 PT. Simetri Sinergi Indonesia
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
-<data>
 <record id="picking_category_supplier_rent_in" model="picking_type_category">
     <field name="name">Supplier Rent In</field>
     <field name="code">SREI</field>
     <field name="direction">incoming</field>
     <field name="default_source_location_type_id" ref="location_type_supplier_rent" />
     <field
-                name="default_destination_location_type_id"
-                ref="ssi_stock.location_type_main_stock"
-            />
+            name="default_destination_location_type_id"
+            ref="ssi_stock.location_type_main_stock"
+        />
     <field
-                name="allowed_source_location_type_ids"
-                eval="[(6, 0, [ref('location_type_supplier_rent')])]"
-            />
+            name="allowed_source_location_type_ids"
+            eval="[(6, 0, [ref('location_type_supplier_rent')])]"
+        />
     <field
-                name="allowed_destination_location_type_ids"
-                eval="[(6, 0, [ref('ssi_stock.location_type_main_stock')])]"
-            />
+            name="allowed_destination_location_type_ids"
+            eval="[(6, 0, [ref('ssi_stock.location_type_main_stock')])]"
+        />
     <field name="module_categ_id" ref="supplier_rent_in_workflow_module_category" />
 </record>
 
@@ -29,21 +28,21 @@
     <field name="code">SREO</field>
     <field name="direction">outgoing</field>
     <field
-                name="default_source_location_type_id"
-                ref="ssi_stock.location_type_main_stock"
-            />
+            name="default_source_location_type_id"
+            ref="ssi_stock.location_type_main_stock"
+        />
     <field
-                name="default_destination_location_type_id"
-                ref="location_type_supplier_rent"
-            />
+            name="default_destination_location_type_id"
+            ref="location_type_supplier_rent"
+        />
     <field
-                name="allowed_source_location_type_ids"
-                eval="[(6, 0, [ref('ssi_stock.location_type_main_stock')])]"
-            />
+            name="allowed_source_location_type_ids"
+            eval="[(6, 0, [ref('ssi_stock.location_type_main_stock')])]"
+        />
     <field
-                name="allowed_destination_location_type_ids"
-                eval="[(6, 0, [ref('location_type_supplier_rent')])]"
-            />
+            name="allowed_destination_location_type_ids"
+            eval="[(6, 0, [ref('location_type_supplier_rent')])]"
+        />
     <field name="module_categ_id" ref="supplier_rent_out_workflow_module_category" />
 </record>
 
@@ -53,17 +52,17 @@
     <field name="direction">incoming</field>
     <field name="default_source_location_type_id" ref="location_type_customer_rent" />
     <field
-                name="default_destination_location_type_id"
-                ref="ssi_stock.location_type_main_stock"
-            />
+            name="default_destination_location_type_id"
+            ref="ssi_stock.location_type_main_stock"
+        />
     <field
-                name="allowed_source_location_type_ids"
-                eval="[(6, 0, [ref('location_type_customer_rent')])]"
-            />
+            name="allowed_source_location_type_ids"
+            eval="[(6, 0, [ref('location_type_customer_rent')])]"
+        />
     <field
-                name="allowed_destination_location_type_ids"
-                eval="[(6, 0, [ref('ssi_stock.location_type_main_stock')])]"
-            />
+            name="allowed_destination_location_type_ids"
+            eval="[(6, 0, [ref('ssi_stock.location_type_main_stock')])]"
+        />
     <field name="module_categ_id" ref="customer_rent_in_workflow_module_category" />
 </record>
 
@@ -72,23 +71,21 @@
     <field name="code">CREO</field>
     <field name="direction">outgoing</field>
     <field
-                name="default_source_location_type_id"
-                ref="ssi_stock.location_type_main_stock"
-            />
+            name="default_source_location_type_id"
+            ref="ssi_stock.location_type_main_stock"
+        />
     <field
-                name="default_destination_location_type_id"
-                ref="location_type_customer_rent"
-            />
+            name="default_destination_location_type_id"
+            ref="location_type_customer_rent"
+        />
     <field
-                name="allowed_source_location_type_ids"
-                eval="[(6, 0, [ref('ssi_stock.location_type_main_stock')])]"
-            />
+            name="allowed_source_location_type_ids"
+            eval="[(6, 0, [ref('ssi_stock.location_type_main_stock')])]"
+        />
     <field
-                name="allowed_destination_location_type_ids"
-                eval="[(6, 0, [ref('location_type_customer_rent')])]"
-            />
+            name="allowed_destination_location_type_ids"
+            eval="[(6, 0, [ref('location_type_customer_rent')])]"
+        />
     <field name="module_categ_id" ref="customer_rent_out_workflow_module_category" />
 </record>
-
-</data>
 </odoo>
