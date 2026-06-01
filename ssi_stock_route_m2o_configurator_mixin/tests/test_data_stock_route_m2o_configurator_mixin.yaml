@@ -1,0 +1,42 @@
+scenarios:
+  - name: "Create Location Type with Route Configurator"
+    steps:
+      - step: "Create location type"
+        action: "create"
+        model: "location_type"
+        save_as: "lt"
+        values:
+          name: "Test Route Config LT"
+          code: "TRCLT001"
+      - step: "Assert created"
+        action: "assert"
+        target: "lt"
+        asserts:
+          id:
+            type: "value"
+            operator: "is_truthy"
+          name:
+            type: "value"
+            expected: "Test Route Config LT"
+
+  - name: "Edit Location Type Name"
+    steps:
+      - step: "Create location type"
+        action: "create"
+        model: "location_type"
+        save_as: "lt"
+        values:
+          name: "Edit Route Config LT"
+          code: "ERCLT001"
+      - step: "Update name"
+        action: "write"
+        target: "lt"
+        values:
+          name: "Updated Route Config LT"
+      - step: "Assert name updated"
+        action: "assert"
+        target: "lt"
+        asserts:
+          name:
+            type: "value"
+            expected: "Updated Route Config LT"
