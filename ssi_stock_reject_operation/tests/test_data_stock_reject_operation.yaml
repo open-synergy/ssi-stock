@@ -1,0 +1,14 @@
+scenarios:
+  - name: "Verify Reject Operation Data Loaded"
+    steps:
+      - step: "Get reject picking type category via XML ID"
+        action: "ref"
+        xml_id: "ssi_stock_reject_operation.picking_category_customer_reject_in"
+        save_as: "ptc"
+      - step: "Assert reject picking type category exists"
+        action: "assert"
+        target: "ptc"
+        asserts:
+          id:
+            type: "value"
+            operator: "is_truthy"
