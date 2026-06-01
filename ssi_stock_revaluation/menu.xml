@@ -3,14 +3,11 @@
      Copyright 2023 PT. Simetri Sinergi Indonesia
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl-3.0) -->
 <odoo>
-<data>
 
 <menuitem
-            id="menu_stock_revaluation_config"
-            name="Stock Revaluation"
-            parent="stock.menu_stock_config_settings"
-            sequence="20"
-        />
-
-</data>
+        id="menu_stock_revaluation_config"
+        name="Stock Revaluation"
+        parent="stock.menu_stock_config_settings"
+        sequence="20"
+    />
 </odoo>
