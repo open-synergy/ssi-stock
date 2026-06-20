@@ -560,6 +560,11 @@ msgid "Goods Receipts"
 msgstr ""
 
 #. module: ssi_stock
+#: model_terms:ir.ui.view,arch_db:ssi_stock.location_type_view_search
+msgid "Group By"
+msgstr ""
+
+#. module: ssi_stock
 #: model:ir.model.fields,field_description:ssi_stock.field_change_picking_actual_movement_date__id
 #: model:ir.model.fields,field_description:ssi_stock.field_location_type__id
 #: model:ir.model.fields,field_description:ssi_stock.field_mass_create_location__id
@@ -1440,6 +1445,7 @@ msgstr ""
 #. module: ssi_stock
 #: model:ir.model.fields,field_description:ssi_stock.field_location_type__usage
 #: model:ir.ui.menu,name:ssi_stock.menu_usage_movement
+#: model_terms:ir.ui.view,arch_db:ssi_stock.location_type_view_search
 msgid "Usage"
 msgstr ""
 
@@ -1527,6 +1533,11 @@ msgstr ""
 #: model:ir.model,name:ssi_stock.model_stock_warehouse
 #: model:ir.model.fields,field_description:ssi_stock.field_stock_location__warehouse_id
 msgid "Warehouse"
+msgstr ""
+
+#. module: ssi_stock
+#: model_terms:ir.ui.view,arch_db:ssi_stock.location_type_view_search
+msgid "Warehouse Location"
 msgstr ""
 
 #. module: ssi_stock
