@@ -249,6 +249,7 @@ msgstr ""
 
 #. module: ssi_stock_valuation_layer_recomputation
 #: model:ir.model.fields,field_description:ssi_stock_valuation_layer_recomputation.field_svl_recomputation__date
+#: model_terms:ir.ui.view,arch_db:ssi_stock_valuation_layer_recomputation.svl_recomputation_view_search
 msgid "Date"
 msgstr ""
 
@@ -288,6 +289,11 @@ msgstr ""
 #: model:ir.model.fields,help:ssi_stock_valuation_layer_recomputation.field_svl_recomputation__activity_type_icon
 #: model:ir.model.fields,help:ssi_stock_valuation_layer_recomputation.field_svl_recomputation_type__activity_type_icon
 msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: ssi_stock_valuation_layer_recomputation
+#: model_terms:ir.ui.view,arch_db:ssi_stock_valuation_layer_recomputation.svl_recomputation_view_search
+msgid "Group By"
 msgstr ""
 
 #. module: ssi_stock_valuation_layer_recomputation
@@ -661,6 +667,7 @@ msgstr ""
 
 #. module: ssi_stock_valuation_layer_recomputation
 #: model:ir.model.fields,field_description:ssi_stock_valuation_layer_recomputation.field_svl_recomputation__type_id
+#: model_terms:ir.ui.view,arch_db:ssi_stock_valuation_layer_recomputation.svl_recomputation_view_search
 msgid "Type"
 msgstr ""
 
