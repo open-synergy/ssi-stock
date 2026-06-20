@@ -266,6 +266,7 @@ msgstr ""
 
 #. module: ssi_stock_revaluation
 #: model:ir.model.fields,field_description:ssi_stock_revaluation.field_stock_revaluation__date
+#: model_terms:ir.ui.view,arch_db:ssi_stock_revaluation.stock_revaluation_view_search
 msgid "Date"
 msgstr ""
 
@@ -305,6 +306,11 @@ msgstr ""
 #: model:ir.model.fields,help:ssi_stock_revaluation.field_stock_revaluation__activity_type_icon
 #: model:ir.model.fields,help:ssi_stock_revaluation.field_stock_revaluation_type__activity_type_icon
 msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: ssi_stock_revaluation
+#: model_terms:ir.ui.view,arch_db:ssi_stock_revaluation.stock_revaluation_view_search
+msgid "Group By"
 msgstr ""
 
 #. module: ssi_stock_revaluation
@@ -584,6 +590,7 @@ msgstr ""
 #. module: ssi_stock_revaluation
 #: model:ir.model.fields,field_description:ssi_stock_revaluation.field_stock_revaluation__product_id
 #: model_terms:ir.ui.view,arch_db:ssi_stock_revaluation.stock_revaluation_type_view_form
+#: model_terms:ir.ui.view,arch_db:ssi_stock_revaluation.stock_revaluation_view_search
 msgid "Product"
 msgstr ""
 
@@ -748,6 +755,7 @@ msgstr ""
 
 #. module: ssi_stock_revaluation
 #: model:ir.model.fields,field_description:ssi_stock_revaluation.field_stock_revaluation__type_id
+#: model_terms:ir.ui.view,arch_db:ssi_stock_revaluation.stock_revaluation_view_search
 msgid "Type"
 msgstr ""
 
