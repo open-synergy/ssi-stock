@@ -12,7 +12,24 @@
         />
     <field name="mode">primary</field>
     <field name="arch" type="xml">
-        <data />
+        <data>
+            <xpath expr="//search" position="inside">
+                <field name="usage" />
+                <filter
+                        name="filter_warehouse_location"
+                        string="Warehouse Location"
+                        domain="[('is_warehouse_location', '=', True)]"
+                    />
+                <separator />
+                <group string="Group By">
+                    <filter
+                            name="grp_usage"
+                            string="Usage"
+                            context="{'group_by': 'usage'}"
+                        />
+                </group>
+            </xpath>
+        </data>
     </field>
 </record>
 
