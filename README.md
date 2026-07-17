@@ -38,6 +38,7 @@ addon | version | maintainers | summary
 [ssi_stock_revaluation_operating_unit](ssi_stock_revaluation_operating_unit/) | 14.0.1.0.0 |  | Stock Revaluation + Operating Unit
 [ssi_stock_route_m2o_configurator_mixin](ssi_stock_route_m2o_configurator_mixin/) | 14.0.1.1.0 |  | stock.location.route Many2one Configurator Mixin
 [ssi_stock_valuation_layer_recomputation](ssi_stock_valuation_layer_recomputation/) | 14.0.1.2.0 |  | Stock Valuation Layer Usage Recomputation
+[ssi_stock_valuation_layer_recomputation_operating_unit](ssi_stock_valuation_layer_recomputation_operating_unit/) | 14.0.1.0.0 |  | Stock Valuation Layer Usage Recomputation + Operating Unit
 [ssi_stock_warehouse_m2o_configurator_mixin](ssi_stock_warehouse_m2o_configurator_mixin/) | 14.0.1.1.0 |  | stock.warehouse Many2one Configurator Mixin
 
 [//]: # (end addons)
