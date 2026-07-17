@@ -2,9 +2,9 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-=====================================================
+==========================================================
 Stock Valuation Layer Usage Recomputation + Operating Unit
-=====================================================
+==========================================================
 
 Glue module that adds Operating Unit support to the Stock Valuation Layer
 Usage Recomputation module. Extends ``svl_recomputation`` with
