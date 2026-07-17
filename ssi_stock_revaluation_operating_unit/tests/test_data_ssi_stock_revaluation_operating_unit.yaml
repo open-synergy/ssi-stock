@@ -1,0 +1,129 @@
+setup:
+  steps:
+    - step: "Create product for revaluation"
+      action: "create"
+      model: "product.product"
+      save_as: "product"
+      values:
+        name: "Stock Revaluation OU Test Product"
+        type: "product"
+        categ_id: "REF: product.product_category_all"
+
+    - step: "Create stock revaluation type"
+      action: "create"
+      model: "stock_revaluation_type"
+      save_as: "rtype"
+      values:
+        name: "Stock Revaluation OU Test Type"
+        code: "EVAL: 'SROU' + datetime.now().strftime('%H%M%S%f')"
+
+    - step: "Get supplier location"
+      action: "search"
+      model: "stock.location"
+      domain: [["usage", "=", "supplier"]]
+      save_as: "src_location"
+      limit: 1
+
+    - step: "Get internal stock location"
+      action: "search"
+      model: "stock.location"
+      domain: [["usage", "=", "internal"]]
+      save_as: "dest_location"
+      limit: 1
+
+    - step: "Create done stock move"
+      action: "create"
+      model: "stock.move"
+      save_as: "move"
+      values:
+        name: "Stock Revaluation OU Test Move"
+        date: "EVAL: datetime.now()"
+        company_id: "REC: company.id"
+        product_id: "REC: product.id"
+        product_uom_qty: 10.0
+        product_uom: "REC: product.uom_id.id"
+        location_id: "REC: src_location.id"
+        location_dest_id: "REC: dest_location.id"
+        procure_method: "make_to_stock"
+        state: "done"
+
+    - step: "Create stock valuation layer"
+      action: "create"
+      model: "stock.valuation.layer"
+      save_as: "svl"
+      values:
+        company_id: "REC: company.id"
+        product_id: "REC: product.id"
+        quantity: 10.0
+        unit_cost: 100.0
+        value: 1000.0
+        stock_move_id: "REC: move.id"
+
+    - step: "Create stock revaluation with operating_unit_id"
+      action: "create"
+      model: "stock_revaluation"
+      save_as: "revaluation"
+      values:
+        date: "2024-01-01"
+        type_id: "REC: rtype.id"
+        product_id: "REC: product.id"
+        stock_move_id: "REC: move.id"
+        stock_valuation_layer_id: "REC: svl.id"
+        old_price_unit: 100.0
+        quantity: 10.0
+        old_value: 1000.0
+        new_price_unit: 120.0
+        operating_unit_id: "REF: operating_unit.main_operating_unit"
+
+scenarios:
+  - name: "Stock Revaluation - Operating Unit is set"
+    steps:
+      - step: "Assert stock_revaluation operating_unit_id is set"
+        action: "assert"
+        target: "revaluation"
+        asserts:
+          operating_unit_id:
+            type: "value"
+            operator: "is_truthy"
+
+  - name: "Stock Revaluation - ir.rule denies access outside assigned operating unit"
+    steps:
+      - step: "Create user restricted to a different operating unit"
+        action: "create"
+        model: "res.users"
+        save_as: "restricted_user"
+        values:
+          name: "Stock Revaluation OU Restricted User"
+          login: "ou_restricted_stock_revaluation@example.com"
+          groups_id:
+            [
+              [
+                6,
+                0,
+                [
+                  "REF: base.group_user",
+                  "REF: ssi_stock_revaluation.stock_revaluation_user_group",
+                  "REF: ssi_stock_revaluation_operating_unit.stock_revaluation_ou_group",
+                ],
+              ],
+            ]
+          assigned_operating_unit_ids: [[6, 0, []]]
+
+      - step: "Restricted user cannot read the record outside their operating unit"
+        action: "call"
+        target: "revaluation"
+        method: "read"
+        as_user: "restricted_user"
+        args:
+          - ["operating_unit_id"]
+        expect_error:
+          type: "AccessError"
+
+      - step: "Restricted user cannot write the record outside their operating unit"
+        action: "write"
+        target: "revaluation"
+        as_user: "restricted_user"
+        expect_error:
+          type: "AccessError"
+        values:
+          new_price_unit: 150.0
