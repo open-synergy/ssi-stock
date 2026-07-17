@@ -1,0 +1,73 @@
+setup:
+  steps:
+    - step: "Create SVL recomputation type"
+      action: "create"
+      model: "svl_recomputation_type"
+      save_as: "rtype"
+      values:
+        name: "SVL Recomputation OU Test Type"
+        code: "EVAL: 'SVLROU' + datetime.now().strftime('%H%M%S%f')"
+
+    - step: "Create svl_recomputation with operating_unit_id"
+      action: "create"
+      model: "svl_recomputation"
+      save_as: "recomputation"
+      values:
+        type_id: "REC: rtype.id"
+        date: "2024-01-01"
+        operating_unit_id: "REF: operating_unit.main_operating_unit"
+
+scenarios:
+  - name: "SVL Recomputation - Operating Unit is set"
+    steps:
+      - step: "Assert svl_recomputation operating_unit_id is set"
+        action: "assert"
+        target: "recomputation"
+        asserts:
+          operating_unit_id:
+            type: "value"
+            operator: "is_truthy"
+
+  - name: "SVL Recomputation - ir.rule denies access outside assigned operating unit"
+    steps:
+      - step: "Create user restricted to a different operating unit"
+        action: "create"
+        model: "res.users"
+        save_as: "restricted_user"
+        values:
+          name: "SVL Recomputation OU Restricted User"
+          login: "ou_restricted_svl_recomputation@example.com"
+          groups_id:
+            [
+              [
+                6,
+                0,
+                [
+                  "REF: base.group_user",
+                  "REF:
+                  ssi_stock_valuation_layer_recomputation.svl_recomputation_user_group",
+                  "REF:
+                  ssi_stock_valuation_layer_recomputation_operating_unit.svl_recomputation_ou_group",
+                ],
+              ],
+            ]
+          assigned_operating_unit_ids: [[6, 0, []]]
+
+      - step: "Restricted user cannot read the record outside their operating unit"
+        action: "call"
+        target: "recomputation"
+        method: "read"
+        as_user: "restricted_user"
+        args:
+          - ["operating_unit_id"]
+        expect_error:
+          type: "AccessError"
+
+      - step: "Restricted user cannot write the record outside their operating unit"
+        action: "write"
+        target: "recomputation"
+        as_user: "restricted_user"
+        expect_error:
+          type: "AccessError"
+        values:
+          date: "2024-02-01"
