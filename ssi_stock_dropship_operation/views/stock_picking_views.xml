@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 OpenSynergy Indonesia
+     Copyright 2026 PT. Simetri Sinergi Indonesia
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+<record id="dropship_action" model="ir.actions.act_window">
+    <field name="name">Dropship</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">stock.picking</field>
+    <field name="view_mode">tree,form</field>
+    <field
+            name="domain"
+            eval="[('picking_type_category_id','=',ref('picking_category_ds'))]"
+        />
+    <field
+            name="context"
+            eval="{'default_picking_type_category_id':ref('picking_category_ds')}"
+        />
+</record>
+
+<menuitem
+        id="dropship_menu"
+        name="Dropship"
+        parent="ssi_stock.menu_incoming_movement"
+        groups="dropship_viewer_group"
+        action="dropship_action"
+        sequence="108"
+    />
+</odoo>

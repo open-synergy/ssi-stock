@@ -1,0 +1,88 @@
+scenarios:
+  - name: "Post-init hook links the native Dropship picking type to the category"
+    steps:
+      - step: "Search the picking type created by stock_dropshipping"
+        action: "search"
+        model: "stock.picking.type"
+        domain:
+          - ["default_location_src_id.usage", "=", "supplier"]
+          - ["default_location_dest_id.usage", "=", "customer"]
+        save_as: "dropship_type"
+        limit: 1
+      - step: "Assert it was found"
+        action: "assert"
+        target: "dropship_type"
+        asserts:
+          id:
+            type: "value"
+            operator: "is_truthy"
+      - step: "Assert warehouse_id stays empty (native stock_dropshipping design)"
+        action: "assert"
+        target: "dropship_type"
+        asserts:
+          warehouse_id:
+            type: "value"
+            operator: "is_falsy"
+      - step: "Assert category_id was linked by the post-init hook"
+        action: "assert"
+        target: "dropship_type"
+        asserts:
+          category_id:
+            type: "m2o"
+            expected_xml_id: "ssi_stock_dropship_operation.picking_category_ds"
+
+  - name: "Dropship picking type category master data is loaded correctly"
+    steps:
+      - step: "Get the Dropship category"
+        action: "ref"
+        xml_id: "ssi_stock_dropship_operation.picking_category_ds"
+        save_as: "category"
+      - step: "Assert its fields"
+        action: "assert"
+        target: "category"
+        asserts:
+          name:
+            type: "value"
+            expected: "Dropship"
+          code:
+            type: "value"
+            expected: "DS"
+          direction:
+            type: "value"
+            expected: "incoming"
+          module_categ_id:
+            type: "m2o"
+            expected_xml_id: "ssi_stock_dropship_operation.dropship_workflow_module_category"
+
+  - name: "Dropship group hierarchy grants Viewer/User via implied_ids"
+    steps:
+      - step: "Get Viewer group"
+        action: "ref"
+        xml_id: "ssi_stock_dropship_operation.dropship_viewer_group"
+        save_as: "viewer_group"
+      - step: "Get User group"
+        action: "ref"
+        xml_id: "ssi_stock_dropship_operation.dropship_user_group"
+        save_as: "user_group"
+      - step: "Get Validator group"
+        action: "ref"
+        xml_id: "ssi_stock_dropship_operation.dropship_validator_group"
+        save_as: "validator_group"
+      - step: "Assert User implies Viewer"
+        action: "assert"
+        target: "user_group"
+        asserts:
+          implied_ids:
+            type: "m2m"
+            check: "contains"
+            expected_records:
+              - "REC: viewer_group"
+      - step: "Assert Validator implies User"
+        action: "assert"
+        target: "validator_group"
+        asserts:
+          implied_ids:
+            type: "m2m"
+            check: "contains"
+            expected_records:
+              - "REC: user_group"
