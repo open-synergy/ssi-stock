@@ -1,0 +1,37 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* ssi_stock_dropship_operation
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: ssi_stock_dropship_operation
+#: model:ir.actions.act_window,name:ssi_stock_dropship_operation.dropship_action
+#: model:ir.module.category,name:ssi_stock_dropship_operation.dropship_workflow_module_category
+#: model:ir.ui.menu,name:ssi_stock_dropship_operation.dropship_menu
+#: model:picking_type_category,name:ssi_stock_dropship_operation.picking_category_ds
+msgid "Dropship"
+msgstr ""
+
+#. module: ssi_stock_dropship_operation
+#: model:res.groups,name:ssi_stock_dropship_operation.dropship_user_group
+msgid "User"
+msgstr ""
+
+#. module: ssi_stock_dropship_operation
+#: model:res.groups,name:ssi_stock_dropship_operation.dropship_validator_group
+msgid "Validator"
+msgstr ""
+
+#. module: ssi_stock_dropship_operation
+#: model:res.groups,name:ssi_stock_dropship_operation.dropship_viewer_group
+msgid "Viewer"
+msgstr ""
