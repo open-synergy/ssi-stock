@@ -1,0 +1,101 @@
+scenarios:
+  - name: "Approver resolves to the category manager when warehouse_id is empty"
+    steps:
+      - step: "Create a user to act as the Dropship category manager"
+        action: "create"
+        model: "res.users"
+        save_as: "manager"
+        values:
+          name: "Dropship Approval Manager Test"
+          login: "dropship_approval_manager_test@example.com"
+          groups_id:
+            - - 6
+              - 0
+              - - "REF: base.group_user"
+
+      - step: "Get the Dropship category"
+        action: "ref"
+        xml_id: "ssi_stock_dropship_operation.picking_category_ds"
+        save_as: "category"
+
+      - step: "Assign the test user as the category manager"
+        action: "write"
+        target: "category"
+        values:
+          manager_id: "REC: manager.id"
+
+      - step: "Search the native Dropship picking type"
+        action: "search"
+        model: "stock.picking.type"
+        domain:
+          - ["default_location_src_id.usage", "=", "supplier"]
+          - ["default_location_dest_id.usage", "=", "customer"]
+        save_as: "dropship_type"
+        limit: 1
+
+      - step: "Create a storable product to move"
+        action: "create"
+        model: "product.product"
+        save_as: "product"
+        values:
+          name: "Dropship Approval Test Product"
+          type: "product"
+          uom_id: "REF: uom.product_uom_unit"
+          uom_po_id: "REF: uom.product_uom_unit"
+
+      - step: "Create a Dropship transfer using that picking type"
+        action: "create"
+        model: "stock.picking"
+        save_as: "picking"
+        values:
+          picking_type_id: "REC: dropship_type.id"
+          location_id: "REF: stock.stock_location_suppliers"
+          location_dest_id: "REF: stock.stock_location_customers"
+          move_ids_without_package:
+            - - 0
+              - 0
+              - name: "Dropship Approval Test Product"
+                product_id: "REC: product.id"
+                product_uom_qty: 1.0
+                product_uom: "REF: uom.product_uom_unit"
+                location_id: "REF: stock.stock_location_suppliers"
+                location_dest_id: "REF: stock.stock_location_customers"
+
+      - step: "Assert warehouse_id is empty on this transfer's picking type"
+        action: "assert"
+        target: "picking"
+        asserts:
+          picking_type_id.warehouse_id:
+            type: "value"
+            operator: "is_falsy"
+
+      - step: "Confirm the transfer (leaves draft, where approval data is reset)"
+        action: "call"
+        target: "picking"
+        method: "action_confirm"
+
+      - step:
+          "Assert it reached assigned state (Vendors location has no reservation limit)"
+        action: "assert"
+        target: "picking"
+        refresh: true
+        asserts:
+          state:
+            type: "value"
+            expected: "assigned"
+
+      - step: "Request approval on the transfer"
+        action: "call"
+        target: "picking"
+        method: "action_request_approval"
+
+      - step: "Assert the category manager is now an active approver"
+        action: "assert"
+        target: "picking"
+        refresh: true
+        asserts:
+          active_approver_user_ids:
+            type: "m2m"
+            check: "contains"
+            expected_records:
+              - "REC: manager"
