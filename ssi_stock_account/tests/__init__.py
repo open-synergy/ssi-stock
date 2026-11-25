@@ -3,3 +3,4 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from . import test_picking_type_category_account
+from . import test_stock_valuation_layer_partner
