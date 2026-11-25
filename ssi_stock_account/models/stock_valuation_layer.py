@@ -81,7 +81,6 @@ class StockValuationLayer(models.Model):
     partner_id = fields.Many2one(
         string="Partner",
         related="stock_move_id.picking_id.partner_id",
-        readonly=False,
     )
     date_method = fields.Selection(
         string="Date Method",
